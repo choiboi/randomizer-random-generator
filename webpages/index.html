@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Randomizer</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+
+        <!-- jQuery Files -->
+        <link rel="stylesheet" href="css-framework/jquery.mobile.structure-1.2.1.min.css"/>
+        <link rel="stylesheet" href="css-framework/jquery.mobile-1.2.0.css"/>
+
+        <!-- Others -->
+        <link rel="stylesheet" href="css/icon.css"/>
+    </head>
+
+    <body class="ui-mobile-viewport">
+        <!-- MAIN PAGE -->
+        <div data-role="page" id="randomizer">
+
+            <div data-role="header" data-position="fixed">
+                <h1>Randomizer</h1>
+                <!-- Popup Menu Button -->
+                <a data-role="button" href="#mainMenuPopup" data-rel="popup" class="ui-btn-right">Menu</a>
+
+                <!-- Popup Menu -->
+                <div data-role="popup" id="mainMenuPopup" data-overlay-theme="a">
+                    <ul data-role="listview">
+                        <li data-role="list-divider" style="font-size: 1.0em; text-align:center;">Menu</li>
+                    </ul>
+                    <a href="" id="prevChoicePageButton" data-role="button" data-corners="false" style="margin: 0;">View Previous Choices</a>
+                    <a href="" id="orderedListPageButton" data-role="button" data-corners="false" style="margin: 0;">View Saved Ordered Lists</a>
+                    <a href="" id="aboutPageButton" data-role="button" data-corners="false" style="margin: 0;">About Randomizer</a>
+                </div>
+            </div>
+
+            <div data-role="content">
+                <label for="selectionTextfieldMainPage">Input Your Selections Here:</label>
+                <input id="selectionTextfieldMainPage" type="text" value=""/>
+
+                <div data-role="controlgroup" data-type="horizontal" style="text-align: right;">
+                    <a id="clearAllButtonMainPage" href="" data-role="button" data-shadow="false" data-inline="true">Clear All</a>
+                    <a id="addButtonMainPage" href="" data-role="button" data-shadow="false" data-inline="true">Add</a>
+                </div>
+
+                <div>
+                    <ul id="selectionsListMainPage" data-role="listview" data-inset="true">
+                        <!-- Sample
+                        <li data-role="list-divider">Your Selections</li>
+                        <li>
+                            Test 1
+                            <span style="float: right;">
+                                <input class="button" value="1" type="image" src="css-framework/images/delete_icon_black.png" style="width: 20px; height: 20px"/>
+                            </span>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+                
+                <div data-role="controlgroup" data-type="horizontal" style="text-align: right;">
+                    <a id="loadSelectionsButtonMainPage" href="" data-role="button" data-shadow="false" data-inline="true">Load List</a>
+                    <a id="saveSelectionsButtonMainPage" href="" data-role="button" data-shadow="false" data-inline="true">Save List</a>
+                </div>
+                
+                <!-- Random Number Generator -->
+                <div data-role="controlgroup" data-type="horizontal" style="text-align: right;">
+                    <a id="randomNumButton" href="" data-role="button" data-shadow="false" data-inline="true">Randomize Number</a>
+                </div>
+
+                <!-- Random Number Generator Popup -->
+                <div data-role="popup" id="randomNumberPopup" data-overlay-theme="a" class="ui-corner-all"
+                        style="min-width: 100%; text-align: center;">
+                    <ul data-role="listview">
+                        <li data-role="list-divider"style="font-size: 1.0em; text-align:center;">Input Number Range</li>
+                    </ul>
+                    <div data-role="content">
+                        <p><b>Please input number range.</b></p>
+                        <div data-role="fieldcontain">
+                            <label for="startNum">From:</label>
+                            <input id= "startNum" type="number" name="startNum" value="1" />
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label for="endNum">To:</label>
+                            <input id= "endNum" type="number" name="endNum" value="10" />
+                        </div>
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <a id="randomNumOKPopupBut" href="" data-role="button">OK</a>
+                            </div>
+                            <div class="ui-block-b">
+                                <a href="" class="backButton" data-role="button">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Save List Alert Popup -->
+                <div data-role="popup" id="saveListAlertPopup" data-overlay-theme="a" class="ui-corner-all" 
+                        style="max-width: 80%; margin: 0 auto; text-align: center;">
+                    <ul data-role="listview">
+                        <li data-role="list-divider"style="font-size: 1.0em; text-align:center;">Alert</li>
+                    </ul>
+                    <p id="descSaveListAlertPopup"></p>
+                    <div class="ui-grid-solo">
+                        <div class="ui-block-a">
+                            <a href="" class="backButton" data-role="button">OK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="randomChoiceButton" href="" data-role="button" data-icon="custom">Pick a Choice</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="randomOrderButton" href="" data-role="button" data-icon="custom">Randomize Order</a>
+                    </div>
+                </div>
+
+                <!-- Empty Field Alert Popup -->
+                <div data-role="popup" id="emptyAlertPopup" data-overlay-theme="a" class="ui-corner-all" 
+                        style="max-width: 80%; margin: 0 auto; text-align: center;">
+                    <ul data-role="listview">
+                        <li data-role="list-divider"style="font-size: 1.0em; text-align:center;">Alert</li>
+                    </ul>
+                    <p>
+                        There are no choices to pick from or randomly order from.
+                        Please add choices into the list of selections.
+                    </p>
+                    <div class="ui-grid-solo">
+                        <div class="ui-block-a">
+                            <a href="" class="backButton" data-role="button" data-transition="none">OK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT PAGE -->
+        <div data-role="page" id="result">
+            <div data-role="header" data-position="fixed">
+                <h1>Results</h1>
+            </div>
+
+            <div data-role="content">
+                <h1 id="resultHeader" style="margin: 0 auto; text-align: center;"></h1>
+                <div id="resultContent"></div>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <div id="resultFooter" class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="backResultButton" href="" data-role="button" data-icon="custom">Back</a>
+                    </div>
+                    <div id="resultFooterSaveButton" class="ui-block-b">
+                        <a id="saveResultButton" href="" data-role="button" data-icon="custom">Save and Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RANDOM NUMBER GENERATOR RESULT PAGE -->
+        <div data-role="page" id="resultRandomNumber">
+            <div data-role="header" data-position="fixed">
+                <h1>Results</h1>
+            </div>
+
+            <div data-role="content">
+                <h1 id="resultRandomNumberHeader" style="margin: 0 auto; text-align: center;"></h1>
+                <div id="resultRandomNumberContent"></div>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="backButton" class="backButton" href="" data-role="button" data-icon="custom">Back</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="resultRandomNumberAgainButton" href="" data-role="button" data-icon="custom">Again</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW PREVIOUS CHOICE PAGE -->
+        <div data-role="page" id="prevChoicePage">
+            <div data-role="header" data-position="fixed">
+                <h1 style="white-space: normal">Previously Selected Choices</h1>
+            </div>
+
+            <div data-role="content">
+                <div id="singleChoiceListView" style="margin-top: -0.7em;">
+                    <!-- Sample
+                    <div style="border-bottom: 1px solid #a0a0a0;">
+                        <h3>test 2</h3>
+                        <p style="margin-top: -1em; font-size: 0.8em;">Selected from: test 1, test 2, test 3</p>
+                        <p style="color: gray; margin-top: -0.9em; font-size: 0.8em;">July 10, 2013</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <a href="#randomizer" id="backButton" data-role="button" data-icon="custom">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW SAVED ORDERED LISTS PAGE -->
+        <div data-role="page" id="saveOrderedList">
+            <div data-role="header" data-position="fixed">
+                <h1 style="white-space: normal">Saved Randomized Lists</h1>
+            </div>
+
+            <div data-role="content">
+                <div id="saveRandomizedListView" style="margin-top: -0.7em;">
+                    <!-- Sample
+                    <div style="border-bottom: 1px solid #a0a0a0; margin-top: 0.7em;">
+                        <p style="font-size: 1.2em; margin: 0;"><b>1. test</b></p>
+                        <p style="font-size: 1.2em; margin: 0;"><b>2. test</b></p>
+                        <p style="margin-top: 0.3em; font-size: 0.85em; color: gray;" >Randomized on: July 12, 2013</p>
+                        <input type="image" src="css-framework/images/delete_list_button.png" 
+                                style="width: 100px; height: 20px; margin-top: -0.5em; margin-bottom: 1.1em;"/>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="backButton" href="#randomizer" data-role="button" data-icon="custom">Back</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="deleteAllListButton" href="" data-role="button" data-icon="custom" >Delete All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LOAD SAVED SELECTIONS LISTS PAGE -->
+        <div data-role="page" id="loadSelectionsPage">
+            <div data-role="header" data-position="fixed">
+                <h1 style="white-space: normal">Saved Lists</h1>
+            </div>
+            
+            <div data-role="content">
+                <ul id="loadSelectionsListview" data-role="listview" data-inset="true">
+                    <!-- Sample
+                    <li data-role='list-divider'>Selection the list that you would like to load:</li>
+                    <li>
+                        <a href="">
+                            <h3>List 1</h3>
+                            <p style='margin: 0;'>"Choice 1"</p>
+                            <p style='margin: 0;'>"Choice 2"</p>
+                            <p style='margin: 0;'>"Choice 3"</p>
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a href="#randomizer" id="aboutpageBackButton" class="backButton" data-role="button" data-icon="custom">Back</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a href="" id="loadSelectionPageDeleteButton" data-role="button" data-icon="custom">Delete List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LOAD SAVED SELECTIONS LISTS DELTET PAGE -->
+        <div data-role="page" id="loadSelectionsDeletePage">
+            <div data-role="header" data-position="fixed">
+                <h1 style="white-space: normal">Delete Saved Lists</h1>
+            </div>
+            
+            <div data-role="content">
+                <ul id="loadSelectionsDeleteListview" data-role="listview" data-inset="true"></ul>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <a href="" id="loadSelectionPageDoneButton" data-role="button" data-icon="custom">DONE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ABOUT PAGE -->
+        <div data-role="page" id="about">
+            <div data-role="header" data-position="fixed">
+                <h1>About</h1>
+            </div>
+            
+            <div data-role="content">
+                <p>
+                    Randomizer is an application where users provide choices and it will randomly select one or randomly order 
+                    them. Users also have the option to give a range of numbers and Randomizer will randomly select one from the given 
+                    range. This application is meant for fun use and not recommended for serious decisions.  
+                </p>
+                <p>
+                    Randomizer was developed by Alottapps. Feel free to contact us with suggestions to make this application better
+                    or let us know if you encounter any errors.
+                    <br>
+                    <b>Email: </b>alottapps@gmail.com
+                </p>
+                <p>
+                    <b>Randomizer Version 1.2</b>
+                </p>
+                <h3 style="margin-top: 1.75em; margin-bottom: -0.5em;">Applications Developed by Alottapps</h3>
+                <p>
+                    <b>Sync-board</b><br>
+                    An application that allows you to copy texts between your phone and your computer.<br>
+                    <a href="" onclick="window.open('http://play.google.com/store/apps/details?id=com.Alottapps.SyncBoard', '_blank', 'location=yes');">Android Play Store</a>
+                </p>
+                <p>
+                    <b>Orgasm Meter (Rate My Sex)</b><br>
+                    Only app that can measure your orgasm during sex!<br>
+                    <a href="" onclick="window.open('http://play.google.com/store/apps/details?id=com.Alottapps.OrgasmMeter', '_blank', 'location=yes');">Android Play Store</a>
+                </p>
+                <p>
+                    <b>Countdown Toronto</b><br>
+                    An alarm clock alerting you when your last train TTC (Toronto Transit Commission) is arriving. (Only for Toronto, Canada)<br>
+                    <a href="" onclick="window.open('http://play.google.com/store/apps/details?id=com.ttctimetable', '_blank', 'location=yes');">Android Play Store</a>
+                </p>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <a href="" id="aboutpageBackButton" class="backButton" data-role="button" data-icon="custom">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cordova Files -->
+        <script type="text/javascript" src="js-framework/cordova-2.5.0.js"></script>
+
+        <!-- jQuery Files -->
+        <script type="text/javascript" src="js-framework/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="js-framework/jquery.mobile-1.2.1.min.js"></script>
+
+        <!-- Others -->
+        <script type="text/javascript" src="js/randomize.js"></script>
+        <script type="text/javascript" src="js/buttonListeners.js"></script>
+        <script type="text/javascript" src="js/result.js"></script>
+        <script type="text/javascript" src="js/localStorageDB.js"></script>
+        <script>
+            (function() {
+                window.db.init();
+                window.selections.init();
+
+                $.mobile.defaultPageTransition = 'none';
+                $.mobile.defaultDialogTransition = 'none';
+                $.mobile.buttonMarkup.hoverDelay = 0;
+            })();
+        </script>
+    </body>
+</html>
