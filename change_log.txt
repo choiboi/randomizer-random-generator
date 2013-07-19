@@ -4,10 +4,13 @@ Change for Randomizer Version 1.1
  * Ability to saved lists of choices for future use.
  * Bug fix: Fixed number generator issue when starting number is larger than ending number.
 
- Change for Randomizer Version 1.2
+Change for Randomizer Version 1.2
  * Switch to tap event and fixes double fire issue.
  * Disabled all forms of page/dialog transitions.
  * UI changes for previous choice page and save randomized list page.
  * Bug fix: Fixed delete save randomized issue.
  * Change the sizing of the splashscreen.
  * User now can generate number using the same range on the result page.
+
+Change for Randomizer Version 1.3
+ * Removed Admob.
