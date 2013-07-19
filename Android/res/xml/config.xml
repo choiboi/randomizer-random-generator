@@ -28,7 +28,6 @@
     <preference name="exit-on-suspend" value="false" />
 <plugins> 
     <plugin name="Device" value="org.apache.cordova.Device"/>
-    <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="Storage" value="org.apache.cordova.Storage"/>
     <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser"/>

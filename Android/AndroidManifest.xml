@@ -27,9 +27,6 @@
         android:resizeable="true"
         android:anyDensity="true"
         />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
 
