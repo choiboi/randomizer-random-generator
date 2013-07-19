@@ -23,50 +23,16 @@ import org.apache.cordova.Config;
 import org.apache.cordova.DroidGap;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.LinearLayout;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
-
-public class Randomizer extends DroidGap
-{
-    private Handler mHandler = new Handler();
-    private AdView adView;
-
+public class Randomizer extends DroidGap {
+    
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.init();
         
         super.setIntegerProperty("splashscreen", R.drawable.splashscreen);
-
-        super.appView.getSettings().setUseWideViewPort(true);
-        super.appView.getSettings().setLoadWithOverviewMode(true);
-
-        super.loadUrl(Config.getStartUrl(), 4000);
-        mHandler.postDelayed(new Runnable() {
-            public void run() {
-                doAdMob();
-            }
-        }, 6500);         
-    }
-    
-    private void doAdMob() {
-        // Create the adView
-        adView = new AdView(this, AdSize.BANNER, "a15174466c0676b");
-        // Lookup your LinearLayout - get the super.root
-        LinearLayout layout = super.root;
-        // Add the adView to it
-        layout.addView(adView);
-        // This centers the ads in landscape mode.        
-        layout.setHorizontalGravity(android.view.Gravity.CENTER_HORIZONTAL);
-        // Initiate a generic request to load it with an ad
-        AdRequest request = new AdRequest();
-        // and finally...     
-        adView.loadAd(request);                    
+        super.loadUrl(Config.getStartUrl(), 4000);     
     }
 }
 
