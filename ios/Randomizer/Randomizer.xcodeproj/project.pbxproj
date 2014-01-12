@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AAB2DD3188347B000AE9428 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB2DD1188347B000AE9428 /* Icon.png */; };
+		1AAB2DD4188347B000AE9428 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB2DD2188347B000AE9428 /* Icon@2x.png */; };
 		1AFD341818833F41005A65BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AFD341718833F41005A65BC /* Foundation.framework */; };
 		1AFD341A18833F41005A65BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AFD341918833F41005A65BC /* CoreGraphics.framework */; };
 		1AFD341C18833F41005A65BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AFD341B18833F41005A65BC /* UIKit.framework */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AAB2DD1188347B000AE9428 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = assets/images/Icon.png; sourceTree = "<group>"; };
+		1AAB2DD2188347B000AE9428 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "assets/images/Icon@2x.png"; sourceTree = "<group>"; };
 		1AFD341418833F41005A65BC /* Randomizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Randomizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AFD341718833F41005A65BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1AFD341918833F41005A65BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -107,6 +111,7 @@
 		1AFD341D18833F41005A65BC /* Randomizer */ = {
 			isa = PBXGroup;
 			children = (
+				1AFD344818834193005A65BC /* assets */,
 				1AFD342618833F41005A65BC /* AppDelegate.h */,
 				1AFD342718833F41005A65BC /* AppDelegate.m */,
 				1AFD342918833F41005A65BC /* Images.xcassets */,
@@ -142,6 +147,23 @@
 				1AFD343918833F42005A65BC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1AFD344818834193005A65BC /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD34491883419B005A65BC /* images */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
+		1AFD34491883419B005A65BC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1AAB2DD1188347B000AE9428 /* Icon.png */,
+				1AAB2DD2188347B000AE9428 /* Icon@2x.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +241,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AAB2DD3188347B000AE9428 /* Icon.png in Resources */,
+				1AAB2DD4188347B000AE9428 /* Icon@2x.png in Resources */,
 				1AFD342218833F41005A65BC /* InfoPlist.strings in Resources */,
 				1AFD342A18833F41005A65BC /* Images.xcassets in Resources */,
 			);
@@ -357,12 +381,13 @@
 		1AFD344118833F42005A65BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Randomizer/Randomizer-Prefix.pch";
 				INFOPLIST_FILE = "Randomizer/Randomizer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -370,12 +395,13 @@
 		1AFD344218833F42005A65BC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Randomizer/Randomizer-Prefix.pch";
 				INFOPLIST_FILE = "Randomizer/Randomizer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -441,6 +467,7 @@
 				1AFD344218833F42005A65BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AFD344318833F42005A65BC /* Build configuration list for PBXNativeTarget "RandomizerTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +476,7 @@
 				1AFD344518833F42005A65BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
