@@ -21,6 +21,7 @@
 		1AABE93F188B85560052C92D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AABE921188B85560052C92D /* UIKit.framework */; };
 		1AABE947188B85560052C92D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1AABE945188B85560052C92D /* InfoPlist.strings */; };
 		1AABE949188B85560052C92D /* RandomizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AABE948188B85560052C92D /* RandomizerTests.m */; };
+		1AABE955188B93E90052C92D /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1AABE954188B93E90052C92D /* images */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1AABE944188B85560052C92D /* RandomizerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RandomizerTests-Info.plist"; sourceTree = "<group>"; };
 		1AABE946188B85560052C92D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1AABE948188B85560052C92D /* RandomizerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomizerTests.m; sourceTree = "<group>"; };
+		1AABE954188B93E90052C92D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		1AABE911188B85560052C92D = {
 			isa = PBXGroup;
 			children = (
+				1AABE954188B93E90052C92D /* images */,
 				1AABE923188B85560052C92D /* Randomizer */,
 				1AABE942188B85560052C92D /* RandomizerTests */,
 				1AABE91C188B85560052C92D /* Frameworks */,
@@ -229,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AABE955188B93E90052C92D /* images in Resources */,
 				1AABE936188B85560052C92D /* Images.xcassets in Resources */,
 				1AABE928188B85560052C92D /* InfoPlist.strings in Resources */,
 				1AABE931188B85560052C92D /* Main.storyboard in Resources */,
@@ -377,7 +381,6 @@
 		1AABE94D188B85560052C92D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Randomizer/Randomizer-Prefix.pch";
@@ -390,7 +393,6 @@
 		1AABE94E188B85560052C92D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Randomizer/Randomizer-Prefix.pch";
