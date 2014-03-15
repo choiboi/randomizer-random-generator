@@ -3,4 +3,6 @@
     <color name="base_blue">#FF007DCD</color>
     <color name="light_blue">#FF0093EA</color>
     <color name="dark_blue">#FF005994</color>
+    
+    <color name="button_border_color">#FFAAAAAA</color>
 </resources>
