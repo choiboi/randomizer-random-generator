@@ -29,7 +29,7 @@
             android:background="@drawable/init_blue_buttons"
             android:onClick="onButtonClick"
             android:text="@string/menu_text"
-            android:textColor="@android:color/white" />
+            android:textColor="@drawable/black_white_text_color" />
     </RelativeLayout>
 
     <TextView
@@ -37,6 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/am_nav_bar"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
         android:text="@string/input_selection_colon_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -45,6 +48,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/am_input_selection_textview"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
         android:ems="12"
         android:inputType="text"
         android:nextFocusLeft="@id/am_selection_edittext"
@@ -55,6 +61,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/am_selection_edittext"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
         android:gravity="right"
         android:orientation="horizontal" >
 
@@ -62,21 +70,27 @@
             android:id="@+id/am_clear_all_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
+            android:layout_marginBottom="@dimen/default_small"
+            android:layout_marginLeft="@dimen/default_small"
+            android:layout_marginTop="@dimen/default_small"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/clear_all_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
 
         <Button
             android:id="@+id/am_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
+            android:layout_marginBottom="@dimen/default_small"
+            android:layout_marginLeft="@dimen/default_small"
+            android:layout_marginTop="@dimen/default_small"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/add_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
 
     <ScrollView
@@ -84,7 +98,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/am_top_button_row"
-        android:layout_centerHorizontal="true" >
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium" >
 
         <LinearLayout
             android:id="@+id/am_selections_listview"
@@ -99,6 +115,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/am_selections_scrollview"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
         android:gravity="right"
         android:orientation="horizontal" >
 
@@ -106,21 +124,27 @@
             android:id="@+id/am_load_list_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
+            android:layout_marginBottom="@dimen/default_small"
+            android:layout_marginLeft="@dimen/default_small"
+            android:layout_marginTop="@dimen/default_small"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/load_list_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
 
         <Button
             android:id="@+id/am_save_list_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
+            android:layout_marginBottom="@dimen/default_small"
+            android:layout_marginLeft="@dimen/default_small"
+            android:layout_marginTop="@dimen/default_small"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/save_list_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
 
     <Button
@@ -129,11 +153,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/am_bottom_button_row"
-        android:layout_margin="@dimen/default_small"
+        android:layout_marginBottom="@dimen/default_small"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_small"
         android:background="@drawable/init_white_buttons"
         android:onClick="onButtonClick"
         android:text="@string/randomize_number_text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@drawable/black_white_text_color" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -151,7 +179,8 @@
             android:layout_weight="1"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
-            android:text="@string/pick_choice_text" />
+            android:text="@string/pick_choice_text"
+            android:textColor="@drawable/black_white_text_color" />
 
         <Button
             android:id="@+id/am_randomize_order_button"
@@ -162,6 +191,7 @@
             android:layout_weight="1"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
-            android:text="@string/randomize_order_text" />
+            android:text="@string/randomize_order_text"
+            android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
 </RelativeLayout>
