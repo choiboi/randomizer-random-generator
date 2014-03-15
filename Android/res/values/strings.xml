@@ -6,5 +6,10 @@
     <string name="menu_text">Menu</string>
     <string name="clear_all_text">Clear All</string>
     <string name="add_text">Add</string>
+    <string name="pick_choice_text">Pick a Choice</string>
+    <string name="randomize_order_text">Randomize Order</string>
+    <string name="load_list_text">Load List</string>
+    <string name="save_list_text">Save List</string>
+    <string name="randomize_number_text">Randomize Number</string>
     <string name="input_selection_colon_text">Input Your Selections Here:</string>
 </resources>
