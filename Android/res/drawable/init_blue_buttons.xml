@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item 
-        android:state_enabled="true" 
-        android:drawable="@drawable/blue_button" >
+    <item android:state_pressed="true">
+        <shape>
+		    <solid android:color="@android:color/white" />
+		    <corners android:radius="5dp" />
+		    <stroke
+		        android:width="1dp"
+		        android:color="@color/button_border_color" />
+		    <padding
+		        android:bottom="10dp"
+		        android:left="10dp"
+		        android:right="10dp"
+		        android:top="10dp" />
+		</shape>
     </item>
-    <item 
-        android:state_pressed="true" 
-        android:drawable="@drawable/white_button" >
+    
+    <item>
+        <shape>
+		    <solid android:color="@color/base_blue" />
+		    <corners android:radius="5dp" />
+		    <stroke
+		        android:width="1dp"
+		        android:color="@android:color/black" />
+		    <padding
+		        android:bottom="10dp"
+		        android:left="10dp"
+		        android:right="10dp"
+		        android:top="10dp" />
+		</shape>
     </item>
 </selector>
