@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Randomizer</string>
+    
+    <!-- Texts -->
+    <string name="menu_text">Menu</string>
+    <string name="clear_all_text">Clear All</string>
+    <string name="add_text">Add</string>
+    <string name="input_selection_colon_text">Input Your Selections Here:</string>
 </resources>
