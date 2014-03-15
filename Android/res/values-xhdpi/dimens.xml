@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimensions for xhdpi -->
+    <dimen name="default_small">5dp</dimen>
+    <dimen name="default_medium">10dp</dimen>
+    <dimen name="default_large">15dp</dimen>
+    <dimen name="default_xlarge">20dp</dimen>
+    <dimen name="default_xxlarge">25dp</dimen>
+</resources>
