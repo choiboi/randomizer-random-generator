@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_container"
+    android:layout_marginTop="-2dp"
+    android:paddingLeft="@dimen/default_medium" >
 
     <TextView
         android:id="@+id/cs_selection_textview"
@@ -9,15 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:backgound="@null"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-    
+
     <ImageButton
         android:id="@+id/cs_delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@android:drawable/ic_delete"
-        android:contentDescription="@string/imagebutton_content_description" />
+        android:background="@null"
+        android:contentDescription="@string/imagebutton_content_description"
+        android:src="@android:drawable/ic_delete" />
 </RelativeLayout>
