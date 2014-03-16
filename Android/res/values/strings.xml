@@ -12,4 +12,5 @@
     <string name="save_list_text">Save List</string>
     <string name="randomize_number_text">Randomize Number</string>
     <string name="input_selection_colon_text">Input Your Selections Here:</string>
+    <string name="your_selections_text">Your Selections</string>
 </resources>

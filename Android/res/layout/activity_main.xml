@@ -53,6 +53,7 @@
         android:layout_marginTop="@dimen/default_medium"
         android:ems="12"
         android:inputType="text"
+        android:background="@drawable/default_edittext"
         android:nextFocusLeft="@id/am_selection_edittext"
         android:nextFocusUp="@id/am_selection_edittext" />
 
@@ -92,12 +93,28 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
+    
+    <TextView
+        android:id="@+id/am_selections_title_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/am_top_button_row"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
+        android:paddingLeft="@dimen/default_medium"
+        android:paddingTop="@dimen/default_medium"
+        android:paddingBottom="@dimen/default_medium"
+        android:text="@string/your_selections_text"
+        android:background="@color/base_blue"
+        android:textColor="@android:color/white"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ScrollView
         android:id="@+id/am_selections_scrollview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/am_top_button_row"
+        android:layout_below="@id/am_selections_title_textview"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium" >
@@ -115,6 +132,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/am_selections_scrollview"
+        android:layout_marginTop="@dimen/default_medium"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium"
         android:gravity="right"
