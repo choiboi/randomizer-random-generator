@@ -13,4 +13,8 @@
     <string name="randomize_number_text">Randomize Number</string>
     <string name="input_selection_colon_text">Input Your Selections Here:</string>
     <string name="your_selections_text">Your Selections</string>
+    
+    <!-- Misc. -->
+    <string name="imageview_content_description">ImageView</string>
+    <string name="imagebutton_content_description">ImageButton</string>
 </resources>

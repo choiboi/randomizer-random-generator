@@ -3,6 +3,7 @@ package com.alottapps.randomizer;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,6 +15,7 @@ public class MainActivity extends Activity {
     // Members.
     private EditText mSelectionsEt;
     private LinearLayout mSelectionsListview;
+    private LayoutInflater mLayoutInflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,9 @@ public class MainActivity extends Activity {
         
         mSelectionsEt = (EditText) findViewById(R.id.am_selection_edittext);
         mSelectionsListview = (LinearLayout) findViewById(R.id.am_selections_listview);
+        
+        mLayoutInflater = getLayoutInflater();
+        
     }
     
     public void onButtonClick(View v) {
