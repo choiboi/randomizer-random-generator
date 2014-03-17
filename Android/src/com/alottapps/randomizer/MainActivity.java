@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -89,8 +90,10 @@ public class MainActivity extends Activity {
         } else if (v.getId() == R.id.am_saved_ordered_list_menu_button) {
             
         } else if (v.getId() == R.id.am_about_menu_button) {
-            
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
         }
+        openCloseMenu();
     }
     
     private void drawSelectionsListview() {
