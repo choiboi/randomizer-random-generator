@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     private LinearLayout mSelectionsListview;
     private LinearLayout mMainMenu;
     private View mMenuBg;
+    private boolean mMenuOpen;
     private LayoutInflater mLayoutInflater;
     private List<String> mSelections;
     
@@ -39,6 +40,7 @@ public class MainActivity extends Activity {
         mSelectionsListview = (LinearLayout) findViewById(R.id.am_selections_listview);
         mMainMenu = (LinearLayout) findViewById(R.id.am_menu_layout);
         mMenuBg = findViewById(R.id.am_menu_background_view);
+        mMenuOpen = false;
         
         mSelections = new ArrayList<String>();
         
@@ -48,17 +50,29 @@ public class MainActivity extends Activity {
         TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
         tv.setText(NONE);
         mSelectionsListview.addView(v);
+        
+        mMenuBg.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCloseMenu();
+            }
+        });
     }
     
+    
+    @Override
+    public void onBackPressed() {
+        if (mMenuOpen) {
+            openCloseMenu();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
     public void onButtonClick(View v) {
         if (v.getId() == R.id.am_menu_button) {
-            if (mMainMenu.getVisibility() == View.INVISIBLE) {
-                mMainMenu.setVisibility(View.VISIBLE);
-                mMenuBg.setVisibility(View.VISIBLE);
-            } else {
-                mMainMenu.setVisibility(View.INVISIBLE);
-                mMenuBg.setVisibility(View.INVISIBLE);
-            }
+            openCloseMenu();
         } else if (v.getId() == R.id.am_add_button) {
             addSelection();
         } else if (v.getId() == R.id.am_clear_all_button) {
@@ -123,6 +137,18 @@ public class MainActivity extends Activity {
         TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
         tv.setText(NONE);
         mSelectionsListview.addView(v);
+    }
+    
+    private void openCloseMenu() {
+        if (!mMenuOpen) {
+            mMainMenu.setVisibility(View.VISIBLE);
+            mMenuBg.setVisibility(View.VISIBLE);
+            mMenuOpen = true;
+        } else {
+            mMainMenu.setVisibility(View.INVISIBLE);
+            mMenuBg.setVisibility(View.INVISIBLE);
+            mMenuOpen = false;
+        }
     }
     
     @Override
