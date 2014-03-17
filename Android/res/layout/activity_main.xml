@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:focusableInTouchMode="true" >
-
+    
+    <!-- Top Navigation Bar -->
     <RelativeLayout
         android:id="@+id/am_nav_bar"
         android:layout_width="fill_parent"
@@ -181,7 +182,8 @@
         android:text="@string/randomize_number_text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@drawable/black_white_text_color" />
-
+    
+    <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

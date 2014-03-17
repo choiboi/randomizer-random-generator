@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
     
@@ -40,16 +39,12 @@ public class MainActivity extends Activity {
         mSelectionsListview = (LinearLayout) findViewById(R.id.am_selections_listview);
         mMainMenu = (LinearLayout) findViewById(R.id.am_menu_layout);
         mMenuBg = findViewById(R.id.am_menu_background_view);
+        
         mMenuOpen = false;
-        
         mSelections = new ArrayList<String>();
-        
         mLayoutInflater = getLayoutInflater();
-        View v = mLayoutInflater.inflate(R.layout.container_selections, mSelectionsListview, false);
-        v.findViewById(R.id.cs_delete_button).setVisibility(View.INVISIBLE);
-        TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
-        tv.setText(NONE);
-        mSelectionsListview.addView(v);
+        
+        drawSelectionsListview();
         
         mMenuBg.setOnClickListener(new OnClickListener() {
             @Override
@@ -59,7 +54,6 @@ public class MainActivity extends Activity {
         });
     }
     
-    
     @Override
     public void onBackPressed() {
         if (mMenuOpen) {
@@ -68,7 +62,6 @@ public class MainActivity extends Activity {
             super.onBackPressed();
         }
     }
-
 
     public void onButtonClick(View v) {
         if (v.getId() == R.id.am_menu_button) {
@@ -103,6 +96,14 @@ public class MainActivity extends Activity {
     private void drawSelectionsListview() {
         mSelectionsListview.removeAllViews();
         
+        if (mSelections.size() == 0) {
+            View v = mLayoutInflater.inflate(R.layout.container_selections, mSelectionsListview, false);
+            v.findViewById(R.id.cs_delete_button).setVisibility(View.INVISIBLE);
+            TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
+            tv.setText(NONE);
+            mSelectionsListview.addView(v);
+        }
+        
         for (int i = 0; i < mSelections.size(); i++) {
             View v = mLayoutInflater.inflate(R.layout.container_selections, mSelectionsListview, false);
             ImageButton imb = (ImageButton) v.findViewById(R.id.cs_delete_button);
@@ -110,7 +111,8 @@ public class MainActivity extends Activity {
             imb.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "Trying to delete: " + mSelections.get(pos), Toast.LENGTH_LONG).show();
+                    mSelections.remove(pos);
+                    drawSelectionsListview();
                 }
             });
             TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
@@ -132,11 +134,7 @@ public class MainActivity extends Activity {
         mSelections = new ArrayList<String>();
         mSelectionsListview.removeAllViews();
         
-        View v = mLayoutInflater.inflate(R.layout.container_selections, mSelectionsListview, false);
-        v.findViewById(R.id.cs_delete_button).setVisibility(View.INVISIBLE);
-        TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
-        tv.setText(NONE);
-        mSelectionsListview.addView(v);
+        drawSelectionsListview();
     }
     
     private void openCloseMenu() {
