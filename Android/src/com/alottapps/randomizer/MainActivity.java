@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
     
     public void onButtonClick(View v) {
         if (v.getId() == R.id.am_menu_button) {
-            
+            Toast.makeText(this, "Menu button pressed.", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.am_add_button) {
             addSelection();
         } else if (v.getId() == R.id.am_clear_all_button) {

@@ -19,17 +19,17 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white" />
 
-        <Button
+        <ImageButton
             android:id="@+id/am_menu_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="@dimen/default_small"
-            android:background="@drawable/init_blue_buttons"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
             android:onClick="onButtonClick"
-            android:text="@string/menu_text"
-            android:textColor="@drawable/black_white_text_color" />
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_menu_white" />
     </RelativeLayout>
 
     <TextView
