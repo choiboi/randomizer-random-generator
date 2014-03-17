@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Randomizer</string>
     
-    <!-- Texts -->
+    <!-- Main Activity Texts -->
     <string name="menu_text">Menu</string>
     <string name="clear_all_text">Clear All</string>
     <string name="add_text">Add</string>
@@ -13,6 +13,11 @@
     <string name="randomize_number_text">Randomize Number</string>
     <string name="input_selection_colon_text">Input Your Selections Here:</string>
     <string name="your_selections_text">Your Selections</string>
+    
+    <!-- Menu Texts -->
+    <string name="view_previous_choices_text">View Previous Choices</string>
+    <string name="view_saved_ordered_lists_text">View Saved Ordered Lists</string>
+    <string name="about_randomizer_text">About Randomizer</string>
     
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>

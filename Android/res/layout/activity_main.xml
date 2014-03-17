@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/default_small"
             android:background="@null"
             android:contentDescription="@string/imagebutton_content_description"
             android:onClick="onButtonClick"
@@ -213,4 +214,58 @@
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
 
+    <!-- Menu List -->
+    <View
+        android:id="@+id/am_menu_background_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/am_nav_bar"
+        android:background="@color/menu_background_color"
+        android:visibility="invisible" />
+    
+    <LinearLayout
+        android:id="@+id/am_menu_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/am_nav_bar"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <Button
+            android:id="@+id/am_previous_choice_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/menu_buttons"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/view_previous_choices_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
+
+        <Button
+            android:id="@+id/am_saved_ordered_list_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/menu_buttons"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/view_saved_ordered_lists_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
+
+        <Button
+            android:id="@+id/am_about_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/menu_buttons"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/about_randomizer_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
+    </LinearLayout>
 </RelativeLayout>

@@ -22,6 +22,8 @@ public class MainActivity extends Activity {
     // Members.
     private EditText mSelectionsEt;
     private LinearLayout mSelectionsListview;
+    private LinearLayout mMainMenu;
+    private View mMenuBg;
     private LayoutInflater mLayoutInflater;
     private List<String> mSelections;
     
@@ -35,6 +37,8 @@ public class MainActivity extends Activity {
         
         mSelectionsEt = (EditText) findViewById(R.id.am_selection_edittext);
         mSelectionsListview = (LinearLayout) findViewById(R.id.am_selections_listview);
+        mMainMenu = (LinearLayout) findViewById(R.id.am_menu_layout);
+        mMenuBg = findViewById(R.id.am_menu_background_view);
         
         mSelections = new ArrayList<String>();
         
@@ -48,7 +52,13 @@ public class MainActivity extends Activity {
     
     public void onButtonClick(View v) {
         if (v.getId() == R.id.am_menu_button) {
-            Toast.makeText(this, "Menu button pressed.", Toast.LENGTH_SHORT).show();
+            if (mMainMenu.getVisibility() == View.INVISIBLE) {
+                mMainMenu.setVisibility(View.VISIBLE);
+                mMenuBg.setVisibility(View.VISIBLE);
+            } else {
+                mMainMenu.setVisibility(View.INVISIBLE);
+                mMenuBg.setVisibility(View.INVISIBLE);
+            }
         } else if (v.getId() == R.id.am_add_button) {
             addSelection();
         } else if (v.getId() == R.id.am_clear_all_button) {
@@ -62,6 +72,16 @@ public class MainActivity extends Activity {
         } else if (v.getId() == R.id.am_pick_choice_button) {
             
         } else if (v.getId() == R.id.am_randomize_order_button) {
+            
+        }
+    }
+    
+    public void onMenuButtonClick(View v) {
+        if (v.getId() == R.id.am_previous_choice_menu_button) {
+            
+        } else if (v.getId() == R.id.am_saved_ordered_list_menu_button) {
+            
+        } else if (v.getId() == R.id.am_about_menu_button) {
             
         }
     }
