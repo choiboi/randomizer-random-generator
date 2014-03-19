@@ -19,6 +19,11 @@
     <string name="view_saved_ordered_lists_text">View Saved Ordered Lists</string>
     <string name="about_randomizer_text">About Randomizer</string>
     
+    <!-- About Activity Texts -->
+    <string name="about_text">About</string>
+    <string name="other_app_text">Other Applications</string>
+    <string name="google_play_store_text">GOOGLE Play Store</string>
+    
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>
     <string name="imagebutton_content_description">ImageButton</string>
