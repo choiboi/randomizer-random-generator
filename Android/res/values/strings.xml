@@ -19,6 +19,11 @@
     <string name="view_saved_ordered_lists_text">View Saved Ordered Lists</string>
     <string name="about_randomizer_text">About Randomizer</string>
     
+    <!-- Result Activity Text -->
+    <string name="result_text">Result</string>
+    <string name="randomizer_has_selected_text">Randomizer Has Selected</string>
+    <string name="randomized_order_text">Randomized Order</string>
+    
     <!-- About Activity Texts -->
     <string name="about_text">About</string>
     <string name="other_app_text">Other Applications</string>

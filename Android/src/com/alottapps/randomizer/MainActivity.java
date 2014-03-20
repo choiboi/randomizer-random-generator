@@ -1,7 +1,6 @@
 package com.alottapps.randomizer;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alottapps.randomizer.util.Constants;
+
 public class MainActivity extends Activity {
     
     // Members.
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
     private View mMenuBg;
     private boolean mMenuOpen;
     private LayoutInflater mLayoutInflater;
-    private List<String> mSelections;
+    private ArrayList<String> mSelections;
     
     // Constants.
     private final String NONE = "None";
@@ -78,9 +79,15 @@ public class MainActivity extends Activity {
         } else if (v.getId() == R.id.am_randomize_number_button) {
             
         } else if (v.getId() == R.id.am_pick_choice_button) {
-            
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra(Constants.TYPE_RANDOM, Constants.SINGLE_RANDOM);
+            intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
+            startActivity(intent);
         } else if (v.getId() == R.id.am_randomize_order_button) {
-            
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra(Constants.TYPE_RANDOM, Constants.LIST_RANDOM);
+            intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
+            startActivity(intent);
         }
     }
     
