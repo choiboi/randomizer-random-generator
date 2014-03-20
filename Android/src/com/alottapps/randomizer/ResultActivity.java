@@ -18,6 +18,8 @@ public class ResultActivity extends Activity {
     private TextView mMainTv;
     private int mType;
     private ArrayList<String> mSelections;
+    private int mStartNum;
+    private int mEndNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,16 @@ public class ResultActivity extends Activity {
         
         mMainTv = (TextView) findViewById(R.id.ar_main_textview);
         
-        mSelections = getIntent().getExtras().getStringArrayList(Constants.SELECTIONS_LIST);
         mType = getIntent().getExtras().getInt(Constants.TYPE_RANDOM, -1);
+        if (mType == Constants.SINGLE_RANDOM || mType == Constants.LIST_RANDOM) {
+            mSelections = getIntent().getExtras().getStringArrayList(Constants.SELECTIONS_LIST);
+        } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
+            mStartNum = Integer.parseInt(getIntent().getExtras().getString(Constants.START_NUMBER));
+            mEndNum = Integer.parseInt(getIntent().getExtras().getString(Constants.END_NUMBER));
+            mMainTv.setText(R.string.randomizer_has_selected_text);
+            findViewById(R.id.ar_save_button).setVisibility(View.GONE);
+        }
+        
         if (mType == Constants.SINGLE_RANDOM) {
             mMainTv.setText(R.string.randomizer_has_selected_text);
             findViewById(R.id.ar_save_button).setVisibility(View.GONE);
@@ -61,6 +71,11 @@ public class ResultActivity extends Activity {
             }
             
             ll.setVisibility(View.VISIBLE);
+        } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
+            int num = RandomGenerator.singleRangeRandomNumber(mStartNum, mEndNum);
+            TextView resultTv = (TextView) findViewById(R.id.ar_result_single_textview);
+            resultTv.setText(num);
+            resultTv.setVisibility(View.VISIBLE);
         }
     }
     

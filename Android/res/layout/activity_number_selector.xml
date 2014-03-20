@@ -10,20 +10,20 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/base_blue"
+        android:gravity="center"
         android:paddingBottom="@dimen/default_medium"
         android:paddingTop="@dimen/default_medium"
-        android:gravity="center"
         android:text="@string/input_number_range_text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_medium"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
         android:text="@string/num_selector_info_text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
@@ -31,9 +31,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_medium"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
         android:text="@string/from_colon_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -41,21 +41,29 @@
         android:id="@+id/ans_start_number_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_small"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_small"
         android:background="@drawable/default_edittext"
         android:ems="10"
-        android:text="@string/one_text"
-        android:inputType="number" >
+        android:inputType="number"
+        android:text="@string/one_text" >
     </EditText>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_small"
+        android:background="@color/border_color" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_medium"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
         android:text="@string/to_colon_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -63,13 +71,21 @@
         android:id="@+id/ans_end_number_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_small"
         android:layout_marginLeft="@dimen/default_medium"
         android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_small"
         android:background="@drawable/default_edittext"
         android:ems="10"
-        android:text="@string/ten_text"
-        android:inputType="number" />
+        android:inputType="number"
+        android:text="@string/ten_text" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_small"
+        android:background="@color/border_color" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -80,7 +96,10 @@
             android:id="@+id/ans_ok_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
+            android:layout_marginBottom="@dimen/default_small"
+            android:layout_marginLeft="@dimen/default_medium"
+            android:layout_marginRight="@dimen/default_small"
+            android:layout_marginTop="@dimen/default_small"
             android:layout_weight="1"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
@@ -91,12 +110,14 @@
             android:id="@+id/ans_cancel_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
+            android:layout_marginBottom="@dimen/default_small"
+            android:layout_marginLeft="@dimen/default_small"
+            android:layout_marginRight="@dimen/default_medium"
+            android:layout_marginTop="@dimen/default_small"
             android:layout_weight="1"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/cancel_text"
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
-
 </LinearLayout>
