@@ -21,7 +21,7 @@
             android:contentDescription="@string/imagebutton_content_description"
             android:onClick="onButtonClick"
             android:padding="@dimen/default_small"
-            android:src="@drawable/ic_left_arrow" />
+            android:src="@drawable/left_arrow_button" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -31,7 +31,7 @@
             android:contentDescription="@string/imagebutton_content_description"
             android:onClick="onButtonClick"
             android:padding="@dimen/default_small"
-            android:src="@drawable/ic_menu_white" />
+            android:src="@drawable/menu_button" />
     </RelativeLayout>
 
     <TextView
