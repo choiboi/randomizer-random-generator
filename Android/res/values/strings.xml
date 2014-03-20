@@ -23,6 +23,7 @@
     <string name="result_text">Result</string>
     <string name="randomizer_has_selected_text">Randomizer Has Selected</string>
     <string name="randomized_order_text">Randomized Order</string>
+    <string name="save_and_back_text">Save and Back</string>
     
     <!-- About Activity Texts -->
     <string name="about_text">About</string>

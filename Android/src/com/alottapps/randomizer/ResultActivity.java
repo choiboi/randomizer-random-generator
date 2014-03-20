@@ -31,6 +31,7 @@ public class ResultActivity extends Activity {
         mType = getIntent().getExtras().getInt(Constants.TYPE_RANDOM, -1);
         if (mType == Constants.SINGLE_RANDOM) {
             mMainTv.setText(R.string.randomizer_has_selected_text);
+            findViewById(R.id.ar_save_button).setVisibility(View.GONE);
         } else if (mType == Constants.LIST_RANDOM){
             mMainTv.setText(R.string.randomized_order_text);
         }
@@ -60,6 +61,9 @@ public class ResultActivity extends Activity {
     
     public void onButtonClick(View v) {
         if (v.getId() == R.id.ar_back_button) {
+            finish();
+        } else if (v.getId() == R.id.ar_save_button) {
+            // TODO: save the list.
             finish();
         }
     }
