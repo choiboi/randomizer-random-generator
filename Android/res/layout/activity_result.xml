@@ -5,7 +5,6 @@
     android:orientation="vertical" >
 
     <!-- Top Navigation Bar -->
-
     <RelativeLayout
         android:id="@+id/ar_top_nav_bar"
         android:layout_width="fill_parent"
@@ -35,8 +34,8 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp" 
-        android:layout_weight="1">
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <TextView
             android:id="@+id/ar_main_textview"
@@ -44,32 +43,67 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/default_medium"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_marginTop="@dimen/default_large"
+            android:gravity="center"
+            android:textSize="@dimen/main_textview_size"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/ar_result_textview"
+            android:id="@+id/ar_result_single_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:gravity="center"
+            android:textSize="@dimen/result_textview_size"
+            android:visibility="gone" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ar_main_textview"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/default_large"
+            android:layout_marginTop="@dimen/default_xxxlarge"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:id="@+id/ar_result_list_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:orientation="vertical"
+                android:visibility="gone" />
+        </ScrollView>
     </RelativeLayout>
 
-    <RelativeLayout
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
         android:id="@+id/ar_bottom_nav_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/base_blue" >
+        android:background="@color/base_blue"
+        android:orientation="horizontal" >
+        
+        <Button
+            android:id="@+id/ar_back_nav_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/default_small"
+            android:background="@drawable/init_white_buttons"
+            android:onClick="onButtonClick"
+            android:text="@string/back_text"
+            android:textColor="@drawable/black_white_text_color" />
 
         <Button
             android:id="@+id/ar_save_button"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/default_small"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/save_and_back_text"
-            android:layout_margin="@dimen/default_small" />
-    </RelativeLayout>
-
+            android:textColor="@drawable/black_white_text_color" />
+    </LinearLayout>
 </LinearLayout>

@@ -6,6 +6,7 @@
     <dimen name="default_large">15dp</dimen>
     <dimen name="default_xlarge">20dp</dimen>
     <dimen name="default_xxlarge">25dp</dimen>
+    <dimen name="default_xxxlarge">30dp</dimen>
     
     <!-- MainActivity Dimensions -->
     <dimen name="selections_listview_height">200dp</dimen>

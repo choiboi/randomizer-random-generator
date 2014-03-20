@@ -2,11 +2,10 @@ package com.alottapps.randomizer.util;
 
 import java.util.ArrayList;
 
-
 public class RandomGenerator {
 
     public static int singleRandomNumber(int bound) {
-        return (int) Math.random() * bound;
+        return (int)(Math.random() * (bound + 1));
     }
     
     public static int singleRangeRandomNumber(int start, int end) {
@@ -20,7 +19,6 @@ public class RandomGenerator {
         int num = -1;
         while (i < listSize) {
             num = singleRandomNumber(bound);
-            
             if (!numL.contains(num)) {
                 numL.add(num);
                 i++;

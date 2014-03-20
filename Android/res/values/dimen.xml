@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ResultActivity Dimensions -->
+    <dimen name="main_textview_size">35sp</dimen>
+    <dimen name="result_textview_size">32sp</dimen>
+</resources>
