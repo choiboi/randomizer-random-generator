@@ -35,5 +35,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="NumberSelectorDialogActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Light.Dialog" >
+        </activity>
     </application>
 </manifest>

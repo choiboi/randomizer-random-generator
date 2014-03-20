@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:paddingBottom="@dimen/default_medium"
+        android:paddingTop="@dimen/default_medium"
+        android:gravity="center"
+        android:text="@string/input_number_range_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_medium"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:text="@string/num_selector_info_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_medium"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:text="@string/from_colon_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/ans_start_number_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_small"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:background="@drawable/default_edittext"
+        android:ems="10"
+        android:text="@string/one_text"
+        android:inputType="number" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_medium"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:text="@string/to_colon_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/ans_end_number_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_small"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:background="@drawable/default_edittext"
+        android:ems="10"
+        android:text="@string/ten_text"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ans_ok_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/init_white_buttons"
+            android:onClick="onButtonClick"
+            android:text="@string/ok_text"
+            android:textColor="@drawable/black_white_text_color" />
+
+        <Button
+            android:id="@+id/ans_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/init_white_buttons"
+            android:onClick="onButtonClick"
+            android:text="@string/cancel_text"
+            android:textColor="@drawable/black_white_text_color" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -13,6 +13,12 @@
     <string name="randomize_number_text">Randomize Number</string>
     <string name="input_selection_colon_text">Input Your Selections Here:</string>
     <string name="your_selections_text">Your Selections</string>
+    <string name="alert_text">Alert!</string>
+    <string name="empty_selection_alert_message">
+        There are no choices to pick from or randomly order from.
+		Please input choices into the list of selections.
+    </string>
+    <string name="ok_text">OK</string>
     
     <!-- Menu Texts -->
     <string name="view_previous_choices_text">View Previous Choices</string>
@@ -30,6 +36,15 @@
     <string name="about_text">About</string>
     <string name="other_app_text">Other Applications</string>
     <string name="google_play_store_text">GOOGLE Play Store</string>
+    
+    <!-- Number Selector Dialog Activity -->
+    <string name="input_number_range_text">Input Number Range</string>
+    <string name="from_colon_text">From:</string>
+    <string name="to_colon_text">To:</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="num_selector_info_text">Please input number range:</string>
+    <string name="one_text">1</string>
+    <string name="ten_text">10</string>
     
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>

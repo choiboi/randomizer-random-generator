@@ -3,7 +3,9 @@ package com.alottapps.randomizer;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -75,19 +77,32 @@ public class MainActivity extends Activity {
         } else if (v.getId() == R.id.am_load_list_button) {
             
         } else if (v.getId() == R.id.am_save_list_button) {
-            
+            if (!isSelectionsListEmpty()) {
+                
+            } else {
+                listEmptyAlertDialog();
+            }
         } else if (v.getId() == R.id.am_randomize_number_button) {
-            
+            Intent intent = new Intent(this, NumberSelectorDialogActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.am_pick_choice_button) {
-            Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra(Constants.TYPE_RANDOM, Constants.SINGLE_RANDOM);
-            intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
-            startActivity(intent);
+            if (!isSelectionsListEmpty()) {
+                Intent intent = new Intent(this, ResultActivity.class);
+                intent.putExtra(Constants.TYPE_RANDOM, Constants.SINGLE_RANDOM);
+                intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
+                startActivity(intent);
+            } else {
+                listEmptyAlertDialog();
+            }
         } else if (v.getId() == R.id.am_randomize_order_button) {
-            Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra(Constants.TYPE_RANDOM, Constants.LIST_RANDOM);
-            intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
-            startActivity(intent);
+            if (!isSelectionsListEmpty()) {
+                Intent intent = new Intent(this, ResultActivity.class);
+                intent.putExtra(Constants.TYPE_RANDOM, Constants.LIST_RANDOM);
+                intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
+                startActivity(intent);
+            } else {
+                listEmptyAlertDialog();
+            }
         }
     }
     
@@ -147,6 +162,10 @@ public class MainActivity extends Activity {
         drawSelectionsListview();
     }
     
+    private boolean isSelectionsListEmpty() {
+        return mSelections.isEmpty();
+    }
+    
     private void openCloseMenu() {
         if (!mMenuOpen) {
             mMainMenu.setVisibility(View.VISIBLE);
@@ -157,6 +176,20 @@ public class MainActivity extends Activity {
             mMenuBg.setVisibility(View.INVISIBLE);
             mMenuOpen = false;
         }
+    }
+    
+    private void listEmptyAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.alert_text);
+        builder.setMessage(R.string.empty_selection_alert_message);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setPositiveButton(R.string.ok_text, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
     
     @Override
