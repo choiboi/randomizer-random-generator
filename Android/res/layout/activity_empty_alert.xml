@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:gravity="center"
+        android:paddingBottom="@dimen/default_medium"
+        android:paddingTop="@dimen/default_medium"
+        android:text="@string/alert_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+    
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_medium"
+        android:gravity="center"
+        android:text="@string/empty_selection_alert_message"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <Button
+         android:id="@+id/aea_ok_button"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="@dimen/default_small"
+         android:layout_marginRight="@dimen/default_small"
+         android:layout_marginBottom="@dimen/default_small"
+         android:background="@drawable/init_white_buttons"
+         android:text="@string/ok_text"
+         android:onClick="onButtonClick" />
+
+</LinearLayout>
