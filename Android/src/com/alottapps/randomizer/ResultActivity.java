@@ -74,7 +74,7 @@ public class ResultActivity extends Activity {
         } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
             int num = RandomGenerator.singleRangeRandomNumber(mStartNum, mEndNum);
             TextView resultTv = (TextView) findViewById(R.id.ar_result_single_textview);
-            resultTv.setText(num);
+            resultTv.setText(num + "");
             resultTv.setVisibility(View.VISIBLE);
         }
     }
