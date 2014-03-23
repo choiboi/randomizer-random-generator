@@ -31,6 +31,7 @@
     <string name="randomized_order_text">Randomized Order</string>
     <string name="save_and_back_text">Save and Back</string>
     <string name="back_text">Back</string>
+    <string name="again_text">Again</string>
     
     <!-- About Activity Texts -->
     <string name="about_text">About</string>

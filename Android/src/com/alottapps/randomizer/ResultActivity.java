@@ -31,18 +31,22 @@ public class ResultActivity extends Activity {
         mType = getIntent().getExtras().getInt(Constants.TYPE_RANDOM, -1);
         if (mType == Constants.SINGLE_RANDOM || mType == Constants.LIST_RANDOM) {
             mSelections = getIntent().getExtras().getStringArrayList(Constants.SELECTIONS_LIST);
+            findViewById(R.id.ar_again_button).setVisibility(View.GONE);
+            
+            if (mType == Constants.SINGLE_RANDOM) {
+                mMainTv.setText(R.string.randomizer_has_selected_text);
+                findViewById(R.id.ar_save_button).setVisibility(View.GONE);
+            } else if (mType == Constants.LIST_RANDOM){
+                mMainTv.setText(R.string.randomized_order_text);
+            }
         } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
             mStartNum = Integer.parseInt(getIntent().getExtras().getString(Constants.START_NUMBER));
             mEndNum = Integer.parseInt(getIntent().getExtras().getString(Constants.END_NUMBER));
             mMainTv.setText(R.string.randomizer_has_selected_text);
             findViewById(R.id.ar_save_button).setVisibility(View.GONE);
-        }
-        
-        if (mType == Constants.SINGLE_RANDOM) {
-            mMainTv.setText(R.string.randomizer_has_selected_text);
-            findViewById(R.id.ar_save_button).setVisibility(View.GONE);
-        } else if (mType == Constants.LIST_RANDOM){
-            mMainTv.setText(R.string.randomized_order_text);
+            
+            TextView rangeTv = (TextView) findViewById(R.id.ar_number_range_textview);
+            rangeTv.setText("Between " + mStartNum + " to " + mEndNum);
         }
         
         randomizeAndDisplay();
@@ -85,6 +89,8 @@ public class ResultActivity extends Activity {
         } else if (v.getId() == R.id.ar_save_button) {
             // TODO: save the list.
             finish();
+        } else if (v.getId() == R.id.ar_again_button) {
+            randomizeAndDisplay();
         }
     }
 }

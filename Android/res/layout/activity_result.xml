@@ -45,8 +45,20 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/default_large"
             android:gravity="center"
+            android:text="between 1 to 10"
             android:textSize="@dimen/main_textview_size"
             android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/ar_number_range_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ar_main_textview"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/border_color"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/ar_result_single_textview"
@@ -86,7 +98,7 @@
         
         <Button
             android:id="@+id/ar_back_nav_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="@dimen/default_small"
@@ -97,13 +109,24 @@
 
         <Button
             android:id="@+id/ar_save_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="@dimen/default_small"
             android:background="@drawable/init_white_buttons"
             android:onClick="onButtonClick"
             android:text="@string/save_and_back_text"
+            android:textColor="@drawable/black_white_text_color" />
+        
+        <Button
+            android:id="@+id/ar_again_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/default_small"
+            android:background="@drawable/init_white_buttons"
+            android:onClick="onButtonClick"
+            android:text="@string/again_text"
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
 </LinearLayout>
