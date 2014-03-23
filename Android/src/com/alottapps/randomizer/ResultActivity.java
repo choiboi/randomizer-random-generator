@@ -47,6 +47,7 @@ public class ResultActivity extends Activity {
             
             TextView rangeTv = (TextView) findViewById(R.id.ar_number_range_textview);
             rangeTv.setText("Between " + mStartNum + " to " + mEndNum);
+            rangeTv.setVisibility(View.VISIBLE);
         }
         
         randomizeAndDisplay();

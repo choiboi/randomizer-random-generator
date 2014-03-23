@@ -55,7 +55,7 @@
             android:layout_below="@+id/ar_main_textview"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/border_color"
             android:visibility="gone" />
 
