@@ -45,7 +45,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/default_large"
             android:gravity="center"
-            android:text="between 1 to 10"
             android:textSize="@dimen/main_textview_size"
             android:textStyle="bold" />
         
