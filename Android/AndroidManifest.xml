@@ -10,6 +10,7 @@
         android:targetSdkVersion="19" />
 
     <application
+        android:name="com.alottapps.randomizer.util.RandomizerApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"

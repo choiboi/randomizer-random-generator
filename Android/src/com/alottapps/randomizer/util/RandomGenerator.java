@@ -27,4 +27,12 @@ public class RandomGenerator {
         
         return numL;
     }
+    
+    public static String randomIDString() {
+        String str = "";
+        for (int i = 0; i < 10; i++) {
+            str += String.valueOf(singleRandomNumber(50));
+        }
+        return str;
+    }
 }

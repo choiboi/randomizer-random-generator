@@ -18,6 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // TABLE COLUMNS.
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_DATA_ID = "data_id";
     private static final String KEY_DATA = "data";
     private static final String KEY_LAST_UPDATE = "last_update";
     private static final String KEY_RANDOMIZED = "randomized";
@@ -38,6 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         
         // Create data table.
         String dataTableQry = "CREATE TABLE " + TABLE_DATA + "(" +
+                              KEY_DATA_ID + " TEXT," +
                               KEY_EMAIL + " TEXT," +
                               KEY_DATA + " TEXT," + 
                               KEY_LAST_UPDATE + " TEXT," + 
@@ -101,6 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         
         ContentValues values = new ContentValues();
+        values.put(KEY_DATA_ID, "android-" + RandomGenerator.randomIDString());
         values.put(KEY_EMAIL, getUserEmail());
         values.put(KEY_DATA, data);
         values.put(KEY_RANDOMIZED, randomized);
@@ -136,6 +139,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         db.close();
         return cursor;
+    }
+    
+    public void updateListData(String id, String email, String newData) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        
+        db.close();
+    }
+    
+    public void deleteData(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        
+        db.close();
     }
     
     
