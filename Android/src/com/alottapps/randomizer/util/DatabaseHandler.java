@@ -110,12 +110,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
-    public Cursor retrievedSavedData() {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public Cursor retrieveSavedData() {
+        SQLiteDatabase db = this.getReadableDatabase();
         
         String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_LAST_UPDATE };
-        // Add where clause where KEY_RANDOMIZED == 1.
-        Cursor cursor = db.query(TABLE_USER, columns, null, null, null, null, null, null);
+        String condition = KEY_RANDOMIZED + "=?";
+        String[] compare = new String[]{ "1" };
+        Cursor cursor = db.query(TABLE_USER, columns, condition, compare, null, null, null, null);
+        if (!cursor.moveToFirst()) {
+            return null;
+        }
+        db.close();
+        return cursor;
+    }
+    
+    public Cursor retrieveListData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        
+        String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_LAST_UPDATE };
+        String condition = KEY_RANDOMIZED + "=?";
+        String[] compare = new String[]{ "0" };
+        Cursor cursor = db.query(TABLE_USER, columns, condition, compare, null, null, null, null);
         if (!cursor.moveToFirst()) {
             return null;
         }
