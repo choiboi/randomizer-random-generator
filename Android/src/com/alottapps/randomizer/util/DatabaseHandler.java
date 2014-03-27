@@ -84,7 +84,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
-    public String getUserEmail() {
+    private String getUserEmail() {
         SQLiteDatabase db = this.getReadableDatabase();
         
         String[] columns = new String[]{ KEY_EMAIL };
@@ -144,12 +144,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void updateListData(String id, String email, String newData) {
         SQLiteDatabase db = this.getWritableDatabase();
         
+        ContentValues values = new ContentValues();
+        values.put(KEY_DATA, newData);
+        String whereCond = KEY_DATA_ID + "=? AND " + KEY_EMAIL + "=?";
+        String[] whereArgs = new String[]{ id, email };
+        db.update(TABLE_DATA, values, whereCond, whereArgs);
+        
         db.close();
     }
     
     public void deleteData(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        
+        db.delete(TABLE_DATA, KEY_DATA_ID + "=?", new String[]{ id });
         db.close();
     }
     
