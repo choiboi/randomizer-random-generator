@@ -1,5 +1,9 @@
 package com.alottapps.randomizer.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,6 +28,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_RANDOMIZED = "randomized";
     private static final String KEY_SELECTED_VALUE = "selected_value";
     private static final String KEY_DATE = "date";
+    
+    // OTHER CONSTANTS.
+    private final int MAX_NUMBER_PREV_CHOICES = 30;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -114,7 +121,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     
     public Cursor retrieveSavedData() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
         
         String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_LAST_UPDATE };
         String condition = KEY_RANDOMIZED + "=?";
@@ -128,7 +135,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     
     public Cursor retrieveListData() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
         
         String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_LAST_UPDATE };
         String condition = KEY_RANDOMIZED + "=?";
@@ -142,7 +149,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     
     public void updateListData(String id, String email, String newData) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         
         ContentValues values = new ContentValues();
         values.put(KEY_DATA, newData);
@@ -154,17 +161,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     
     public void deleteData(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_DATA, KEY_DATA_ID + "=?", new String[]{ id });
         db.close();
     }
-    
     
     /*
      * Handles all Previous Data table related queries here.
      */
     public void addPrevData(String data, String date, String selectedData) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        removePrevDataTableIfMax();
+        
+        SQLiteDatabase db = getWritableDatabase();
         
         ContentValues values = new ContentValues();
         values.put(KEY_EMAIL, getUserEmail());
@@ -173,6 +181,41 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DATE, date);
         
         db.insert(TABLE_DATA, null, values);
+        db.close();
+    }
+    
+    private void removePrevDataTableIfMax() {
+        SQLiteDatabase db = getWritableDatabase();
+        String getAllQry = "SELECT * FROM " + TABLE_PREV_SELECTIONS;
+        Cursor cursor = db.rawQuery(getAllQry, null);
+        
+        if (cursor.getCount() >= MAX_NUMBER_PREV_CHOICES) {
+            if (cursor.moveToFirst()) {
+                String tempDate = "";
+                SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
+                Date prevDate = null;
+                
+                try {
+                    while (cursor.moveToNext()) {
+                        if (tempDate.equals("")) {
+                            tempDate = cursor.getString(3);
+                            prevDate = sdf.parse(tempDate);
+                        } else {
+                            Date currDate = sdf.parse(cursor.getString(3));
+                            if (prevDate.after(currDate)) {
+                                tempDate = cursor.getString(3);
+                                prevDate = sdf.parse(tempDate);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+                // Delete the oldest entry.
+                db.delete(TABLE_PREV_SELECTIONS, KEY_DATE + "=?", new String[]{ tempDate });
+            }
+        }
         db.close();
     }
 }
