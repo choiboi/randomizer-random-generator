@@ -47,6 +47,9 @@
     <string name="one_text">1</string>
     <string name="ten_text">10</string>
     
+    <!-- Show Previous Selections Activity -->
+    <string name="prev_selected_choices_text">Previously Selected Choices</string>
+    
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>
     <string name="imagebutton_content_description">ImageButton</string>
