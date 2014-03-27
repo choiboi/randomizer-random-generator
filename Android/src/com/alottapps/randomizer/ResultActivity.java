@@ -13,6 +13,7 @@ import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.RandomGenerator;
+import com.alottapps.randomizer.util.Utils;
 
 public class ResultActivity extends Activity {
     
@@ -22,6 +23,8 @@ public class ResultActivity extends Activity {
     private ArrayList<String> mSelections;
     private int mStartNum;
     private int mEndNum;
+    private String mBetweenRange;
+    private String mReorderedList;
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
 
@@ -52,7 +55,8 @@ public class ResultActivity extends Activity {
             findViewById(R.id.ar_save_button).setVisibility(View.GONE);
             
             TextView rangeTv = (TextView) findViewById(R.id.ar_number_range_textview);
-            rangeTv.setText("Between " + mStartNum + " to " + mEndNum);
+            mBetweenRange = "Between " + mStartNum + " to " + mEndNum;
+            rangeTv.setText(mBetweenRange);
             rangeTv.setVisibility(View.VISIBLE);
         }
         
@@ -60,17 +64,23 @@ public class ResultActivity extends Activity {
     }
     
     private void randomizeAndDisplay() {
+        String date = Utils.getCurrentDateTime();
+        
         if (mType == Constants.SINGLE_RANDOM) {
             int index = RandomGenerator.singleRandomNumber(mSelections.size() - 1);
             TextView resultTv = (TextView) findViewById(R.id.ar_result_single_textview);
             resultTv.setText(mSelections.get(index));
             resultTv.setVisibility(View.VISIBLE);
             findViewById(R.id.ar_save_button).setVisibility(View.GONE);
+            
+            String listStr = Utils.listToString(mSelections);
+            mDB.addPrevData(mSelections.get(index), date, listStr);
         } else if (mType == Constants.LIST_RANDOM) {
             ArrayList<Integer> orderedIndexL 
                 = RandomGenerator.listUniqueRandomNumber(mSelections.size(), mSelections.size() - 1);
             LinearLayout ll = (LinearLayout) findViewById(R.id.ar_result_list_layout);
             LayoutInflater inflater = getLayoutInflater();
+            mReorderedList = "";
             
             for (int i = 0; i < orderedIndexL.size(); i++) {
                 View v = inflater.inflate(R.layout.container_list_randomized, ll, false);
@@ -78,15 +88,21 @@ public class ResultActivity extends Activity {
                 numTv.setText((i + 1) + ".");
                 TextView selectionTv = (TextView) v.findViewById(R.id.clr_selections_textview);
                 selectionTv.setText(mSelections.get(orderedIndexL.get(i)));
+                if (i == orderedIndexL.size() - 1) {
+                    mReorderedList += mSelections.get(orderedIndexL.get(i)) + Constants.LIST_DELIMITER;
+                } else {
+                    mReorderedList += mSelections.get(orderedIndexL.get(i)) + Constants.LIST_DELIMITER;
+                }
                 ll.addView(v);
             }
-            
             ll.setVisibility(View.VISIBLE);
         } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
             int num = RandomGenerator.singleRangeRandomNumber(mStartNum, mEndNum);
             TextView resultTv = (TextView) findViewById(R.id.ar_result_single_textview);
             resultTv.setText(num + "");
             resultTv.setVisibility(View.VISIBLE);
+            
+            mDB.addPrevData(String.valueOf(num), date, mBetweenRange);
         }
     }
     
@@ -94,7 +110,8 @@ public class ResultActivity extends Activity {
         if (v.getId() == R.id.ar_back_button || v.getId() == R.id.ar_back_nav_button) {
             finish();
         } else if (v.getId() == R.id.ar_save_button) {
-            // TODO: save the list.
+            String date = Utils.getCurrentDateTime();
+            mDB.addData(mReorderedList, date, 1);
             finish();
         } else if (v.getId() == R.id.ar_again_button) {
             randomizeAndDisplay();

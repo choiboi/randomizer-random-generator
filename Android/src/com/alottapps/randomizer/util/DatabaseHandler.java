@@ -97,7 +97,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String[] columns = new String[]{ KEY_EMAIL };
         Cursor cursor = db.query(TABLE_USER, columns, null, null, null, null, null, null);
         if (!cursor.moveToFirst()) {
-            return null;
+            return "EmailNotProvided";
         }
         db.close();
         return cursor.getString(0);

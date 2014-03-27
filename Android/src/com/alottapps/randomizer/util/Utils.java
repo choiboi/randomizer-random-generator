@@ -1,6 +1,9 @@
 package com.alottapps.randomizer.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class Utils {
 
@@ -27,5 +30,11 @@ public class Utils {
         }
         
         return list;
+    }
+    
+    public static String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
+        String date = sdf.format(new Date());
+        return date;
     }
 }
