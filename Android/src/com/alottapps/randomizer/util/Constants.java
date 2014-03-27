@@ -13,4 +13,7 @@ public class Constants {
     
     // Constants for Date Formats.
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSZ";
+    
+    // List Parsing Constants.
+    public static final String LIST_DELIMITER = ")(*&^";
 }

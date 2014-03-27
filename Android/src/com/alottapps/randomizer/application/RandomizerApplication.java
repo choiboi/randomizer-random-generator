@@ -1,4 +1,6 @@
-package com.alottapps.randomizer.util;
+package com.alottapps.randomizer.application;
+
+import com.alottapps.randomizer.util.DatabaseHandler;
 
 import android.app.Application;
 
@@ -12,7 +14,7 @@ public class RandomizerApplication extends Application {
         mDB = new DatabaseHandler(this);
     }
     
-    public DatabaseHandler getUserDB() {
+    public DatabaseHandler getDB() {
         return mDB;
     }
 }

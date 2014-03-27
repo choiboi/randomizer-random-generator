@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
+import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.RandomGenerator;
 
 public class ResultActivity extends Activity {
@@ -20,11 +22,15 @@ public class ResultActivity extends Activity {
     private ArrayList<String> mSelections;
     private int mStartNum;
     private int mEndNum;
+    private RandomizerApplication mApp;
+    private DatabaseHandler mDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        mApp = (RandomizerApplication) getApplicationContext();
+        mDB = mApp.getDB();
         
         mMainTv = (TextView) findViewById(R.id.ar_main_textview);
         
