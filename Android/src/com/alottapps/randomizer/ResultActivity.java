@@ -51,6 +51,12 @@ public class ResultActivity extends Activity {
         } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
             mStartNum = Integer.parseInt(getIntent().getExtras().getString(Constants.START_NUMBER));
             mEndNum = Integer.parseInt(getIntent().getExtras().getString(Constants.END_NUMBER));
+            
+            if (mStartNum > mEndNum) {
+                mStartNum = mEndNum;
+                mEndNum = Integer.parseInt(getIntent().getExtras().getString(Constants.START_NUMBER));
+            }
+            
             mMainTv.setText(R.string.randomizer_has_selected_text);
             findViewById(R.id.ar_save_button).setVisibility(View.GONE);
             

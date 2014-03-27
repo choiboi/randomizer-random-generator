@@ -45,7 +45,7 @@
         android:layout_marginTop="@dimen/default_small"
         android:background="@drawable/default_edittext"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberSigned"
         android:text="@string/one_text" >
     </EditText>
 
@@ -75,7 +75,7 @@
         android:layout_marginTop="@dimen/default_small"
         android:background="@drawable/default_edittext"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberSigned"
         android:text="@string/ten_text" />
 
     <View
