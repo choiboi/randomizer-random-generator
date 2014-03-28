@@ -108,7 +108,7 @@ public class ResultActivity extends Activity {
             resultTv.setText(num + "");
             resultTv.setVisibility(View.VISIBLE);
             
-            mDB.addPrevData(String.valueOf(num), date, mBetweenRange);
+            mDB.addPrevData(mBetweenRange, date, String.valueOf(num));
         }
     }
     

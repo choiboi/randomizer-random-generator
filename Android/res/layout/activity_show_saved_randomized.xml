@@ -6,13 +6,13 @@
 
     <!-- Top Navigation Bar -->
     <RelativeLayout
-        android:id="@+id/asps_top_nav_bar"
+        android:id="@+id/assr_top_nav_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/base_blue" >
 
         <ImageButton
-            android:id="@+id/asps_back_button"
+            android:id="@+id/assr_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -24,6 +24,7 @@
             android:src="@drawable/left_arrow_button" />
 
         <TextView
+            android:id="@+id/assr_page_title_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -35,19 +36,43 @@
             android:gravity="center" />
     </RelativeLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:overScrollMode="never" >
-
-        <LinearLayout
-            android:id="@+id/asps_list_layout"
-            android:layout_width="fill_parent"
+        
+	    <ScrollView
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_centerInParent="true"
+	        android:overScrollMode="never" >
+	
+	        <LinearLayout
+	            android:id="@+id/assr_list_layout"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:visibility="invisible"/>
+	    </ScrollView>
+	    
+	    <TextView
+	        android:id="@+id/assr_none_textview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_medium"
-            android:orientation="vertical"/>
-    </ScrollView>
+            android:layout_centerInParent="true"
+            android:text="@string/none_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/border_color"
+            android:visibility="invisible" />
+
+	    <ProgressBar
+	        android:id="@+id/assr_progressbar"
+	        style="?android:attr/progressBarStyleLarge"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:layout_centerInParent="true" />
+    </RelativeLayout>
 
     <!-- Bottom Navigation Bar -->
     <LinearLayout
@@ -57,7 +82,7 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/asps_back_nav_button"
+            android:id="@+id/assr_back_nav_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"

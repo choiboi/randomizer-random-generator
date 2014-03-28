@@ -180,7 +180,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_SELECTED_VALUE, selectedData);
         values.put(KEY_DATE, date);
         
-        db.insert(TABLE_DATA, null, values);
+        db.insert(TABLE_PREV_SELECTIONS, null, values);
         db.close();
     }
     
@@ -219,8 +219,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
-    public Cursor getPrevData() {
-        
-        return null;
+    public Cursor getAllPrevData() {
+        SQLiteDatabase db = getReadableDatabase();
+        String getAllQry = "SELECT * FROM " + TABLE_PREV_SELECTIONS;
+        Cursor cursor = db.rawQuery(getAllQry, null);
+        return cursor;
     }
 }

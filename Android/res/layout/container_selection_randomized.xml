@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/csl_selection_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_medium"
+        android:layout_marginLeft="@dimen/default_large"
+    	android:layout_marginRight="@dimen/default_large"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/csl_data_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_large"
+    	android:layout_marginRight="@dimen/default_large"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/csl_date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_large"
+    	android:layout_marginRight="@dimen/default_large"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/border_color" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/default_medium"
+        android:layout_marginLeft="@dimen/default_medium"
+    	android:layout_marginRight="@dimen/default_medium"
+        android:background="@color/border_color" />
+
+</LinearLayout>

@@ -37,6 +37,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="ShowSavedRandomizedActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="NumberSelectorDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

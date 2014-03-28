@@ -106,7 +106,8 @@ public class MainActivity extends Activity {
     
     public void onMenuButtonClick(View v) {
         if (v.getId() == R.id.am_previous_choice_menu_button) {
-            
+            Intent intent = new Intent(this, ShowSavedRandomizedActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.am_saved_ordered_list_menu_button) {
             
         } else if (v.getId() == R.id.am_about_menu_button) {
@@ -120,7 +121,7 @@ public class MainActivity extends Activity {
         mSelectionsListview.removeAllViews();
         
         if (mSelections.size() == 0) {
-            View v = mLayoutInflater.inflate(R.layout.container_selections, mSelectionsListview, false);
+            View v = mLayoutInflater.inflate(R.layout.container_main_selections, mSelectionsListview, false);
             v.findViewById(R.id.cs_delete_button).setVisibility(View.INVISIBLE);
             TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
             tv.setText(NONE);
@@ -128,7 +129,7 @@ public class MainActivity extends Activity {
         }
         
         for (int i = 0; i < mSelections.size(); i++) {
-            View v = mLayoutInflater.inflate(R.layout.container_selections, mSelectionsListview, false);
+            View v = mLayoutInflater.inflate(R.layout.container_main_selections, mSelectionsListview, false);
             ImageButton imb = (ImageButton) v.findViewById(R.id.cs_delete_button);
             final int pos = i;
             imb.setOnClickListener(new OnClickListener() {
