@@ -30,7 +30,6 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="@dimen/default_xxxlarge"
             android:layout_marginRight="@dimen/default_xxxlarge"
-            android:text="@string/prev_selected_choices_text"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             android:gravity="center" />

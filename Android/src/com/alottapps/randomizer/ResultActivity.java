@@ -80,7 +80,7 @@ public class ResultActivity extends Activity {
             findViewById(R.id.ar_save_button).setVisibility(View.GONE);
             
             String listStr = Utils.listToString(mSelections);
-            mDB.addPrevData(mSelections.get(index), date, listStr);
+            mDB.addPrevData(listStr, date, mSelections.get(index));
         } else if (mType == Constants.LIST_RANDOM) {
             ArrayList<Integer> orderedIndexL 
                 = RandomGenerator.listUniqueRandomNumber(mSelections.size(), mSelections.size() - 1);

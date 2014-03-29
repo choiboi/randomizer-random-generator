@@ -107,9 +107,12 @@ public class MainActivity extends Activity {
     public void onMenuButtonClick(View v) {
         if (v.getId() == R.id.am_previous_choice_menu_button) {
             Intent intent = new Intent(this, ShowSavedRandomizedActivity.class);
+            intent.putExtra(Constants.TYPE_SELECTED_RANDOMIZED, Constants.PREV_RANDOMIZED);
             startActivity(intent);
         } else if (v.getId() == R.id.am_saved_ordered_list_menu_button) {
-            
+            Intent intent = new Intent(this, ShowSavedRandomizedActivity.class);
+            intent.putExtra(Constants.TYPE_SELECTED_RANDOMIZED, Constants.SAVED_LIST_RANDOMIZED);
+            startActivity(intent);
         } else if (v.getId() == R.id.am_about_menu_button) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
