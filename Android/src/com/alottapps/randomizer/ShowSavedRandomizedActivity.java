@@ -8,6 +8,7 @@ import java.util.Locale;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
+import com.alottapps.randomizer.util.Utils;
 
 public class ShowSavedRandomizedActivity extends Activity {
     
@@ -118,7 +120,8 @@ public class ShowSavedRandomizedActivity extends Activity {
     private void inflateSavedListLayout(Cursor c, LayoutInflater inflater) {
         View v  = inflater.inflate(R.layout.container_list_randomized, mListLayout, false);
         TextView selectionTv = (TextView) v.findViewById(R.id.clr_list_textview);
-        selectionTv.setText(c.getString(1));
+        String htmlStr = Utils.strListToHtmlList(c.getString(1));
+        selectionTv.setText(Html.fromHtml(htmlStr));
         TextView dateTv = (TextView) v.findViewById(R.id.clr_date_textview);
         String date = processDateString(c.getString(2));
         if (date != null) {

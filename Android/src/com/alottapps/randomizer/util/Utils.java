@@ -23,7 +23,7 @@ public class Utils {
     
     public static ArrayList<String> stringToList(String selections) {
         ArrayList<String> list = new ArrayList<String>();
-        String[] selectionList= selections.split(Constants.LIST_DELIMITER);
+        String[] selectionList = selections.split(Constants.LIST_SPLIT_DELIMITER);
         
         for (int i = 0; i < selectionList.length; i++) {
             list.add(selectionList[i]);
@@ -36,5 +36,20 @@ public class Utils {
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
         String date = sdf.format(new Date());
         return date;
+    }
+    
+    public static String strListToHtmlList(String s) {
+        String htmlStr = "";
+        String[] l = s.split(Constants.LIST_SPLIT_DELIMITER);
+        
+        for (int i = 0; i < l.length; i++) {
+            if (i == l.length - 1) {
+                htmlStr += "<b>" + (i + 1) + ".</b> " + l[i];
+            } else {
+                htmlStr += "<b>" + (i + 1) + ".</b> " + l[i] + "<br>";
+            }
+        }
+        
+        return htmlStr;
     }
 }

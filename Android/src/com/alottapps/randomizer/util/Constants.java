@@ -20,5 +20,6 @@ public class Constants {
     public static final String DATE_FORMAT_PRESENT = "MMM. dd, yyyy";
     
     // List Parsing Constants.
-    public static final String LIST_DELIMITER = "(*&^)";
+    public static final String LIST_DELIMITER = "||";
+    public static final String LIST_SPLIT_DELIMITER = "\\|\\|";
 }

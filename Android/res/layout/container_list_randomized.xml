@@ -4,28 +4,28 @@
     android:layout_height="fill_parent"
     android:layout_marginLeft="@dimen/default_medium"
     android:layout_marginRight="@dimen/default_medium"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="@dimen/default_small"
-        android:paddingTop="@dimen/default_small"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:orientation="horizontal"
         android:paddingBottom="@dimen/default_small"
-        android:orientation="horizontal" >
+        android:paddingTop="@dimen/default_small" >
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/clr_list_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/clr_date_textview"
