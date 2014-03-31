@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -49,8 +51,19 @@ public class ShowSavedRandomizedActivity extends Activity {
     protected void onStart() {
         super.onStart();
         
+        onStartTask();
+    }
+
+    public void onButtonClick(View v) {
+        if (v.getId() == R.id.assr_back_button || 
+                v.getId() == R.id.assr_back_nav_button) {
+            finish();
+        }
+    }
+    
+    private void onStartTask() {
         mListLayout.removeAllViews();
-        
+
         if (mTypeShown == Constants.PREV_RANDOMIZED) {
             mTitleTv.setText(R.string.prev_selected_choices_text);
             displayPrevSelectedList();
@@ -59,13 +72,6 @@ public class ShowSavedRandomizedActivity extends Activity {
             displaySavedRandomizedLists();
         }
         mProgressBar.setVisibility(View.GONE);
-    }
-
-    public void onButtonClick(View v) {
-        if (v.getId() == R.id.assr_back_button || 
-                v.getId() == R.id.assr_back_nav_button) {
-            finish();
-        }
     }
     
     private void displayPrevSelectedList() {
@@ -127,6 +133,16 @@ public class ShowSavedRandomizedActivity extends Activity {
         if (date != null) {
             dateTv.setText("Randomized on " + date);
         }
+        
+        final String dataID = c.getString(0);
+        ImageButton deleteBut = (ImageButton) v.findViewById(R.id.clr_delete_button);
+        deleteBut.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                mDB.deleteData(dataID);
+                onStartTask();
+            }
+        });
         
         mListLayout.addView(v);
     }
