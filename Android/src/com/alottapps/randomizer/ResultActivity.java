@@ -89,10 +89,10 @@ public class ResultActivity extends Activity {
             mReorderedList = "";
             
             for (int i = 0; i < orderedIndexL.size(); i++) {
-                View v = inflater.inflate(R.layout.container_list_randomized, ll, false);
-                TextView numTv = (TextView) v.findViewById(R.id.clr_number_textview);
+                View v = inflater.inflate(R.layout.container_list_line_randomized, ll, false);
+                TextView numTv = (TextView) v.findViewById(R.id.cllr_number_textview);
                 numTv.setText((i + 1) + ".");
-                TextView selectionTv = (TextView) v.findViewById(R.id.clr_selections_textview);
+                TextView selectionTv = (TextView) v.findViewById(R.id.cllr_selections_textview);
                 selectionTv.setText(mSelections.get(orderedIndexL.get(i)));
                 if (i == orderedIndexL.size() - 1) {
                     mReorderedList += mSelections.get(orderedIndexL.get(i)) + Constants.LIST_DELIMITER;

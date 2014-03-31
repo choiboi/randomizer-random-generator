@@ -119,4 +119,5 @@
             android:text="@string/cancel_text"
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
+
 </LinearLayout>

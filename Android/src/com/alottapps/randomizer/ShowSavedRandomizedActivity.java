@@ -54,7 +54,7 @@ public class ShowSavedRandomizedActivity extends Activity {
             displayPrevSelectedList();
         } else if (mTypeShown == Constants.SAVED_LIST_RANDOMIZED) {
             mTitleTv.setText(R.string.saved_randomized_list_text);
-            displaySavedRandomizedLists()
+            displaySavedRandomizedLists();
         }
         mProgressBar.setVisibility(View.GONE);
     }
@@ -82,7 +82,18 @@ public class ShowSavedRandomizedActivity extends Activity {
     }
     
     private void displaySavedRandomizedLists() {
+        Cursor cursor = mDB.retrieveSavedData();
+        LayoutInflater inflater = getLayoutInflater();
         
+        if (cursor.moveToFirst()) {
+            inflateSavedListLayout(cursor, inflater);
+            while (cursor.moveToNext()) {
+                inflateSavedListLayout(cursor, inflater);
+            }
+            mListLayout.setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.assr_none_textview).setVisibility(View.VISIBLE);
+        }
     }
     
     private void inflatePrevSelectedLayout(Cursor c, LayoutInflater inflater) {
@@ -99,6 +110,19 @@ public class ShowSavedRandomizedActivity extends Activity {
         String date = processDateString(c.getString(3));
         if (date != null) {
             dateTv.setText(date);
+        }
+        
+        mListLayout.addView(v);
+    }
+    
+    private void inflateSavedListLayout(Cursor c, LayoutInflater inflater) {
+        View v  = inflater.inflate(R.layout.container_list_randomized, mListLayout, false);
+        TextView selectionTv = (TextView) v.findViewById(R.id.clr_list_textview);
+        selectionTv.setText(c.getString(1));
+        TextView dateTv = (TextView) v.findViewById(R.id.clr_date_textview);
+        String date = processDateString(c.getString(2));
+        if (date != null) {
+            dateTv.setText("Randomized on " + date);
         }
         
         mListLayout.addView(v);

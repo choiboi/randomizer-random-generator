@@ -126,11 +126,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_LAST_UPDATE };
         String condition = KEY_RANDOMIZED + "=?";
         String[] compare = new String[]{ "1" };
-        Cursor cursor = db.query(TABLE_USER, columns, condition, compare, null, null, null, null);
-        if (!cursor.moveToFirst()) {
-            return null;
-        }
-        db.close();
+        Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
         return cursor;
     }
     
@@ -141,10 +137,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String condition = KEY_RANDOMIZED + "=?";
         String[] compare = new String[]{ "0" };
         Cursor cursor = db.query(TABLE_USER, columns, condition, compare, null, null, null, null);
-        if (!cursor.moveToFirst()) {
-            return null;
-        }
-        db.close();
         return cursor;
     }
     

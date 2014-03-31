@@ -2,25 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="horizontal" >
+    android:layout_marginLeft="@dimen/default_medium"
+    android:layout_marginRight="@dimen/default_medium"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/clr_number_textview"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_marginLeft="@dimen/default_small"
-        android:layout_gravity="center_vertical"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:paddingTop="@dimen/default_small"
+        android:paddingBottom="@dimen/default_small"
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/clr_selections_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_gravity="center_vertical"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/clr_list_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/clr_date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/border_color" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/clr_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:padding="@dimen/default_small"
+            android:src="@android:drawable/ic_delete" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/border_color" />
 
 </LinearLayout>
