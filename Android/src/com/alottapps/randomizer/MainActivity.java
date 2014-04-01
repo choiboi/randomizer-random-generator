@@ -73,7 +73,8 @@ public class MainActivity extends Activity {
         } else if (v.getId() == R.id.am_clear_all_button) {
             clearSelectionsList();
         } else if (v.getId() == R.id.am_load_list_button) {
-            
+            Intent intent = new Intent(this, SavedListsActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.am_save_list_button) {
             if (!isSelectionsListEmpty()) {
                 
