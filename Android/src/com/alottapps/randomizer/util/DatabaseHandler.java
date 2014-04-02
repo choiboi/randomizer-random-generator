@@ -120,7 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor retrieveListData() {
         SQLiteDatabase db = getReadableDatabase();
         
-        String[] columns = new String[]{ KEY_DATA_NAME, KEY_DATA, KEY_DATE };
+        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE };
         String condition = KEY_RANDOMIZED + "=?";
         String[] compare = new String[]{ "0" };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);

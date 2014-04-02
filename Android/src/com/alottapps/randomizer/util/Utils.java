@@ -1,5 +1,6 @@
 package com.alottapps.randomizer.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,5 +52,18 @@ public class Utils {
         }
         
         return htmlStr;
+    }
+    
+    public static String processDateString(String date) {
+        SimpleDateFormat sdf  = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
+        Date d = null;
+        try {
+            d = sdf.parse(date);
+            SimpleDateFormat sdf_res = new SimpleDateFormat(Constants.DATE_FORMAT_PRESENT, Locale.US);
+            return sdf_res.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

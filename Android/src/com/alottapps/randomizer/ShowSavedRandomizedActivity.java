@@ -1,10 +1,5 @@
 package com.alottapps.randomizer;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -115,7 +110,7 @@ public class ShowSavedRandomizedActivity extends Activity {
         }
         dataTv.setText("Selected From: " + values);
         TextView dateTv = (TextView) v.findViewById(R.id.csl_date_textview);
-        String date = processDateString(c.getString(3));
+        String date = Utils.processDateString(c.getString(3));
         if (date != null) {
             dateTv.setText(date);
         }
@@ -129,7 +124,7 @@ public class ShowSavedRandomizedActivity extends Activity {
         String htmlStr = Utils.strListToHtmlList(c.getString(1));
         selectionTv.setText(Html.fromHtml(htmlStr));
         TextView dateTv = (TextView) v.findViewById(R.id.clr_date_textview);
-        String date = processDateString(c.getString(2));
+        String date = Utils.processDateString(c.getString(2));
         if (date != null) {
             dateTv.setText("Randomized on " + date);
         }
@@ -145,18 +140,5 @@ public class ShowSavedRandomizedActivity extends Activity {
         });
         
         mListLayout.addView(v);
-    }
-    
-    private String processDateString(String date) {
-        SimpleDateFormat sdf  = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
-        Date d = null;
-        try {
-            d = sdf.parse(date);
-            SimpleDateFormat sdf_res = new SimpleDateFormat(Constants.DATE_FORMAT_PRESENT, Locale.US);
-            return sdf_res.format(d);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

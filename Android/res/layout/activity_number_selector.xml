@@ -100,7 +100,7 @@
             android:layout_marginRight="@dimen/default_small"
             android:layout_marginTop="@dimen/default_small"
             android:layout_weight="1"
-            android:background="@drawable/init_white_buttons"
+            android:background="@drawable/init_white_button"
             android:onClick="onButtonClick"
             android:text="@string/ok_text"
             android:textColor="@drawable/black_white_text_color" />
@@ -114,7 +114,7 @@
             android:layout_marginRight="@dimen/default_medium"
             android:layout_marginTop="@dimen/default_small"
             android:layout_weight="1"
-            android:background="@drawable/init_white_buttons"
+            android:background="@drawable/init_white_button"
             android:onClick="onButtonClick"
             android:text="@string/cancel_text"
             android:textColor="@drawable/black_white_text_color" />

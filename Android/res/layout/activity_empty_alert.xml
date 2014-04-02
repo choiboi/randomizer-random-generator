@@ -31,7 +31,7 @@
          android:layout_marginLeft="@dimen/default_small"
          android:layout_marginRight="@dimen/default_small"
          android:layout_marginBottom="@dimen/default_small"
-         android:background="@drawable/init_white_buttons"
+         android:background="@drawable/init_white_button"
          android:text="@string/ok_text"
          android:onClick="onButtonClick" />
 

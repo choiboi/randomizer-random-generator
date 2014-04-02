@@ -59,7 +59,7 @@
                 android:id="@+id/asl_list_listview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"
             android:layout_weight="1"
-            android:background="@drawable/init_white_buttons"
+            android:background="@drawable/init_white_button"
             android:onClick="onButtonClick"
             android:text="@string/back_text"
             android:textColor="@drawable/black_white_text_color" />
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"
             android:layout_weight="1"
-            android:background="@drawable/init_white_buttons"
+            android:background="@drawable/init_white_button"
             android:onClick="onButtonClick"
             android:text="@string/delete_list_text"
             android:textColor="@drawable/black_white_text_color" />
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"
             android:layout_weight="1"
-            android:background="@drawable/init_white_buttons"
+            android:background="@drawable/init_white_button"
             android:onClick="onButtonClick"
             android:text="@string/delete_text"
             android:textColor="@drawable/black_white_text_color" />
