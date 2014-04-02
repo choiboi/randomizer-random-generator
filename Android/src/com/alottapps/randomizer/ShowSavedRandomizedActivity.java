@@ -139,7 +139,7 @@ public class ShowSavedRandomizedActivity extends Activity {
         deleteBut.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                mDB.deleteData(dataID);
+                mDB.deleteSingleData(dataID);
                 onStartTask();
             }
         });

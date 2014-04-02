@@ -52,7 +52,6 @@
             android:textColor="@android:color/white" />
 
         <ScrollView
-            android:id="@+id/asl_list_scrollview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
@@ -85,7 +84,7 @@
             android:textColor="@drawable/black_white_text_color" />
 
         <Button
-            android:id="@+id/asl_delete_list_button"
+            android:id="@+id/asl_delete_list_nav_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"
@@ -96,7 +95,7 @@
             android:textColor="@drawable/black_white_text_color" />
 
         <Button
-            android:id="@+id/asl_delete_button"
+            android:id="@+id/asl_delete_nav_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"
