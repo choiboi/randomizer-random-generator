@@ -117,7 +117,7 @@ public class ResultActivity extends Activity {
             finish();
         } else if (v.getId() == R.id.ar_save_button) {
             String date = Utils.getCurrentDateTime();
-            mDB.addData(mReorderedList, date, 1);
+            mDB.addData(mReorderedList, date, 1, "");
             finish();
         } else if (v.getId() == R.id.ar_again_button) {
             randomizeAndDisplay();

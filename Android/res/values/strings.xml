@@ -47,6 +47,10 @@
     <string name="one_text">1</string>
     <string name="ten_text">10</string>
     
+    <!-- Get List Name Dialog Activity -->
+    <string name="enter_list_name_colon_text">Enter List Name:</string>
+    <string name="optional_brackets_text">(Optional)</string>
+    
     <!-- Show Saved Randomized Activity -->
     <string name="prev_selected_choices_text">Previously Selected Choices</string>
     <string name="saved_randomized_list_text">Saved Randomized Lists</string>

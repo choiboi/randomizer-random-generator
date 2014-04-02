@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alottapps.randomizer.util.Constants;
+import com.alottapps.randomizer.util.Utils;
 
 public class MainActivity extends Activity {
     
@@ -76,7 +77,9 @@ public class MainActivity extends Activity {
             
         } else if (v.getId() == R.id.am_save_list_button) {
             if (!isSelectionsListEmpty()) {
-                
+                Intent intent = new Intent(this, GetListNameDialogActivity.class);
+                intent.putExtra(Constants.SELECTIONS_LIST, Utils.listToString(mSelections));
+                startActivity(intent);
             } else {
                 listEmptyAlertDialog();
             }

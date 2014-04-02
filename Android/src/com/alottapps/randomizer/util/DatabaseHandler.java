@@ -22,9 +22,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // TABLE COLUMNS.
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_DATA_NAME = "data_name";
     private static final String KEY_DATA_ID = "data_id";
     private static final String KEY_DATA = "data";
-    private static final String KEY_LAST_UPDATE = "last_update";
     private static final String KEY_RANDOMIZED = "randomized";
     private static final String KEY_SELECTED_VALUE = "selected_value";
     private static final String KEY_DATE = "date";
@@ -48,8 +48,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String dataTableQry = "CREATE TABLE " + TABLE_DATA + "(" +
                               KEY_DATA_ID + " TEXT," +
                               KEY_EMAIL + " TEXT," +
+                              KEY_DATA_NAME + " TEXT," +
                               KEY_DATA + " TEXT," + 
-                              KEY_LAST_UPDATE + " TEXT," + 
+                              KEY_DATE + " TEXT," + 
                               KEY_RANDOMIZED + " INT)";
         db.execSQL(dataTableQry);
         
@@ -106,15 +107,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
      * Handles all Data table related queries here.
      */
-    public void addData(String data, String date, int randomized) {
+    public void addData(String data, String date, int randomized, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         
         ContentValues values = new ContentValues();
         values.put(KEY_DATA_ID, "android-" + RandomGenerator.randomIDString());
+        values.put(KEY_DATA_NAME, name);
         values.put(KEY_EMAIL, getUserEmail());
         values.put(KEY_DATA, data);
         values.put(KEY_RANDOMIZED, randomized);
-        values.put(KEY_LAST_UPDATE, date);
+        values.put(KEY_DATE, date);
         
         db.insert(TABLE_DATA, null, values);
         db.close();
@@ -123,7 +125,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor retrieveSavedData() {
         SQLiteDatabase db = getReadableDatabase();
         
-        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA, KEY_LAST_UPDATE };
+        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA, KEY_DATE };
         String condition = KEY_RANDOMIZED + "=?";
         String[] compare = new String[]{ "1" };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
@@ -133,7 +135,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor retrieveListData() {
         SQLiteDatabase db = getReadableDatabase();
         
-        String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_LAST_UPDATE };
+        String[] columns = new String[]{ KEY_EMAIL, KEY_DATA, KEY_DATE };
         String condition = KEY_RANDOMIZED + "=?";
         String[] compare = new String[]{ "0" };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
