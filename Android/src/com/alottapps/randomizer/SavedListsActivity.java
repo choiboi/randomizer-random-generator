@@ -33,7 +33,6 @@ public class SavedListsActivity extends Activity {
         mApp = (RandomizerApplication) getApplicationContext();
         mDB = mApp.getDB();
         
-        findViewById(R.id.asl_delete_nav_button).setVisibility(View.GONE);
         mListLayout = (LinearLayout) findViewById(R.id.asl_list_listview);
         
         displayLists();

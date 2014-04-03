@@ -2,22 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/list_container_button"
-    android:clickable="true"
+    android:layout_marginTop="-2dp"
+    android:background="@drawable/list_container"
     android:orientation="horizontal" >
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:gravity="center_vertical"
         android:layout_weight="1"
+        android:background="@drawable/white_blue_background_color"
+        android:clickable="true"
+        android:gravity="center_vertical"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/cl_list_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="List"
+            android:layout_marginLeft="@dimen/default_medium"
+            android:layout_marginTop="@dimen/default_small"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/black_white_text_color"
             android:textStyle="bold" />
@@ -26,7 +29,7 @@
             android:id="@+id/cl_list_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1.asd\n2.asdasd\n3.asdasda"
+            android:layout_marginLeft="@dimen/default_medium"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/black_white_text_color" />
 
@@ -34,7 +37,8 @@
             android:id="@+id/cl_date_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jan. 1, 1024"
+            android:layout_marginBottom="@dimen/default_medium"
+            android:layout_marginLeft="@dimen/default_medium"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/border_color" />
     </LinearLayout>
@@ -42,6 +46,8 @@
     <View
         android:layout_width="1dp"
         android:layout_height="fill_parent"
+        android:layout_marginBottom="@dimen/default_large"
+        android:layout_marginTop="@dimen/default_large"
         android:background="@color/border_color" />
 
     <ImageButton
@@ -51,6 +57,7 @@
         android:layout_gravity="center_vertical"
         android:background="@null"
         android:contentDescription="@string/imagebutton_content_description"
+        android:padding="@dimen/default_medium"
         android:src="@android:drawable/ic_delete" />
 
 </LinearLayout>
