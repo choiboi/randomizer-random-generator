@@ -93,12 +93,14 @@ public class SavedListsActivity extends Activity {
                 displayLists();
             }
         });
-        v.setOnClickListener(new OnClickListener() {
+        final LinearLayout mainV = (LinearLayout) v.findViewById(R.id.cl_main_view);
+        mainV.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent();
                 intent.putExtra(Constants.SELECTED_DATA_ID, dataID);
                 setResult(RESULT_OK, intent);
+                finish();
             }
         });
         
