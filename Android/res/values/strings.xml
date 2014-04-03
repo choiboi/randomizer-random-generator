@@ -18,6 +18,9 @@
         There are no choices to pick from or randomly order from.
 		Please input choices into the list of selections.
     </string>
+    <string name="empty_selection_save_alert_message">
+        Your selections list is empty. Please add selections before saving.
+    </string>
     <string name="ok_text">OK</string>
     
     <!-- Menu Texts -->

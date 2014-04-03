@@ -7,9 +7,14 @@ public class Constants {
     public static final String SELECTIONS_LIST = "selections_list";
     public static final String START_NUMBER = "start_number";
     public static final String END_NUMBER = "end_number";
+    public static final String SELECTED_DATA_ID = "selected_data_id";
     public static final int SINGLE_RANDOM = 0;
     public static final int LIST_RANDOM = 1;
     public static final int NUMBER_RANGE_RANDOM = 2;
+    
+    public static final String ALERT_TYPE = "alert_type ";
+    public static final int ALERT_EMPTY_RANDOMIZER = 100;
+    public static final int ALERT_EMPTY_SAVE = 101;
     
     public static final String TYPE_SELECTED_RANDOMIZED = "type_selected_randomized";
     public static final int PREV_RANDOMIZED = 10;

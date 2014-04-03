@@ -1,6 +1,7 @@
 package com.alottapps.randomizer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
+import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.Utils;
 
@@ -36,6 +38,8 @@ public class SavedListsActivity extends Activity {
         mListLayout = (LinearLayout) findViewById(R.id.asl_list_listview);
         
         displayLists();
+        
+        setResult(RESULT_CANCELED);
     }
     
     public void onButtonClick(View v) {
@@ -89,6 +93,15 @@ public class SavedListsActivity extends Activity {
                 displayLists();
             }
         });
+        v.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent();
+                intent.putExtra(Constants.SELECTED_DATA_ID, dataID);
+                setResult(RESULT_OK, intent);
+            }
+        });
+        
         mListLayout.addView(v);
     }
 }

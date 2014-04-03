@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -15,24 +15,24 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
-    
-     <TextView
+
+    <TextView
+        android:id="@+id/aea_alert_msg_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_medium"
         android:gravity="center"
-        android:text="@string/empty_selection_alert_message"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-     <Button
-         android:id="@+id/aea_ok_button"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="@dimen/default_small"
-         android:layout_marginRight="@dimen/default_small"
-         android:layout_marginBottom="@dimen/default_small"
-         android:background="@drawable/init_white_button"
-         android:text="@string/ok_text"
-         android:onClick="onButtonClick" />
+    <Button
+        android:id="@+id/aea_ok_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_small"
+        android:layout_marginLeft="@dimen/default_small"
+        android:layout_marginRight="@dimen/default_small"
+        android:background="@drawable/init_white_button"
+        android:onClick="onButtonClick"
+        android:text="@string/ok_text" />
 
 </LinearLayout>

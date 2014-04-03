@@ -16,7 +16,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
+import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.Utils;
 
 public class MainActivity extends Activity {
@@ -29,9 +31,12 @@ public class MainActivity extends Activity {
     private boolean mMenuOpen;
     private LayoutInflater mLayoutInflater;
     private ArrayList<String> mSelections;
+    private RandomizerApplication mApp;
+    private DatabaseHandler mDB;
     
     // Constants.
     private final String NONE = "None";
+    private final int LOAD_SAVED_LIST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,9 @@ public class MainActivity extends Activity {
         mSelectionsListview = (LinearLayout) findViewById(R.id.am_selections_listview);
         mMainMenu = (LinearLayout) findViewById(R.id.am_menu_layout);
         mMenuBg = findViewById(R.id.am_menu_background_view);
+        
+        mApp = (RandomizerApplication) getApplicationContext();
+        mDB = mApp.getDB();
         
         mMenuOpen = false;
         mSelections = new ArrayList<String>();
@@ -75,14 +83,14 @@ public class MainActivity extends Activity {
             clearSelectionsList();
         } else if (v.getId() == R.id.am_load_list_button) {
             Intent intent = new Intent(this, SavedListsActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, LOAD_SAVED_LIST);
         } else if (v.getId() == R.id.am_save_list_button) {
             if (!isSelectionsListEmpty()) {
                 Intent intent = new Intent(this, GetListNameDialogActivity.class);
                 intent.putExtra(Constants.SELECTIONS_LIST, Utils.listToString(mSelections));
                 startActivity(intent);
             } else {
-                listEmptyAlertDialog();
+                listEmptyAlertDialog(Constants.ALERT_EMPTY_SAVE);
             }
         } else if (v.getId() == R.id.am_randomize_number_button) {
             Intent intent = new Intent(this, NumberSelectorDialogActivity.class);
@@ -94,7 +102,7 @@ public class MainActivity extends Activity {
                 intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
                 startActivity(intent);
             } else {
-                listEmptyAlertDialog();
+                listEmptyAlertDialog(Constants.ALERT_EMPTY_RANDOMIZER);
             }
         } else if (v.getId() == R.id.am_randomize_order_button) {
             if (!isSelectionsListEmpty()) {
@@ -103,7 +111,7 @@ public class MainActivity extends Activity {
                 intent.putStringArrayListExtra(Constants.SELECTIONS_LIST, mSelections);
                 startActivity(intent);
             } else {
-                listEmptyAlertDialog();
+                listEmptyAlertDialog(Constants.ALERT_EMPTY_RANDOMIZER);
             }
         }
     }
@@ -184,11 +192,26 @@ public class MainActivity extends Activity {
         }
     }
     
-    private void listEmptyAlertDialog() {
+    private void listEmptyAlertDialog(int type) {
         Intent intent = new Intent(this, EmptyAlertDialogActivity.class);
+        intent.putExtra(Constants.ALERT_TYPE, type);
         startActivity(intent);
     }
     
+    
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == LOAD_SAVED_LIST) {
+                String id = data.getExtras().getString(Constants.SELECTED_DATA_ID);
+                String dataStr = mDB.getDataByID(id);
+                mSelections = Utils.stringToList(dataStr);
+                drawSelectionsListview();
+            }
+        }
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         // Remove virtual keyboard when EditText is out of focus.

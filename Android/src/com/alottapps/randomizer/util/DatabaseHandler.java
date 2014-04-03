@@ -139,6 +139,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
+    public String getDataByID(String id) {
+        SQLiteDatabase db = getReadableDatabase();
+        
+        String[] columns = new String[]{ KEY_DATA };
+        String condition = KEY_DATA_ID + "=?";
+        String[] compare = new String[]{ id };
+        Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
+        
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        }
+        return null;
+    }
+    
     public void deleteSingleData(String id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_DATA, KEY_DATA_ID + "=?", new String[]{ id });
