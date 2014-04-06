@@ -46,28 +46,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_large"
-                android:text="@string/other_app_text"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/ab_ipoo_info_textview"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/ab_ipoo_link_textview"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onAppLinkClick"
-                android:text="@string/google_play_store_text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

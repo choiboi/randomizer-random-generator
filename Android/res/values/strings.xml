@@ -38,8 +38,6 @@
     
     <!-- About Activity Texts -->
     <string name="about_text">About</string>
-    <string name="other_app_text">Other Applications</string>
-    <string name="google_play_store_text">GOOGLE Play Store</string>
     
     <!-- Number Selector Dialog Activity -->
     <string name="input_number_range_text">Input Number Range</string>

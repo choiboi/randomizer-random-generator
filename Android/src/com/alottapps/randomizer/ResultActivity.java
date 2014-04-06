@@ -40,13 +40,13 @@ public class ResultActivity extends Activity {
         mType = getIntent().getExtras().getInt(Constants.TYPE_RANDOM, -1);
         if (mType == Constants.SINGLE_RANDOM || mType == Constants.LIST_RANDOM) {
             mSelections = getIntent().getExtras().getStringArrayList(Constants.SELECTIONS_LIST);
-            findViewById(R.id.ar_again_button).setVisibility(View.GONE);
             
             if (mType == Constants.SINGLE_RANDOM) {
                 mMainTv.setText(R.string.randomizer_has_selected_text);
                 findViewById(R.id.ar_save_button).setVisibility(View.GONE);
             } else if (mType == Constants.LIST_RANDOM){
                 mMainTv.setText(R.string.randomized_order_text);
+                findViewById(R.id.ar_again_button).setVisibility(View.GONE);
             }
         } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
             mStartNum = Integer.parseInt(getIntent().getExtras().getString(Constants.START_NUMBER));
