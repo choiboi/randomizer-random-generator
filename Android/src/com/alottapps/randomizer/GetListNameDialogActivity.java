@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -49,7 +50,7 @@ public class GetListNameDialogActivity extends Activity {
             } else {
                 dataId = mDB.addData(mSelectionsListStr, date, 0, mNameEt.getText().toString());
             }
-            
+
             Intent intent = new Intent();
             intent.putExtra(Constants.DATA_ID, dataId);
             setResult(RESULT_OK, intent);

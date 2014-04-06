@@ -203,7 +203,6 @@ public class MainActivity extends Activity {
     }
     
     private void savedListToServer(String id) {
-        Log.d("MainActivity", "id: " + id);
         Cursor c = mDB.getDataByID(id);
         
         if (c.moveToFirst()) {
@@ -216,8 +215,10 @@ public class MainActivity extends Activity {
         if (resultCode == RESULT_OK) {
             if (requestCode == LOAD_SAVED_LIST) {
                 String id = data.getExtras().getString(Constants.DATA_ID);
-                String dataStr = mDB.getDataByID(id).getString(2);
-                mSelections = Utils.stringToList(dataStr);
+                Cursor c = mDB.getDataByID(id);
+                if (c.moveToFirst()) {
+                    mSelections = Utils.stringToList(c.getString(2));
+                }
                 drawSelectionsListview();
             } else if (requestCode == GET_LIST_NAME) {
                 String id = data.getExtras().getString(Constants.DATA_ID);

@@ -98,7 +98,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String dataId = "android-" + RandomGenerator.randomIDString();
         
         ContentValues values = new ContentValues();
-        values.put(KEY_DATA_ID, "android-" + RandomGenerator.randomIDString());
+        values.put(KEY_DATA_ID, dataId);
         values.put(KEY_DATA_NAME, name);
         values.put(KEY_DATA, data);
         values.put(KEY_RANDOMIZED, randomized);
@@ -145,7 +145,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor getDataByID(String id) {
         SQLiteDatabase db = getReadableDatabase();
         
-        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE, KEY_RANDOMIZED };
+        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE};
         String condition = KEY_DATA_ID + "=?";
         String[] compare = new String[]{ id };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
