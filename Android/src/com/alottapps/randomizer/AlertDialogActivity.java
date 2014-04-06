@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.alottapps.randomizer.util.Constants;
 
-public class EmptyAlertDialogActivity extends Activity {
+public class AlertDialogActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

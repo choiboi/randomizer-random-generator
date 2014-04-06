@@ -98,7 +98,7 @@ public class SavedListsActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.SELECTED_DATA_ID, dataID);
+                intent.putExtra(Constants.DATA_ID, dataID);
                 setResult(RESULT_OK, intent);
                 finish();
             }

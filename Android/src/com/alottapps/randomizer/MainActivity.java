@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
     // Constants.
     private final String NONE = "None";
     private final int LOAD_SAVED_LIST = 1;
+    private final int GET_LIST_NAME = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,7 @@ public class MainActivity extends Activity {
             if (!isSelectionsListEmpty()) {
                 Intent intent = new Intent(this, GetListNameDialogActivity.class);
                 intent.putExtra(Constants.SELECTIONS_LIST, Utils.listToString(mSelections));
-                startActivity(intent);
+                startActivityForResult(intent, GET_LIST_NAME );
             } else {
                 listEmptyAlertDialog(Constants.ALERT_EMPTY_SAVE);
             }
@@ -193,21 +194,27 @@ public class MainActivity extends Activity {
     }
     
     private void listEmptyAlertDialog(int type) {
-        Intent intent = new Intent(this, EmptyAlertDialogActivity.class);
+        Intent intent = new Intent(this, AlertDialogActivity.class);
         intent.putExtra(Constants.ALERT_TYPE, type);
         startActivity(intent);
     }
     
-    
+    private void displaySavedListToast() {
+        
+    }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == LOAD_SAVED_LIST) {
-                String id = data.getExtras().getString(Constants.SELECTED_DATA_ID);
+                String id = data.getExtras().getString(Constants.DATA_ID);
                 String dataStr = mDB.getDataByID(id);
                 mSelections = Utils.stringToList(dataStr);
                 drawSelectionsListview();
+            } else if (requestCode == GET_LIST_NAME) {
+                
+                
+                displaySavedListToast();
             }
         }
     }

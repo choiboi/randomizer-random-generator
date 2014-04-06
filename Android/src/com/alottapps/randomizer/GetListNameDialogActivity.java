@@ -2,6 +2,7 @@ package com.alottapps.randomizer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,11 +43,18 @@ public class GetListNameDialogActivity extends Activity {
             finish();
         } else if (v.getId() == R.id.agln_save_button) {
             String date = Utils.getCurrentDateTime();
+            String dataId = "";
             if (mNameEt.getText().toString().equals("")) {
-                mDB.addData(mSelectionsListStr, date, 0, DEFAULT_LIST_NAME);
+                dataId = mDB.addData(mSelectionsListStr, date, 0, DEFAULT_LIST_NAME);
             } else {
-                mDB.addData(mSelectionsListStr, date, 0, mNameEt.getText().toString());
+                dataId = mDB.addData(mSelectionsListStr, date, 0, mNameEt.getText().toString());
             }
+            
+            Intent intent = new Intent();
+            intent.putExtra(Constants.LIST_NAME, mNameEt.getText().toString());
+            intent.putExtra(Constants.DATA_ID, dataId);
+            setResult(RESULT_OK, intent);
+            
             finish();
         }
     }

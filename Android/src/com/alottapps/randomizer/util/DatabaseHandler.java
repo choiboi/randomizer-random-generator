@@ -93,8 +93,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
      * Handles all Data table related queries here.
      */
-    public void addData(String data, String date, int randomized, String name) {
+    public String addData(String data, String date, int randomized, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
+        String dataId = "android-" + RandomGenerator.randomIDString();
         
         ContentValues values = new ContentValues();
         values.put(KEY_DATA_ID, "android-" + RandomGenerator.randomIDString());
@@ -105,6 +106,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         
         db.insert(TABLE_DATA, null, values);
         db.close();
+        
+        return dataId;
     }
     
     public Cursor retrieveSavedData() {
