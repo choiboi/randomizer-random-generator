@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
     private EditText mSelectionsEt;
     private LinearLayout mSelectionsListview;
     private LinearLayout mMainMenu;
+    private RelativeLayout mHttpStatusLayout;
     private View mMenuBg;
     private boolean mMenuOpen;
     private LayoutInflater mLayoutInflater;
@@ -51,6 +52,7 @@ public class MainActivity extends Activity {
         mSelectionsListview = (LinearLayout) findViewById(R.id.am_selections_listview);
         mMainMenu = (LinearLayout) findViewById(R.id.am_menu_layout);
         mMenuBg = findViewById(R.id.am_menu_background_view);
+        mHttpStatusLayout = (RelativeLayout) findViewById(R.id.am_http_loading_screen);
         
         mApp = (RandomizerApplication) getApplicationContext();
         mDB = mApp.getDB();
@@ -203,11 +205,15 @@ public class MainActivity extends Activity {
     }
     
     private void savedListToServer(String id) {
+        mHttpStatusLayout.setVisibility(View.VISIBLE);
         Cursor c = mDB.getDataByID(id);
+        
+        // TODO: HTTP Async request to add list.
         
         if (c.moveToFirst()) {
             Toast.makeText(this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show();
         }
+        mHttpStatusLayout.setVisibility(View.GONE);
     }
     
     @Override

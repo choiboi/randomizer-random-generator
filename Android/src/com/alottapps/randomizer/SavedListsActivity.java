@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
@@ -90,8 +90,7 @@ public class SavedListsActivity extends Activity {
         deleteBut.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                mDB.deleteSingleData(dataID);
-                displayLists();
+                deleteSavedList(dataID);
             }
         });
         final LinearLayout mainV = (LinearLayout) v.findViewById(R.id.cl_main_view);
@@ -106,5 +105,19 @@ public class SavedListsActivity extends Activity {
         });
         
         mListLayout.addView(v);
+    }
+    
+    private void deleteSavedList(String id) {
+        Cursor c = mDB.getDataByID(id);
+        String name = "";
+        if (c.moveToFirst()) {
+            name = c.getString(1);
+        }
+        
+        // TODO: HTTP Async request to delete.
+        
+        mDB.deleteSingleData(id);
+        Toast.makeText(this, "List " + name + " has successfully been deleted!", Toast.LENGTH_LONG).show();
+        displayLists();
     }
 }
