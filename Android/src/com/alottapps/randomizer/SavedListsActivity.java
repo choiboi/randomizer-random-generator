@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -72,6 +73,7 @@ public class SavedListsActivity extends Activity {
     }
     
     private void setupListContainer(Cursor c, LayoutInflater inflater) {
+        Log.d("MainActivity", "id: " + c.getString(0));
         View v = inflater.inflate(R.layout.container_list, mListLayout, false);
         TextView nameTv = (TextView) v.findViewById(R.id.cl_list_name_textview);
         nameTv.setText(c.getString(1));

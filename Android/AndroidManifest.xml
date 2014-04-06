@@ -53,7 +53,7 @@
             android:theme="@style/Theme.Light.Dialog" >
         </activity>
         <activity
-            android:name="EmptyAlertDialogActivity"
+            android:name="AlertDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Light.Dialog" >

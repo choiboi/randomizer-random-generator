@@ -51,7 +51,6 @@ public class GetListNameDialogActivity extends Activity {
             }
             
             Intent intent = new Intent();
-            intent.putExtra(Constants.LIST_NAME, mNameEt.getText().toString());
             intent.putExtra(Constants.DATA_ID, dataId);
             setResult(RESULT_OK, intent);
             

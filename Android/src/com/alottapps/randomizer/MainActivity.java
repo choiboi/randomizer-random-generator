@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
@@ -199,8 +202,13 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
     
-    private void displaySavedListToast() {
+    private void savedListToServer(String id) {
+        Log.d("MainActivity", "id: " + id);
+        Cursor c = mDB.getDataByID(id);
         
+        if (c.moveToFirst()) {
+            Toast.makeText(this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show();
+        }
     }
     
     @Override
@@ -208,13 +216,12 @@ public class MainActivity extends Activity {
         if (resultCode == RESULT_OK) {
             if (requestCode == LOAD_SAVED_LIST) {
                 String id = data.getExtras().getString(Constants.DATA_ID);
-                String dataStr = mDB.getDataByID(id);
+                String dataStr = mDB.getDataByID(id).getString(2);
                 mSelections = Utils.stringToList(dataStr);
                 drawSelectionsListview();
             } else if (requestCode == GET_LIST_NAME) {
-                
-                
-                displaySavedListToast();
+                String id = data.getExtras().getString(Constants.DATA_ID);
+                savedListToServer(id);
             }
         }
     }
