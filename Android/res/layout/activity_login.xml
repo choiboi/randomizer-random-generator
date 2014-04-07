@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/base_blue"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/al_input_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/default_large"
+        android:layout_marginRight="@dimen/default_large"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/al_email_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_edittext"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/al_pass_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_medium"
+            android:background="@drawable/default_edittext"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/al_login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_medium"
+            android:background="@drawable/init_white_button"
+            android:onClick="onButtonClick"
+            android:text="@string/login_register_text" />
+
+        <Button
+            android:id="@+id/al_login_without_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_medium"
+            android:background="@drawable/init_white_button"
+            android:onClick="onButtonClick"
+            android:text="@string/skip_login_text" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/al_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

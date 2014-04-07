@@ -63,6 +63,10 @@
     <string name="saved_lists_text">Saved Lists</string>
     <string name="select_list_colon_info_text">Select the list that you would like to load:</string>
     
+    <!-- Login Activity -->
+    <string name="login_register_text">Login/Register</string>
+    <string name="skip_login_text">Skip Login</string>
+    
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>
     <string name="imagebutton_content_description">ImageButton</string>
