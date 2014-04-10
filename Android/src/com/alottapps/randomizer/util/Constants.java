@@ -15,6 +15,7 @@ public class Constants {
     public static final String ALERT_TYPE = "alert_type ";
     public static final int ALERT_EMPTY_RANDOMIZER = 100;
     public static final int ALERT_EMPTY_SAVE = 101;
+    public static final int ALERT_WHY = 102;
     
     public static final String TYPE_SELECTED_RANDOMIZED = "type_selected_randomized";
     public static final int PREV_RANDOMIZED = 10;
@@ -27,4 +28,8 @@ public class Constants {
     // List Parsing Constants.
     public static final String LIST_DELIMITER = "||";
     public static final String LIST_SPLIT_DELIMITER = "\\|\\|";
+    
+    // Skip login info.
+    public static final String TEMP_EMAIL = "--none@none.com--";
+    public static final String TEMP_PASS = "none";
 }

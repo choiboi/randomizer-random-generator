@@ -25,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_DATA_NAME = "data_name";
     private static final String KEY_DATA_ID = "data_id";
     private static final String KEY_DATA = "data";
+    private static final String KEY_SAVED_TO_SERVER = "saved_to_server";
     private static final String KEY_RANDOMIZED = "randomized";
     private static final String KEY_SELECTED_VALUE = "selected_value";
     private static final String KEY_DATE = "date";
@@ -50,7 +51,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                               KEY_DATA_NAME + " TEXT," +
                               KEY_DATA + " TEXT," + 
                               KEY_DATE + " TEXT," + 
-                              KEY_RANDOMIZED + " INT)";
+                              KEY_RANDOMIZED + " INT," +
+                              KEY_SAVED_TO_SERVER + " INT)";
         db.execSQL(dataTableQry);
         
         // Create previous data table.
@@ -83,6 +85,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
+    public Cursor getUser() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String getQry = "SELECT * FROM " + TABLE_USER + ";";
+        return db.rawQuery(getQry,  null);
+    }
+    
     public void deleteUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         String deleteQry = "DELETE FROM " + TABLE_USER + ";";
@@ -103,6 +111,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DATA, data);
         values.put(KEY_RANDOMIZED, randomized);
         values.put(KEY_DATE, date);
+        values.put(KEY_SAVED_TO_SERVER, 0);
         
         db.insert(TABLE_DATA, null, values);
         db.close();

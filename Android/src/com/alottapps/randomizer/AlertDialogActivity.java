@@ -19,6 +19,8 @@ public class AlertDialogActivity extends Activity {
             tv.setText(R.string.empty_selection_alert_message);
         } else if (type == Constants.ALERT_EMPTY_SAVE) {
             tv.setText(R.string.empty_selection_save_alert_message);
+        } else if (type == Constants.ALERT_WHY) {
+            tv.setText(R.string.alert_why_description_message);
         }
     }
     

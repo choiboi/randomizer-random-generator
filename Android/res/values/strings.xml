@@ -21,6 +21,13 @@
     <string name="empty_selection_save_alert_message">
         Your selections list is empty. Please add selections before saving.
     </string>
+    <string name="alert_why_description_message">
+        Logging in with your Email and Password allows you to access your saved lists on
+        multiple android devices. It is not mandatory to login, but you will only be able to
+        access your saved lists on this device only. If you choose to login, we insist that
+        you DO NOT store any private information (for example: credit numbers, social identity
+        numbers and etc.), as we will NOT BE RESPONSIBLE for any stolen information.
+    </string>
     <string name="ok_text">OK</string>
     
     <!-- Menu Texts -->
@@ -66,6 +73,9 @@
     <!-- Login Activity -->
     <string name="login_register_text">Login/Register</string>
     <string name="skip_login_text">Skip Login</string>
+    <string name="password_text">Password</string>
+    <string name="email_text">Email</string>
+    <string name="why_login_text">Why Login?</string>
     
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>

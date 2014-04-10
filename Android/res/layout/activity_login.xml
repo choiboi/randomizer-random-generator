@@ -18,8 +18,9 @@
             android:id="@+id/al_email_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/default_edittext"
+            android:background="@drawable/login_edittext"
             android:ems="10"
+            android:hint="@string/email_text"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -27,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_medium"
-            android:background="@drawable/default_edittext"
+            android:background="@drawable/login_edittext"
             android:ems="10"
+            android:hint="@string/password_text"
             android:inputType="textPassword" />
 
         <Button
@@ -40,14 +42,35 @@
             android:onClick="onButtonClick"
             android:text="@string/login_register_text" />
 
-        <Button
-            android:id="@+id/al_login_without_button"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_medium"
-            android:background="@drawable/init_white_button"
-            android:onClick="onButtonClick"
-            android:text="@string/skip_login_text" />
+            android:layout_marginTop="@dimen/default_large"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="onWhyClick"
+                android:text="@string/why_login_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white"
+                android:textStyle="" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="onSkipLoginClick"
+                android:text="@string/skip_login_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </LinearLayout>
 
     <ProgressBar
