@@ -34,6 +34,7 @@
     <string name="view_previous_choices_text">View Previous Choices</string>
     <string name="view_saved_ordered_lists_text">View Saved Ordered Lists</string>
     <string name="about_randomizer_text">About Randomizer</string>
+    <string name="logout_text">Logout</string>
     
     <!-- Result Activity Text -->
     <string name="result_text">Result</string>

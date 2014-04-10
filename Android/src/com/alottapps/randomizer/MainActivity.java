@@ -134,6 +134,13 @@ public class MainActivity extends Activity {
         } else if (v.getId() == R.id.am_about_menu_button) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
+        } else if (v.getId() == R.id.am_logout_menu_button) {
+            mDB.deleteUser();
+            mDB.deleteAllPrevData();
+            mDB.deleteAllData();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
         openCloseMenu();
     }

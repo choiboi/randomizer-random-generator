@@ -26,7 +26,9 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/default_large"
             android:layout_marginRight="@dimen/default_large"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
 
             <EditText
                 android:id="@+id/al_email_edittext"

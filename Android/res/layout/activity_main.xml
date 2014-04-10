@@ -269,6 +269,18 @@
             android:text="@string/about_randomizer_text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/black_white_text_color" />
+        
+        <Button
+            android:id="@+id/am_logout_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/menu_buttons"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/logout_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
     
     <!-- Fill Screen for waiting on Http Async -->

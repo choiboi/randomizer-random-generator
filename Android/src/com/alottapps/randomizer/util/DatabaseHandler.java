@@ -168,7 +168,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
-    public void deleteAllData(String id) {
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String deleteQry = "DELETE FROM " + TABLE_DATA + ";";
         db.execSQL(deleteQry);
@@ -232,5 +232,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String getAllQry = "SELECT * FROM " + TABLE_PREV_SELECTIONS;
         Cursor cursor = db.rawQuery(getAllQry, null);
         return cursor;
+    }
+    
+    public void deleteAllPrevData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteQry = "DELETE FROM " + TABLE_PREV_SELECTIONS + ";";
+        db.execSQL(deleteQry);
+        db.close();
     }
 }
