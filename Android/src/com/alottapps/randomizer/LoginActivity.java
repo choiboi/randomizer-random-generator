@@ -86,18 +86,14 @@ public class LoginActivity extends Activity {
             if (c.getString(0).equals(Constants.TEMP_EMAIL)) {
                 goToMainActivity();
             } else {
-                // Download lists and sync with local.
+                // TODO: Download lists and sync with local.
             }
         }
     }
     
     private boolean isEmailValid() {
         String email = mEmailEt.getText().toString();
-        
-        if (email.contains("@")) {
-            return true;
-        }
-        return false;
+        return email.contains("@");
     }
     
     @Override
