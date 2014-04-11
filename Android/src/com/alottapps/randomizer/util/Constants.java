@@ -16,6 +16,7 @@ public class Constants {
     public static final int ALERT_EMPTY_RANDOMIZER = 100;
     public static final int ALERT_EMPTY_SAVE = 101;
     public static final int ALERT_WHY = 102;
+    public static final int ALERT_CONFIMATION = 103;
     
     public static final String TYPE_SELECTED_RANDOMIZED = "type_selected_randomized";
     public static final int PREV_RANDOMIZED = 10;

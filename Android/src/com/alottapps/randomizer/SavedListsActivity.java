@@ -27,6 +27,7 @@ public class SavedListsActivity extends Activity {
     
     // Constants.
     private final String NONE = "None";
+    private final int DELETE_ALERT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,14 +90,14 @@ public class SavedListsActivity extends Activity {
         ImageButton deleteBut = (ImageButton) v.findViewById(R.id.cl_delete_button);
         deleteBut.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                deleteSavedList(dataID);
+            public void onClick(View v) {
+                deleteListConfirmation(dataID);
             }
         });
         final LinearLayout mainV = (LinearLayout) v.findViewById(R.id.cl_main_view);
         mainV.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra(Constants.DATA_ID, dataID);
                 setResult(RESULT_OK, intent);
@@ -105,6 +106,13 @@ public class SavedListsActivity extends Activity {
         });
         
         mListLayout.addView(v);
+    }
+    
+    private void deleteListConfirmation(String id) {
+        Intent intent = new Intent(this, AlertDialogActivity.class);
+        intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_CONFIMATION);
+        intent.putExtra(Constants.DATA_ID, id);
+        startActivityForResult(intent, DELETE_ALERT);
     }
     
     private void deleteSavedList(String id) {
@@ -119,5 +127,17 @@ public class SavedListsActivity extends Activity {
         mDB.deleteSingleData(id);
         Toast.makeText(this, "List " + name + " has successfully been deleted!", Toast.LENGTH_LONG).show();
         displayLists();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        if (resultCode == RESULT_OK) {
+            if (requestCode == DELETE_ALERT) {
+                String id = data.getExtras().getString(Constants.DATA_ID);
+                deleteSavedList(id);
+            }
+        }
     }
 }

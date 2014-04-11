@@ -91,6 +91,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery(getQry,  null);
     }
     
+    public String getUserEmail() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String getQry = "SELECT * FROM " + TABLE_USER + ";";
+        Cursor c = db.rawQuery(getQry, null);
+        
+        if (c.moveToFirst()) {
+            return c.getString(0);
+        }
+        return null;
+    }
+    
     public void deleteUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         String deleteQry = "DELETE FROM " + TABLE_USER + ";";
