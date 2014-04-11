@@ -33,4 +33,28 @@ public class Constants {
     // Skip login info.
     public static final String TEMP_EMAIL = "--none@none.com--";
     public static final String TEMP_PASS = "none";
+    
+    // Links for HTTP Request.
+    public static final String MAIN_ADDRESS = "http://****";
+    public static final String QUERY_REGISTER_USER = "/registerUser";
+    public static final String QUERY_LOGIN = "/login";
+    public static final String QUERY_GET_ALL_DATA = "/getAllData";
+    public static final String QUERY_SAVE_DATA = "/saveData";
+    public static final String QUERY_DELETE_DATA = "/deleteData";
+    
+    public static final String QUERY_VAR_EMAIL = "email";
+    public static final String QUERY_VAR_PASSWORD = "password";
+    public static final String QUERY_VAR_DATA_ID = "dataId";
+    public static final String QUERY_VAR_DATA_NAME = "dataName";
+    public static final String QUERY_VAR_DATA = "data";
+    public static final String QUERY_VAR_DATE = "date";
+    public static final String QUERY_VAR_RANDOMIZED = "randomized";
+    
+    // HTTP Result Codes.
+    public static final String RC_SUCCESSFUL = "100";
+    public static final String RC_UNSUCCESSFUL = "888";
+    public static final String RC_ERROR = "999";
+    public static final String RC_USER_EXISTS = "101";
+    public static final String RC_INVALID_PASS = "201";
+    public static final String RC_USER_DNE = "202";
 }
