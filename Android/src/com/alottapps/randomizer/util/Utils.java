@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Utils {
 
     public static String listToString(ArrayList<String> selections) {
@@ -65,6 +68,32 @@ public class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public static String getResultCode(byte[] data) {
+        String resultCode = "";
+        try {
+            String resultStr = new String(data, "UTF-8");
+            JSONObject json = new JSONObject(resultStr);
+            resultCode = json.getString(Constants.JSON_RESULT_CODE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return resultCode;
+    }
+    
+    public static JSONArray getResultData(byte[] data) {
+        JSONArray jsonArray = null;
+        try {
+            String resultStr = new String(data, "UTF-8");
+            JSONObject json = new JSONObject(resultStr);
+            jsonArray = json.getJSONArray(Constants.JSON_DATA);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return jsonArray;
     }
     
     public static String encryptString(String str) {

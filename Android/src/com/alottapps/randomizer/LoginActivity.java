@@ -1,5 +1,9 @@
 package com.alottapps.randomizer;
 
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +20,9 @@ import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.Utils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class LoginActivity extends Activity {
     
@@ -45,18 +52,55 @@ public class LoginActivity extends Activity {
     }
     
     public void onButtonClick(View v) {
-        if (v.getId() == R.id.al_login_button) {
+        if (isEmailValid() && !mPassEt.getText().toString().equals("")) {
             mInputLayout.setVisibility(View.INVISIBLE);
             mProgressbar.setVisibility(View.VISIBLE);
             
-            if (isEmailValid() && !mPassEt.getText().toString().equals("")) {
-                String email = mEmailEt.getText().toString();
-                mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
+            final String email = mEmailEt.getText().toString();
+            String pass = Utils.encryptString(mPassEt.getText().toString());
+            
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.setTimeout(Constants.HTTP_TIMEOUT);
+            RequestParams params = new RequestParams();
+            params.add(Constants.QUERY_VAR_EMAIL, email);
+            params.add(Constants.QUERY_VAR_PASSWORD, pass);
+        
+            if (v.getId() == R.id.al_login_button) {
+                String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_LOGIN;
+                client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int status, Header[] header, byte[] data) {
+                        String resultCode = Utils.getResultCode(data);
+                        if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                            mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
+                            retrieveData();
+                            goToMainActivity();
+                        } else if (resultCode.equals(Constants.RC_INVALID_PASS)) {
+                            // TODO: Display invalid password error.
+                        } else if (resultCode.equals(Constants.RC_USER_DNE)) {
+                            // TODO: Display user does not exists password.
+                        } else {
+                            // TODO: display error.
+                        }
+                    }
+                });
+            } else {
+                // Register Button.
+                String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_REGISTER_USER;
+                client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int status, Header[] header, byte[] data) {
+                        String resultCode = Utils.getResultCode(data);
+                        if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                            mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
+                        } else if (resultCode.equals(Constants.RC_USER_EXISTS)) {
+                            // TODO: Display user exists error.
+                        } else {
+                            // TODO: Display error.
+                        }
+                    }
+                });
             }
-            
-            // TODO: Make Async Http request to login.
-            
-            goToMainActivity();
         }
     }
     
@@ -86,7 +130,50 @@ public class LoginActivity extends Activity {
             if (c.getString(0).equals(Constants.TEMP_EMAIL)) {
                 goToMainActivity();
             } else {
-                // TODO: Download lists and sync with local.
+                retrieveData();
+            }
+        }
+    }
+    
+    private void retrieveData() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(Constants.HTTP_TIMEOUT);
+        RequestParams params = new RequestParams();
+        params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+        
+        String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_GET_ALL_DATA;
+        client.get(httpLink, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int status, Header[] header, byte[] data) {
+                String resultCode = Utils.getResultCode(data);
+                if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                    JSONArray array = Utils.getResultData(data);
+                    updateLocalDatabase(array);
+                    goToMainActivity();
+                } else {
+                    // TODO: Display error.
+                }
+            }
+        });
+    }
+    
+    private void updateLocalDatabase(JSONArray a) {
+        Cursor c = null;
+        JSONObject json = null;
+        for (int i = 0; i < a.length(); i++) {
+            try {
+                json = a.getJSONObject(i);
+                c = mDB.getDataByID(json.getString(Constants.DATA_ID));
+                if (!c.moveToFirst()) {
+                    String dataId = json.getString(Constants.DATA_ID);
+                    String dataName = json.getString(Constants.JSON_DATA_NAME);
+                    String data = json.getString(Constants.JSON_DATA);
+                    String date = json.getString(Constants.JSON_DATE);
+                    int randomized = json.getInt(Constants.JSON_RANDOMIZED);
+                    mDB.addData(dataId, data, date, randomized, dataName, 1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

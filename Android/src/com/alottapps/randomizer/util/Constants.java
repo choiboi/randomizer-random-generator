@@ -50,6 +50,8 @@ public class Constants {
     public static final String QUERY_VAR_DATE = "date";
     public static final String QUERY_VAR_RANDOMIZED = "randomized";
     
+    public static final int HTTP_TIMEOUT = 1000 * 20; // 20 seconds.
+    
     // HTTP Result Codes.
     public static final String RC_SUCCESSFUL = "100";
     public static final String RC_UNSUCCESSFUL = "888";
@@ -57,4 +59,13 @@ public class Constants {
     public static final String RC_USER_EXISTS = "101";
     public static final String RC_INVALID_PASS = "201";
     public static final String RC_USER_DNE = "202";
+    
+    // HTTP Received Data JSON Key values.
+    public static final String JSON_RESULT_CODE = "result_code";
+    public static final String JSON_EMAIL = "email";
+    public static final String JSON_DATA = "data";
+    public static final String JSON_DATA_ID = "data_id";
+    public static final String JSON_DATA_NAME = "data_name";
+    public static final String JSON_DATE = "date";
+    public static final String JSON_RANDOMIZED = "randomized";
 }

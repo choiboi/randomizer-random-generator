@@ -113,7 +113,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * Handles all Data table related queries here.
      */
     public String addData(String data, String date, int randomized, String name) {
-        SQLiteDatabase db = this.getWritableDatabase();
         String dataId = "android-" + RandomGenerator.randomIDString();
         
         ContentValues values = new ContentValues();
@@ -123,11 +122,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_RANDOMIZED, randomized);
         values.put(KEY_DATE, date);
         values.put(KEY_SAVED_TO_SERVER, 0);
-        
-        db.insert(TABLE_DATA, null, values);
-        db.close();
+        insertData(values);
+        return dataId;
+    }
+    
+    public String addData(String dataId, String data, String date, int randomized, String name, int toServer) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_DATA_ID, dataId);
+        values.put(KEY_DATA_NAME, name);
+        values.put(KEY_DATA, data);
+        values.put(KEY_RANDOMIZED, randomized);
+        values.put(KEY_DATE, date);
+        values.put(KEY_SAVED_TO_SERVER, toServer);
+        insertData(values);
         
         return dataId;
+    }
+    
+    private void insertData(ContentValues cv) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_DATA, null, cv);
+        db.close();
     }
     
     public Cursor retrieveSavedData() {
@@ -150,13 +165,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
     }
     
-    public void updateListData(String id, String email, String newData) {
+    public void updateListData(String id, String newData) {
         SQLiteDatabase db = getWritableDatabase();
         
         ContentValues values = new ContentValues();
         values.put(KEY_DATA, newData);
-        String whereCond = KEY_DATA_ID + "=? AND " + KEY_EMAIL + "=?";
-        String[] whereArgs = new String[]{ id, email };
+        String whereCond = KEY_DATA_ID + "=?";
+        String[] whereArgs = new String[]{ id };
         db.update(TABLE_DATA, values, whereCond, whereArgs);
         
         db.close();
