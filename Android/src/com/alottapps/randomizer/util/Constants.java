@@ -35,7 +35,7 @@ public class Constants {
     public static final String TEMP_PASS = "none";
     
     // Links for HTTP Request.
-    public static final String MAIN_ADDRESS = "http://****";
+    public static final String MAIN_ADDRESS = "http://162.248.143.171";
     public static final String QUERY_REGISTER_USER = "/registerUser";
     public static final String QUERY_LOGIN = "/login";
     public static final String QUERY_GET_ALL_DATA = "/getAllData";

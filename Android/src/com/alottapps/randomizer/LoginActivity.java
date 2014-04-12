@@ -35,6 +35,7 @@ public class LoginActivity extends Activity {
     private TextView mErrorTv;
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
+    private AsyncHttpClient mHttpClient;
     
     // Constants.
     private final String USER_EXIST_MSG = "This Email is registered.";
@@ -57,6 +58,9 @@ public class LoginActivity extends Activity {
         mApp = (RandomizerApplication) getApplicationContext();
         mDB = mApp.getDB();
         
+        mHttpClient = new AsyncHttpClient();
+        mHttpClient.setTimeout(Constants.HTTP_TIMEOUT);
+        
         checkPrevLogin();
     }
     
@@ -70,22 +74,19 @@ public class LoginActivity extends Activity {
             final String email = mEmailEt.getText().toString();
             String pass = Utils.encryptString(mPassEt.getText().toString());
             
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.setTimeout(Constants.HTTP_TIMEOUT);
             RequestParams params = new RequestParams();
             params.add(Constants.QUERY_VAR_EMAIL, email);
             params.add(Constants.QUERY_VAR_PASSWORD, pass);
         
             if (v.getId() == R.id.al_login_button) {
                 String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_LOGIN;
-                client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                mHttpClient.get(httpLink, params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int status, Header[] header, byte[] data) {
                         String resultCode = Utils.getResultCode(data);
                         if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
                             mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
                             retrieveData();
-                            goToMainActivity();
                         } else if (resultCode.equals(Constants.RC_INVALID_PASS)) {
                             mErrorTv.setText(INVALID_PASS_MSG);
                             mErrorTv.setVisibility(View.VISIBLE);
@@ -104,7 +105,7 @@ public class LoginActivity extends Activity {
             } else if (v.getId() == R.id.al_register_button) {
                 // Register Button.
                 String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_REGISTER_USER;
-                client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                mHttpClient.get(httpLink, params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int status, Header[] header, byte[] data) {
                         String resultCode = Utils.getResultCode(data);
@@ -159,13 +160,11 @@ public class LoginActivity extends Activity {
     }
     
     private void retrieveData() {
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.setTimeout(Constants.HTTP_TIMEOUT);
         RequestParams params = new RequestParams();
         params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
         
         String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_GET_ALL_DATA;
-        client.get(httpLink, params, new AsyncHttpResponseHandler() {
+        mHttpClient.get(httpLink, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int status, Header[] header, byte[] data) {
                 String resultCode = Utils.getResultCode(data);
