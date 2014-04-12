@@ -47,6 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         
         // Create data table.
         String dataTableQry = "CREATE TABLE " + TABLE_DATA + "(" +
+                              KEY_EMAIL + " TEXT," +
                               KEY_DATA_ID + " TEXT," +
                               KEY_DATA_NAME + " TEXT," +
                               KEY_DATA + " TEXT," + 
@@ -116,6 +117,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String dataId = "android-" + RandomGenerator.randomIDString();
         
         ContentValues values = new ContentValues();
+        values.put(KEY_EMAIL, getUserEmail());
         values.put(KEY_DATA_ID, dataId);
         values.put(KEY_DATA_NAME, name);
         values.put(KEY_DATA, data);
@@ -128,6 +130,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     
     public String addData(String dataId, String data, String date, int randomized, String name, int toServer) {
         ContentValues values = new ContentValues();
+        values.put(KEY_EMAIL, getUserEmail());
         values.put(KEY_DATA_ID, dataId);
         values.put(KEY_DATA_NAME, name);
         values.put(KEY_DATA, data);
@@ -149,8 +152,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         
         String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA, KEY_DATE };
-        String condition = KEY_RANDOMIZED + "=?";
-        String[] compare = new String[]{ "1" };
+        String condition = KEY_RANDOMIZED + "=? AND " + KEY_EMAIL + "=?";
+        String[] compare = new String[]{ "1", getUserEmail() };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
         return cursor;
     }
@@ -159,8 +162,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         
         String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE };
-        String condition = KEY_RANDOMIZED + "=?";
-        String[] compare = new String[]{ "0" };
+        String condition = KEY_RANDOMIZED + "=? AND " + KEY_EMAIL + "=?";
+        String[] compare = new String[]{ "0", getUserEmail() };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
         return cursor;
     }
@@ -170,8 +173,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         
         ContentValues values = new ContentValues();
         values.put(KEY_DATA, newData);
-        String whereCond = KEY_DATA_ID + "=?";
-        String[] whereArgs = new String[]{ id };
+        String whereCond = KEY_DATA_ID + "=? AND " + KEY_EMAIL + "=?";
+        String[] whereArgs = new String[]{ id, getUserEmail() };
         db.update(TABLE_DATA, values, whereCond, whereArgs);
         
         db.close();
@@ -196,7 +199,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String deleteQry = "DELETE FROM " + TABLE_DATA + ";";
+        String deleteQry = "DELETE FROM " + TABLE_DATA + " WHERE " + KEY_EMAIL + "='" + getUserEmail() + "';";
         db.execSQL(deleteQry);
         db.close();
     }

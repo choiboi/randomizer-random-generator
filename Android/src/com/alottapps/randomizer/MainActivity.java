@@ -136,7 +136,6 @@ public class MainActivity extends Activity {
             startActivity(intent);
         } else if (v.getId() == R.id.am_logout_menu_button) {
             mDB.deleteUser();
-            mDB.deleteAllPrevData();
             mDB.deleteAllData();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

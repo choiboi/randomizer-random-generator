@@ -100,6 +100,6 @@ public class Utils {
         /*
          * Removed for security reasons.
          */
-        return "***fake_password***";
+        return str;
     }
 }
