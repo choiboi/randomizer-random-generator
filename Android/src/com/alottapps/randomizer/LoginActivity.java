@@ -149,7 +149,6 @@ public class LoginActivity extends Activity {
         Cursor c = mDB.getUser();
         if (c.moveToFirst()) {
             mInputLayout.setVisibility(View.INVISIBLE);
-            mProgressbar.setVisibility(View.VISIBLE);
             
             if (c.getString(0).equals(Constants.TEMP_EMAIL)) {
                 goToMainActivity();
@@ -172,8 +171,6 @@ public class LoginActivity extends Activity {
                     JSONArray array = Utils.getResultData(data);
                     updateLocalDatabase(array);
                     goToMainActivity();
-                } else {
-                    // TODO: Display error.
                 }
             }
         });
