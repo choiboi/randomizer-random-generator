@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
@@ -31,8 +32,15 @@ public class LoginActivity extends Activity {
     private ProgressBar mProgressbar;
     private EditText mEmailEt;
     private EditText mPassEt;
+    private TextView mErrorTv;
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
+    
+    // Constants.
+    private final String USER_EXIST_MSG = "This Email is registered.";
+    private final String USER_DNE_MSG = "Email Does Not Exist.";
+    private final String INVALID_PASS_MSG = "Invalid password.";
+    private final String ERROR_LOGIN_REGISTER_MSG = "Login/Register Error";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,7 @@ public class LoginActivity extends Activity {
         
         mEmailEt = (EditText) findViewById(R.id.al_email_edittext);
         mPassEt = (EditText) findViewById(R.id.al_pass_edittext);
+        mErrorTv = (TextView) findViewById(R.id.al_error_textview);
         
         mApp = (RandomizerApplication) getApplicationContext();
         mDB = mApp.getDB();
@@ -52,6 +61,8 @@ public class LoginActivity extends Activity {
     }
     
     public void onButtonClick(View v) {
+        mErrorTv.setVisibility(View.INVISIBLE);
+        
         if (isEmailValid() && !mPassEt.getText().toString().equals("")) {
             mInputLayout.setVisibility(View.INVISIBLE);
             mProgressbar.setVisibility(View.VISIBLE);
@@ -76,15 +87,21 @@ public class LoginActivity extends Activity {
                             retrieveData();
                             goToMainActivity();
                         } else if (resultCode.equals(Constants.RC_INVALID_PASS)) {
-                            // TODO: Display invalid password error.
+                            mErrorTv.setText(INVALID_PASS_MSG);
+                            mErrorTv.setVisibility(View.VISIBLE);
                         } else if (resultCode.equals(Constants.RC_USER_DNE)) {
-                            // TODO: Display user does not exists password.
+                            mErrorTv.setText(USER_DNE_MSG);
+                            mErrorTv.setVisibility(View.VISIBLE);
                         } else {
-                            // TODO: display error.
+                            mErrorTv.setText(ERROR_LOGIN_REGISTER_MSG);
+                            mErrorTv.setVisibility(View.VISIBLE);
                         }
+                        
+                        mInputLayout.setVisibility(View.VISIBLE);
+                        mProgressbar.setVisibility(View.INVISIBLE);
                     }
                 });
-            } else {
+            } else if (v.getId() == R.id.al_register_button) {
                 // Register Button.
                 String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_REGISTER_USER;
                 client.get(httpLink, params, new AsyncHttpResponseHandler() {
@@ -93,11 +110,17 @@ public class LoginActivity extends Activity {
                         String resultCode = Utils.getResultCode(data);
                         if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
                             mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
+                            goToMainActivity();
                         } else if (resultCode.equals(Constants.RC_USER_EXISTS)) {
-                            // TODO: Display user exists error.
+                            mErrorTv.setText(USER_EXIST_MSG);
+                            mErrorTv.setVisibility(View.VISIBLE);
                         } else {
-                            // TODO: Display error.
+                            mErrorTv.setText(ERROR_LOGIN_REGISTER_MSG);
+                            mErrorTv.setVisibility(View.VISIBLE);
                         }
+                        
+                        mInputLayout.setVisibility(View.VISIBLE);
+                        mProgressbar.setVisibility(View.INVISIBLE);
                     }
                 });
             }

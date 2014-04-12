@@ -4,6 +4,8 @@
     <color name="light_blue">#FF0093EA</color>
     <color name="dark_blue">#FF005994</color>
     
+    <color name="light_red">#FFE74C3C</color>
+    
     <color name="border_color">#FFAAAAAA</color>
     <color name="menu_background_color">#66222222</color>
     <color name="transparent_color">#00FFFFFF</color>

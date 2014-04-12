@@ -75,7 +75,8 @@
     <string name="select_list_colon_info_text">Select the list that you would like to load:</string>
     
     <!-- Login Activity -->
-    <string name="login_register_text">Login/Register</string>
+    <string name="login_text">Login</string>
+    <string name="register_text">Register</string>
     <string name="skip_login_text">Skip Login</string>
     <string name="password_text">Password</string>
     <string name="email_text">Email</string>

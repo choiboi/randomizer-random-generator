@@ -12,12 +12,23 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginBottom="@dimen/default_large"
+            android:layout_width="@dimen/login_icon_size"
+            android:layout_height="@dimen/login_icon_size"
             android:layout_gravity="center"
             android:contentDescription="@string/imageview_content_description"
             android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/al_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_medium"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/light_red"
+            android:textStyle="bold" 
+            android:visibility="invisible"
+            android:text="@string/imageview_content_description"/>
 
         <LinearLayout
             android:id="@+id/al_input_layout"
@@ -26,9 +37,9 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/default_large"
             android:layout_marginRight="@dimen/default_large"
-            android:orientation="vertical"
             android:focusable="true"
-            android:focusableInTouchMode="true" >
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/al_email_edittext"
@@ -49,14 +60,32 @@
                 android:hint="@string/password_text"
                 android:inputType="textPassword" />
 
-            <Button
-                android:id="@+id/al_login_button"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_medium"
-                android:background="@drawable/init_white_button"
-                android:onClick="onButtonClick"
-                android:text="@string/login_register_text" />
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/al_register_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/default_small"
+                    android:layout_weight="1"
+                    android:background="@drawable/init_white_button"
+                    android:onClick="onButtonClick"
+                    android:text="@string/register_text" />
+
+                <Button
+                    android:id="@+id/al_login_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_small"
+                    android:layout_weight="1"
+                    android:background="@drawable/init_white_button"
+                    android:onClick="onButtonClick"
+                    android:text="@string/login_text" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -94,8 +123,11 @@
 
     <ProgressBar
         android:id="@+id/al_progressbar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:paddingTop="@dimen/progressbar_top_padding"
         android:visibility="gone" />
+
 </RelativeLayout>

@@ -10,4 +10,6 @@
     
     <!-- MainActivity Dimensions -->
     <dimen name="selections_listview_height">200dp</dimen>
+    <dimen name="login_icon_size">175dp</dimen>
+    <dimen name="progressbar_top_padding">170dp</dimen>
 </resources>
