@@ -180,10 +180,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
+    public void updateSavedToServer(String id, int saved) {
+        SQLiteDatabase db = getWritableDatabase();
+        
+        ContentValues values = new ContentValues();
+        values.put(KEY_SAVED_TO_SERVER, saved);
+        String whereCond = KEY_DATA_ID + "=? AND " + KEY_EMAIL + "=?";
+        String[] whereArgs = new String[]{ id, getUserEmail() };
+        db.update(TABLE_DATA, values, whereCond, whereArgs);
+        
+        db.close();
+    }
+    
     public Cursor getDataByID(String id) {
         SQLiteDatabase db = getReadableDatabase();
         
-        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE};
+        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE, KEY_RANDOMIZED};
         String condition = KEY_DATA_ID + "=?";
         String[] compare = new String[]{ id };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);

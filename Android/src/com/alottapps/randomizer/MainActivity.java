@@ -2,6 +2,8 @@ package com.alottapps.randomizer;
 
 import java.util.ArrayList;
 
+import org.apache.http.Header;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +25,9 @@ import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.Utils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class MainActivity extends Activity {
     
@@ -37,6 +42,7 @@ public class MainActivity extends Activity {
     private ArrayList<String> mSelections;
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
+    private AsyncHttpClient mHttpClient;
     
     // Constants.
     private final String NONE = "None";
@@ -69,6 +75,9 @@ public class MainActivity extends Activity {
                 openCloseMenu();
             }
         });
+        
+        mHttpClient = new AsyncHttpClient();
+        mHttpClient.setTimeout(Constants.HTTP_TIMEOUT);
     }
     
     @Override
@@ -210,16 +219,33 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
     
-    private void savedListToServer(String id) {
-        mHttpStatusLayout.setVisibility(View.VISIBLE);
-        Cursor c = mDB.getDataByID(id);
-        
-        // TODO: HTTP Async request to add list.
+    private void savedListToServer(final String id) {
+        final Cursor c = mDB.getDataByID(id);
         
         if (c.moveToFirst()) {
-            Toast.makeText(this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show();
+            String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
+            RequestParams params = new RequestParams();
+            params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+            params.add(Constants.QUERY_VAR_DATA_ID, id);
+            params.add(Constants.QUERY_VAR_DATA_NAME, c.getString(1));
+            params.add(Constants.QUERY_VAR_DATA, c.getString(2));
+            params.add(Constants.QUERY_VAR_DATE, c.getString(3));
+            params.add(Constants.QUERY_VAR_RANDOMIZED, Integer.toString(c.getInt(4)));
+            mHttpClient.get(httpLink, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int status, Header[] header, byte[] data) {
+                    String resultCode = Utils.getResultCode(data);
+                    if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                        mDB.updateSavedToServer(id, 1);
+                        mHttpStatusLayout.setVisibility(View.GONE);
+                        Toast.makeText(MainActivity.this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        } else {
+            mHttpStatusLayout.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show(); 
         }
-        mHttpStatusLayout.setVisibility(View.GONE);
     }
     
     @Override
@@ -233,6 +259,7 @@ public class MainActivity extends Activity {
                 }
                 drawSelectionsListview();
             } else if (requestCode == GET_LIST_NAME) {
+                mHttpStatusLayout.setVisibility(View.VISIBLE);
                 String id = data.getExtras().getString(Constants.DATA_ID);
                 savedListToServer(id);
             }

@@ -1,5 +1,7 @@
 package com.alottapps.randomizer;
 
+import org.apache.http.Header;
+
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,11 +13,15 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.Utils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class ShowSavedRandomizedActivity extends Activity {
     
@@ -135,10 +141,29 @@ public class ShowSavedRandomizedActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 mDB.deleteSingleData(dataID);
-                onStartTask();
+                deleteFromDB(dataID);
             }
         });
         
         mListLayout.addView(v);
+    }
+    
+    private void deleteFromDB(String id) {
+        String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_DELETE_DATA;
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(Constants.HTTP_TIMEOUT);
+        RequestParams params = new RequestParams();
+        params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+        params.add(Constants.QUERY_VAR_DATA_ID, id);
+        client.get(httpLink, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int status, Header[] header, byte[] data) {
+                String resultCode = Utils.getResultCode(data);
+                if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                    Toast.makeText(ShowSavedRandomizedActivity.this, "Randomized list has successfully been deleted!!" , Toast.LENGTH_LONG).show();
+                    onStartTask();
+                }
+            }
+        });
     }
 }

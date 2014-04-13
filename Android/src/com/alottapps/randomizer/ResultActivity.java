@@ -2,18 +2,25 @@ package com.alottapps.randomizer;
 
 import java.util.ArrayList;
 
+import org.apache.http.Header;
+
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.RandomGenerator;
 import com.alottapps.randomizer.util.Utils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class ResultActivity extends Activity {
     
@@ -117,10 +124,41 @@ public class ResultActivity extends Activity {
             finish();
         } else if (v.getId() == R.id.ar_save_button) {
             String date = Utils.getCurrentDateTime();
-            mDB.addData(mReorderedList, date, 1, "");
-            finish();
+            String id = mDB.addData(mReorderedList, date, 1, "");
+            saveToDB(id);
         } else if (v.getId() == R.id.ar_again_button) {
             randomizeAndDisplay();
+        }
+    }
+    
+    private void saveToDB(final String id) {
+        final Cursor c = mDB.getDataByID(id);
+        
+        if (c.moveToFirst()) {
+            String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
+            
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.setTimeout(Constants.HTTP_TIMEOUT);
+            RequestParams params = new RequestParams();
+            params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+            params.add(Constants.QUERY_VAR_DATA_ID, id);
+            params.add(Constants.QUERY_VAR_DATA_NAME, c.getString(1));
+            params.add(Constants.QUERY_VAR_DATA, c.getString(2));
+            params.add(Constants.QUERY_VAR_DATE, c.getString(3));
+            params.add(Constants.QUERY_VAR_RANDOMIZED, Integer.toString(c.getInt(4)));
+            client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int status, Header[] header, byte[] data) {
+                    String resultCode = Utils.getResultCode(data);
+                    if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                        mDB.updateSavedToServer(id, 1);
+                        Toast.makeText(ResultActivity.this, "Randomized list has successfully been saved!!" , Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }
+            });
+        } else {
+            finish();
         }
     }
 }
