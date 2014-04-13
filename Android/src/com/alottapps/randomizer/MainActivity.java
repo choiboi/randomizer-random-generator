@@ -144,8 +144,9 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.am_logout_menu_button) {
-            mDB.deleteUser();
+            mDB.deleteAllPrevData();
             mDB.deleteAllData();
+            mDB.deleteUser();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -222,7 +223,7 @@ public class MainActivity extends Activity {
     private void savedListToServer(final String id) {
         final Cursor c = mDB.getDataByID(id);
         
-        if (c.moveToFirst()) {
+        if (c.moveToFirst() && !Utils.skippedLogin(mDB)) {
             String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
             RequestParams params = new RequestParams();
             params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());

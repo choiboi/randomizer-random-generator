@@ -1,5 +1,7 @@
 package com.alottapps.randomizer;
 
+import org.apache.http.Header;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +19,9 @@ import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.Utils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class SavedListsActivity extends Activity {
     
@@ -116,17 +121,32 @@ public class SavedListsActivity extends Activity {
     }
     
     private void deleteSavedList(String id) {
-        Cursor c = mDB.getDataByID(id);
-        String name = "";
-        if (c.moveToFirst()) {
-            name = c.getString(1);
-        }
-        
-        // TODO: HTTP Async request to delete.
-        
+        final Cursor c = mDB.getDataByID(id);
         mDB.deleteSingleData(id);
-        Toast.makeText(this, "List " + name + " has successfully been deleted!", Toast.LENGTH_LONG).show();
-        displayLists();
+        
+        if (c.moveToFirst()) {
+            if (!Utils.skippedLogin(mDB)) {
+                String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_DELETE_DATA;
+                AsyncHttpClient client = new AsyncHttpClient();
+                client.setTimeout(Constants.HTTP_TIMEOUT);
+                RequestParams params = new RequestParams();
+                params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+                params.add(Constants.QUERY_VAR_DATA_ID, id);
+                client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int status, Header[] header, byte[] data) {
+                        String resultCode = Utils.getResultCode(data);
+                        if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                            Toast.makeText(SavedListsActivity.this, "List " + c.getString(1) + " has successfully been deleted!", Toast.LENGTH_LONG).show();
+                            displayLists();
+                        }
+                    }
+                });
+            } else {
+                Toast.makeText(this, "List " + c.getString(1) + " has successfully been deleted!", Toast.LENGTH_LONG).show();
+                displayLists();
+            }
+        }
     }
 
     @Override

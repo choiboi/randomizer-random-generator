@@ -134,7 +134,7 @@ public class ResultActivity extends Activity {
     private void saveToDB(final String id) {
         final Cursor c = mDB.getDataByID(id);
         
-        if (c.moveToFirst()) {
+        if (c.moveToFirst() && !Utils.skippedLogin(mDB)) {
             String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
             
             AsyncHttpClient client = new AsyncHttpClient();

@@ -96,6 +96,13 @@ public class Utils {
         return jsonArray;
     }
     
+    public static boolean skippedLogin(DatabaseHandler db) {
+        if (db.getUserEmail().equals(Constants.TEMP_EMAIL)) {
+            return true;
+        }
+        return false;
+    }
+    
     public static String encryptString(String str) {
         /*
          * Removed for security reasons.

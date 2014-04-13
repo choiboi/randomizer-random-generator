@@ -270,7 +270,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     
     public Cursor getAllPrevData() {
         SQLiteDatabase db = getReadableDatabase();
-        String getAllQry = "SELECT * FROM " + TABLE_PREV_SELECTIONS;
+        String getAllQry = "SELECT * FROM " + TABLE_PREV_SELECTIONS + " WHERE email='" + getUserEmail() + "';";
         Cursor cursor = db.rawQuery(getAllQry, null);
         return cursor;
     }

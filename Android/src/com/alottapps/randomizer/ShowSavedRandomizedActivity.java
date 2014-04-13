@@ -108,15 +108,15 @@ public class ShowSavedRandomizedActivity extends Activity {
     private void inflatePrevSelectedLayout(Cursor c, LayoutInflater inflater) {
         View v  = inflater.inflate(R.layout.container_selection_randomized, mListLayout, false);
         TextView selectionTv = (TextView) v.findViewById(R.id.csl_selection_textview);
-        selectionTv.setText(c.getString(2));
+        selectionTv.setText(c.getString(1));
         TextView dataTv = (TextView) v.findViewById(R.id.csl_data_textview);
-        String values = c.getString(1);
+        String values = c.getString(0);
         if (values.contains(Constants.LIST_DELIMITER)) {
             values = values.replace(Constants.LIST_DELIMITER, ", ");
         }
         dataTv.setText("Selected From: " + values);
         TextView dateTv = (TextView) v.findViewById(R.id.csl_date_textview);
-        String date = Utils.processDateString(c.getString(3));
+        String date = Utils.processDateString(c.getString(2));
         if (date != null) {
             dateTv.setText(date);
         }
@@ -149,21 +149,23 @@ public class ShowSavedRandomizedActivity extends Activity {
     }
     
     private void deleteFromDB(String id) {
-        String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_DELETE_DATA;
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.setTimeout(Constants.HTTP_TIMEOUT);
-        RequestParams params = new RequestParams();
-        params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
-        params.add(Constants.QUERY_VAR_DATA_ID, id);
-        client.get(httpLink, params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int status, Header[] header, byte[] data) {
-                String resultCode = Utils.getResultCode(data);
-                if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
-                    Toast.makeText(ShowSavedRandomizedActivity.this, "Randomized list has successfully been deleted!!" , Toast.LENGTH_LONG).show();
-                    onStartTask();
+        if (!Utils.skippedLogin(mDB)) {
+            String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_DELETE_DATA;
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.setTimeout(Constants.HTTP_TIMEOUT);
+            RequestParams params = new RequestParams();
+            params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+            params.add(Constants.QUERY_VAR_DATA_ID, id);
+            client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int status, Header[] header, byte[] data) {
+                    String resultCode = Utils.getResultCode(data);
+                    if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                        Toast.makeText(ShowSavedRandomizedActivity.this, "Randomized list has successfully been deleted!!" , Toast.LENGTH_LONG).show();
+                        onStartTask();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

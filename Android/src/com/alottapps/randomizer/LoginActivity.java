@@ -87,19 +87,21 @@ public class LoginActivity extends Activity {
                         if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
                             mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
                             retrieveData();
-                        } else if (resultCode.equals(Constants.RC_INVALID_PASS)) {
-                            mErrorTv.setText(INVALID_PASS_MSG);
-                            mErrorTv.setVisibility(View.VISIBLE);
-                        } else if (resultCode.equals(Constants.RC_USER_DNE)) {
-                            mErrorTv.setText(USER_DNE_MSG);
-                            mErrorTv.setVisibility(View.VISIBLE);
                         } else {
-                            mErrorTv.setText(ERROR_LOGIN_REGISTER_MSG);
-                            mErrorTv.setVisibility(View.VISIBLE);
+                            if (resultCode.equals(Constants.RC_INVALID_PASS)) {
+                                mErrorTv.setText(INVALID_PASS_MSG);
+                                mErrorTv.setVisibility(View.VISIBLE);
+                            } else if (resultCode.equals(Constants.RC_USER_DNE)) {
+                                mErrorTv.setText(USER_DNE_MSG);
+                                mErrorTv.setVisibility(View.VISIBLE);
+                            } else {
+                                mErrorTv.setText(ERROR_LOGIN_REGISTER_MSG);
+                                mErrorTv.setVisibility(View.VISIBLE);
+                            }
+                            
+                            mInputLayout.setVisibility(View.VISIBLE);
+                            mProgressbar.setVisibility(View.INVISIBLE);
                         }
-                        
-                        mInputLayout.setVisibility(View.VISIBLE);
-                        mProgressbar.setVisibility(View.INVISIBLE);
                     }
                 });
             } else if (v.getId() == R.id.al_register_button) {
@@ -112,16 +114,18 @@ public class LoginActivity extends Activity {
                         if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
                             mDB.addUser(email, Utils.encryptString(mPassEt.getText().toString()));
                             goToMainActivity();
-                        } else if (resultCode.equals(Constants.RC_USER_EXISTS)) {
-                            mErrorTv.setText(USER_EXIST_MSG);
-                            mErrorTv.setVisibility(View.VISIBLE);
                         } else {
-                            mErrorTv.setText(ERROR_LOGIN_REGISTER_MSG);
-                            mErrorTv.setVisibility(View.VISIBLE);
+                            if (resultCode.equals(Constants.RC_USER_EXISTS)) {
+                                mErrorTv.setText(USER_EXIST_MSG);
+                                mErrorTv.setVisibility(View.VISIBLE);
+                            } else {
+                                mErrorTv.setText(ERROR_LOGIN_REGISTER_MSG);
+                                mErrorTv.setVisibility(View.VISIBLE);
+                            }
+                            
+                            mInputLayout.setVisibility(View.VISIBLE);
+                            mProgressbar.setVisibility(View.INVISIBLE);
                         }
-                        
-                        mInputLayout.setVisibility(View.VISIBLE);
-                        mProgressbar.setVisibility(View.INVISIBLE);
                     }
                 });
             }

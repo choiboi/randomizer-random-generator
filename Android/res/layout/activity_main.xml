@@ -290,7 +290,7 @@
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
         android:layout_below="@id/am_nav_bar"
-        android:background="#88000000"
+        android:background="#AA000000"
         android:visibility="gone">
 
         <ProgressBar
@@ -307,6 +307,7 @@
             android:layout_marginTop="@dimen/default_medium"
             android:layout_centerHorizontal="true"
             android:text="Saving List"
+            android:textColor="@android:color/white"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </RelativeLayout>
 </RelativeLayout>
