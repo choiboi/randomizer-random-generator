@@ -41,7 +41,9 @@ public class LoginActivity extends Activity {
     private final String USER_EXIST_MSG = "This Email is registered.";
     private final String USER_DNE_MSG = "Email Does Not Exist.";
     private final String INVALID_PASS_MSG = "Invalid password.";
-    private final String ERROR_LOGIN_REGISTER_MSG = "Login/Register Error";
+    private final String ERROR_LOGIN_REGISTER_MSG = "Login/Register Error.";
+    private final String INVALID_EMAIL = "Invalid Email.";
+    private final String EMPTY_FIELDS = "Email and/or Password fields empty.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +131,13 @@ public class LoginActivity extends Activity {
                     }
                 });
             }
+        } else {
+            if (!isEmailValid()) {
+                mErrorTv.setText(INVALID_EMAIL);
+            } else {
+                mErrorTv.setText(EMPTY_FIELDS);
+            }
+            mErrorTv.setVisibility(View.VISIBLE);
         }
     }
     
