@@ -36,6 +36,8 @@ public class AlertDialogActivity extends Activity {
             tv.setText(R.string.alert_confirm_delete_list_message);
             setResult(RESULT_CANCELED);
             mID = getIntent().getExtras().getString(Constants.DATA_ID);
+        } else if (mType == Constants.ALERT_TY_DONATION) {
+            tv.setText(R.string.alert_ty_message);
         } else {
             finish();
         }
