@@ -102,7 +102,7 @@ public class ResultActivity extends Activity {
                 TextView selectionTv = (TextView) v.findViewById(R.id.cllr_selections_textview);
                 selectionTv.setText(mSelections.get(orderedIndexL.get(i)));
                 if (i == orderedIndexL.size() - 1) {
-                    mReorderedList += mSelections.get(orderedIndexL.get(i)) + Constants.LIST_DELIMITER;
+                    mReorderedList += mSelections.get(orderedIndexL.get(i));
                 } else {
                     mReorderedList += mSelections.get(orderedIndexL.get(i)) + Constants.LIST_DELIMITER;
                 }
