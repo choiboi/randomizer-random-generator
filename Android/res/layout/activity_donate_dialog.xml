@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:gravity="center"
+        android:paddingBottom="@dimen/default_medium"
+        android:paddingTop="@dimen/default_medium"
+        android:text="@string/donate_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_small"
+        android:layout_marginRight="@dimen/default_small"
+        android:layout_marginTop="@dimen/default_small"
+        android:text="@string/donate_main_info_text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RadioGroup
+        android:id="@+id/add_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_small"
+        android:layout_marginRight="@dimen/default_small"
+        android:layout_marginTop="@dimen/default_small" >
+
+        <RadioButton
+            android:id="@+id/add_one_dollar_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/one_dollar_text"
+            android:textColor="@android:color/black" />
+
+        <RadioButton
+            android:id="@+id/add_two_dollar_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two_dollar_text" 
+            android:textColor="@android:color/black"/>
+
+        <RadioButton
+            android:id="@+id/add_three_dollar_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/three_dollar_text"
+            android:textColor="@android:color/black" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_small"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/add_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/init_white_button"
+            android:onClick="onButtonClick"
+            android:text="@string/cancel_text" />
+
+        <Button
+            android:id="@+id/add_donate_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/init_white_button"
+            android:onClick="onButtonClick"
+            android:text="@string/donate_text" />
+    </LinearLayout>
+</LinearLayout>

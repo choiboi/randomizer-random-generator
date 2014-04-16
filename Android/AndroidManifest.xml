@@ -11,6 +11,7 @@
     
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:name="com.alottapps.randomizer.application.RandomizerApplication"
@@ -68,6 +69,12 @@
         </activity>
         <activity
             android:name="GetListNameDialogActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Light.Dialog" >
+        </activity>
+        <activity
+            android:name="DonationDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Light.Dialog" >

@@ -49,6 +49,11 @@
     
     <!-- About Activity Texts -->
     <string name="about_text">About</string>
+    <string name="donate_text">Donate</string>
+    <string name="donate_msg_text">
+        If you like this app, please consider making some donation.
+    </string>
+    <string name="thank_you_caps_text">THANK YOU!!</string>
     
     <!-- Number Selector Dialog Activity -->
     <string name="input_number_range_text">Input Number Range</string>
@@ -81,6 +86,16 @@
     <string name="password_text">Password</string>
     <string name="email_text">Email</string>
     <string name="why_login_text">Why Login?</string>
+    
+    <!-- Donate Dialog Activity -->
+    <string name="donate_main_info_text">
+        Donation is optional. Randomizer will work with or without donations and will 
+        continuously be free. But making donations will go a long way by giving back 
+        to the developer and a reason to improve the user experience and adding features.
+    </string>
+    <string name="one_dollar_text">$1.00 USD</string>
+    <string name="two_dollar_text">$2.00 USD</string>
+    <string name="three_dollar_text">$3.00 USD</string>
     
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>

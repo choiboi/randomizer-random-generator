@@ -1,6 +1,7 @@
 package com.alottapps.randomizer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -35,6 +36,9 @@ public class AboutActivity extends Activity {
     public void onButtonClick(View v) {
         if (v.getId() == R.id.ab_back_button) {
             finish();
+        } else if (v.getId() == R.id.ab_donate_button) {
+            Intent intent = new Intent(this, DonationDialogActivity.class);
+            startActivity(intent);
         }
     }
 }
