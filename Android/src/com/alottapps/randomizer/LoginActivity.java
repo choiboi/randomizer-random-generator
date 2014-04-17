@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
+import com.alottapps.randomizer.util.SystemUtils;
 import com.alottapps.randomizer.util.Utils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -44,6 +45,7 @@ public class LoginActivity extends Activity {
     private final String ERROR_LOGIN_REGISTER_MSG = "Login/Register Error.";
     private final String INVALID_EMAIL = "Invalid Email.";
     private final String EMPTY_FIELDS = "Email and/or Password fields empty.";
+    private final String NO_DATA_CONNECTION = "You have no internet connection.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,10 @@ public class LoginActivity extends Activity {
     public void onButtonClick(View v) {
         mErrorTv.setVisibility(View.INVISIBLE);
         
-        if (isEmailValid() && !mPassEt.getText().toString().equals("")) {
+        if (!SystemUtils.hasDataConnection(this)) {
+            mErrorTv.setText(NO_DATA_CONNECTION);
+            mErrorTv.setVisibility(View.VISIBLE);
+        } else if (isEmailValid() && !mPassEt.getText().toString().equals("")) {
             mInputLayout.setVisibility(View.INVISIBLE);
             mProgressbar.setVisibility(View.VISIBLE);
             
@@ -163,10 +168,10 @@ public class LoginActivity extends Activity {
         if (c.moveToFirst()) {
             mInputLayout.setVisibility(View.INVISIBLE);
             
-            if (c.getString(0).equals(Constants.TEMP_EMAIL)) {
-                goToMainActivity();
-            } else {
+            if (SystemUtils.hasDataConnection(this)) {
                 retrieveData();
+            } else {
+                goToMainActivity();
             }
         }
     }

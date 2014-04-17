@@ -306,7 +306,7 @@
             android:layout_below="@+id/am_http_status_progressbar"
             android:layout_marginTop="@dimen/default_medium"
             android:layout_centerHorizontal="true"
-            android:text="Saving List"
+            android:text="@string/saving_list_text"
             android:textColor="@android:color/white"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </RelativeLayout>

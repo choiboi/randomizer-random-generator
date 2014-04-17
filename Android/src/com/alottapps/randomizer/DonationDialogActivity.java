@@ -28,7 +28,7 @@ public class DonationDialogActivity extends Activity {
     public static final String SKU_2_DONATION = "two_dollar_donation";
     public static final String SKU_3_DONATION = "three_dollar_donation";
     public static final int RC_REQUEST = 111111;
-    private final int PAYLOAD_LEN = 40;
+    private final int PAYLOAD_LEN = 1;
     
     // Developer key removed for security reasons.
     private final String KEY_1 = "****";

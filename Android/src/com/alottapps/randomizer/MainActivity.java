@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
+import com.alottapps.randomizer.util.SystemUtils;
 import com.alottapps.randomizer.util.Utils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -223,7 +224,7 @@ public class MainActivity extends Activity {
     private void savedListToServer(final String id) {
         final Cursor c = mDB.getDataByID(id);
         
-        if (c.moveToFirst() && !Utils.skippedLogin(mDB)) {
+        if (c.moveToFirst() && !Utils.skippedLogin(mDB) && SystemUtils.hasDataConnection(this)) {
             String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
             RequestParams params = new RequestParams();
             params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());

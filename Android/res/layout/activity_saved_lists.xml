@@ -1,86 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <!-- Top Navigation Bar -->
-    <RelativeLayout
-        android:id="@+id/asl_top_nav_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/base_blue" >
-
-        <ImageButton
-            android:id="@+id/asl_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:contentDescription="@string/imagebutton_content_description"
-            android:onClick="onButtonClick"
-            android:padding="@dimen/default_small"
-            android:src="@drawable/left_arrow_button" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/saved_lists_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-    </RelativeLayout>
+    android:layout_height="fill_parent" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/default_medium"
-        android:layout_weight="1"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/asl_selections_title_textview"
+        <!-- Top Navigation Bar -->
+        <RelativeLayout
+            android:id="@+id/asl_top_nav_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/base_blue" >
+
+            <ImageButton
+                android:id="@+id/asl_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:contentDescription="@string/imagebutton_content_description"
+                android:onClick="onButtonClick"
+                android:padding="@dimen/default_small"
+                android:src="@drawable/left_arrow_button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/saved_lists_text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/default_medium"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/asl_selections_title_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/base_blue"
+                android:paddingBottom="@dimen/default_medium"
+                android:paddingLeft="@dimen/default_medium"
+                android:paddingTop="@dimen/default_medium"
+                android:text="@string/select_list_colon_info_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white" />
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <LinearLayout
+                    android:id="@+id/asl_list_listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- Bottom Navigation Bar -->
+
+        <LinearLayout
+            android:id="@+id/ar_bottom_nav_bar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/base_blue"
-            android:paddingBottom="@dimen/default_medium"
-            android:paddingLeft="@dimen/default_medium"
-            android:paddingTop="@dimen/default_medium"
-            android:text="@string/select_list_colon_info_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/white" />
+            android:orientation="horizontal" >
 
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-
-            <LinearLayout
-                android:id="@+id/asl_list_listview"
+            <Button
+                android:id="@+id/asl_back_nav_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
-        </ScrollView>
+                android:layout_margin="@dimen/default_small"
+                android:background="@drawable/init_white_button"
+                android:onClick="onButtonClick"
+                android:text="@string/back_text"
+                android:textColor="@drawable/black_white_text_color" />
+        </LinearLayout>
     </LinearLayout>
-
-    <!-- Bottom Navigation Bar -->
-    <LinearLayout
-        android:id="@+id/ar_bottom_nav_bar"
+    
+    <!-- Fill Screen for waiting on Http Async -->
+    <RelativeLayout 
+        android:id="@+id/asl_http_loading_screen"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/base_blue"
-        android:orientation="horizontal" >
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/am_nav_bar"
+        android:background="#AA000000"
+        android:visibility="gone">
 
-        <Button
-            android:id="@+id/asl_back_nav_button"
-            android:layout_width="fill_parent"
+        <ProgressBar
+            android:id="@+id/asl_http_status_progressbar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_small"
-            android:background="@drawable/init_white_button"
-            android:onClick="onButtonClick"
-            android:text="@string/back_text"
-            android:textColor="@drawable/black_white_text_color" />
-    </LinearLayout>
+            android:layout_centerInParent="true" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/asl_http_status_progressbar"
+            android:layout_marginTop="@dimen/default_medium"
+            android:layout_centerHorizontal="true"
+            android:text="@string/deleting_list_text"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </RelativeLayout>
+</RelativeLayout>

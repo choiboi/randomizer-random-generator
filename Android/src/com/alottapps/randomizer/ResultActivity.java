@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.RandomGenerator;
+import com.alottapps.randomizer.util.SystemUtils;
 import com.alottapps.randomizer.util.Utils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -25,6 +27,7 @@ import com.loopj.android.http.RequestParams;
 public class ResultActivity extends Activity {
     
     // Members.
+    private RelativeLayout mHttpStatusLayout;
     private TextView mMainTv;
     private int mType;
     private ArrayList<String> mSelections;
@@ -43,6 +46,7 @@ public class ResultActivity extends Activity {
         mDB = mApp.getDB();
         
         mMainTv = (TextView) findViewById(R.id.ar_main_textview);
+        mHttpStatusLayout = (RelativeLayout) findViewById(R.id.ar_http_loading_screen);
         
         mType = getIntent().getExtras().getInt(Constants.TYPE_RANDOM, -1);
         if (mType == Constants.SINGLE_RANDOM || mType == Constants.LIST_RANDOM) {
@@ -134,7 +138,8 @@ public class ResultActivity extends Activity {
     private void saveToDB(final String id) {
         final Cursor c = mDB.getDataByID(id);
         
-        if (c.moveToFirst() && !Utils.skippedLogin(mDB)) {
+        if (c.moveToFirst() && !Utils.skippedLogin(mDB) && SystemUtils.hasDataConnection(this)) {
+            mHttpStatusLayout.setVisibility(View.VISIBLE);
             String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
             
             AsyncHttpClient client = new AsyncHttpClient();
@@ -153,6 +158,7 @@ public class ResultActivity extends Activity {
                     if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
                         mDB.updateSavedToServer(id, 1);
                         Toast.makeText(ResultActivity.this, "Randomized list has successfully been saved!!" , Toast.LENGTH_LONG).show();
+                        mHttpStatusLayout.setVisibility(View.GONE);
                         finish();
                     }
                 }

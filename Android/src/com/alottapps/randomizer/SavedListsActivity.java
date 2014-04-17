@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
+import com.alottapps.randomizer.util.SystemUtils;
 import com.alottapps.randomizer.util.Utils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -27,6 +29,7 @@ public class SavedListsActivity extends Activity {
     
     // Members.
     private LinearLayout mListLayout;
+    private RelativeLayout mHttpStatusLayout;
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
     
@@ -43,6 +46,7 @@ public class SavedListsActivity extends Activity {
         mDB = mApp.getDB();
         
         mListLayout = (LinearLayout) findViewById(R.id.asl_list_listview);
+        mHttpStatusLayout = (RelativeLayout) findViewById(R.id.asl_http_loading_screen);
         
         displayLists();
         
@@ -120,12 +124,12 @@ public class SavedListsActivity extends Activity {
         startActivityForResult(intent, DELETE_ALERT);
     }
     
-    private void deleteSavedList(String id) {
+    private void deleteSavedList(final String id) {
         final Cursor c = mDB.getDataByID(id);
-        mDB.deleteSingleData(id);
         
-        if (c.moveToFirst()) {
+        if (c.moveToFirst() && SystemUtils.hasDataConnection(this)) {
             if (!Utils.skippedLogin(mDB)) {
+                mHttpStatusLayout.setVisibility(View.VISIBLE);
                 String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_DELETE_DATA;
                 AsyncHttpClient client = new AsyncHttpClient();
                 client.setTimeout(Constants.HTTP_TIMEOUT);
@@ -137,12 +141,15 @@ public class SavedListsActivity extends Activity {
                     public void onSuccess(int status, Header[] header, byte[] data) {
                         String resultCode = Utils.getResultCode(data);
                         if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                            mDB.deleteSingleData(id);
                             Toast.makeText(SavedListsActivity.this, "List " + c.getString(1) + " has successfully been deleted!", Toast.LENGTH_LONG).show();
+                            mHttpStatusLayout.setVisibility(View.GONE);
                             displayLists();
                         }
                     }
                 });
             } else {
+                mDB.deleteSingleData(id);
                 Toast.makeText(this, "List " + c.getString(1) + " has successfully been deleted!", Toast.LENGTH_LONG).show();
                 displayLists();
             }
