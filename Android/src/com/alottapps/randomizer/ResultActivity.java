@@ -164,6 +164,7 @@ public class ResultActivity extends Activity {
                 }
             });
         } else {
+            Toast.makeText(ResultActivity.this, "Randomized list has successfully been saved!!" , Toast.LENGTH_LONG).show();
             finish();
         }
     }

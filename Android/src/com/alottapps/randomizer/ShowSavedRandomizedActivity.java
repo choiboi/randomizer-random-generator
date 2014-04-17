@@ -166,6 +166,9 @@ public class ShowSavedRandomizedActivity extends Activity {
                     }
                 }
             });
+        } else {
+            Toast.makeText(ShowSavedRandomizedActivity.this, "Randomized list has successfully been deleted!!" , Toast.LENGTH_LONG).show();
+            onStartTask();
         }
     }
 }

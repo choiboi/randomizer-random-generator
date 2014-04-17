@@ -3,45 +3,45 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@android:color/white" />
-		    <corners android:radius="5dp" />
+		    <corners android:radius="@dimen/default_small" />
 		    <stroke
-		        android:width="5dp"
+		        android:width="@dimen/default_small"
 		        android:color="@color/base_blue" />
 		    <padding
-		        android:bottom="10dp"
-		        android:left="10dp"
-		        android:right="10dp"
-		        android:top="10dp" />
+		        android:bottom="@dimen/default_medium"
+		        android:left="@dimen/default_medium"
+		        android:right="@dimen/default_medium"
+		        android:top="@dimen/default_medium" />
         </shape>
     </item>
     
     <item android:state_focused="true">
         <shape>
             <solid android:color="@android:color/white" />
-            <corners android:radius="5dp" />
+            <corners android:radius="@dimen/default_small" />
             <stroke
-                android:width="5dp"
+                android:width="@dimen/default_small"
                 android:color="@color/base_blue" />
             <padding
-                android:bottom="10dp"
-                android:left="10dp"
-                android:right="10dp"
-                android:top="10dp" />
+                android:bottom="@dimen/default_medium"
+                android:left="@dimen/default_medium"
+                android:right="@dimen/default_medium"
+                android:top="@dimen/default_medium" />
         </shape>
     </item>
     
     <item>
         <shape>
             <solid android:color="@android:color/white" />
-		    <corners android:radius="5dp" />
+		    <corners android:radius="@dimen/default_small" />
 		    <stroke
 		        android:width="2dp"
-		        android:color="#FFBBBBBB" />
+		        android:color="@color/edittext_border_color" />
 		    <padding
-		        android:bottom="10dp"
-		        android:left="10dp"
-		        android:right="10dp"
-		        android:top="10dp" />
+		        android:bottom="@dimen/default_medium"
+		        android:left="@dimen/default_medium"
+		        android:right="@dimen/default_medium"
+		        android:top="@dimen/default_medium" />
         </shape>
     </item>
 </selector>

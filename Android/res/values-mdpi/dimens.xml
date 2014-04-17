@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dimensions for mdpi -->
+    <dimen name="default_small">2dp</dimen>
+    <dimen name="default_medium">7dp</dimen>
+    <dimen name="default_large">12dp</dimen>
+    <dimen name="default_xlarge">17dp</dimen>
+    <dimen name="default_xxlarge">22dp</dimen>
+    <dimen name="default_xxxlarge">27dp</dimen>
     
+    <!-- MainActivity Dimensions -->
+    <dimen name="selections_listview_height">115dp</dimen>
+    <dimen name="login_icon_size">125dp</dimen>
+    <dimen name="progressbar_top_padding">150dp</dimen>
 </resources>

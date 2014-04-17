@@ -7,6 +7,7 @@
     <color name="light_red">#FFE74C3C</color>
     
     <color name="border_color">#FFAAAAAA</color>
+    <color name="edittext_border_color">#FFBBBBBB</color>
     <color name="menu_background_color">#66222222</color>
     <color name="transparent_color">#00FFFFFF</color>
 </resources>

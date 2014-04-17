@@ -168,7 +168,9 @@ public class LoginActivity extends Activity {
         if (c.moveToFirst()) {
             mInputLayout.setVisibility(View.INVISIBLE);
             
-            if (SystemUtils.hasDataConnection(this)) {
+            if (c.getString(0).equals(Constants.TEMP_EMAIL)) {
+                goToMainActivity();
+            } else if (SystemUtils.hasDataConnection(this)) {
                 retrieveData();
             } else {
                 goToMainActivity();
