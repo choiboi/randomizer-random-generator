@@ -7,10 +7,10 @@
 		        android:width="1dp"
 		        android:color="@color/light_blue" />
 		    <padding
-		        android:bottom="@dimen/default_medium"
-		        android:left="@dimen/default_medium"
-		        android:right="@dimen/default_medium"
-		        android:top="@dimen/default_medium" />
+		        android:bottom="@dimen/default_large"
+		        android:left="@dimen/default_large"
+		        android:right="@dimen/default_large"
+		        android:top="@dimen/default_large" />
 		</shape>
     </item>
     
@@ -21,10 +21,10 @@
 		        android:width="1dp"
 		        android:color="@color/light_blue" />
 		    <padding
-		        android:bottom="@dimen/default_medium"
-		        android:left="@dimen/default_medium"
-		        android:right="@dimen/default_medium"
-		        android:top="@dimen/default_medium" />
+		        android:bottom="@dimen/default_large"
+		        android:left="@dimen/default_large"
+		        android:right="@dimen/default_large"
+		        android:top="@dimen/default_large" />
 		</shape>
     </item>
 </selector>
