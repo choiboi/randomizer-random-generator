@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dimensions for hdpi -->
-    <dimen name="default_small">5dp</dimen>
-    <dimen name="default_medium">10dp</dimen>
-    <dimen name="default_large">15dp</dimen>
-    <dimen name="default_xlarge">20dp</dimen>
-    <dimen name="default_xxlarge">25dp</dimen>
-    <dimen name="default_xxxlarge">30dp</dimen>
+    <dimen name="default_small">3dp</dimen>
+    <dimen name="default_medium">8dp</dimen>
+    <dimen name="default_large">13dp</dimen>
+    <dimen name="default_xlarge">18dp</dimen>
+    <dimen name="default_xxlarge">23dp</dimen>
+    <dimen name="default_xxxlarge">28dp</dimen>
     
     <!-- MainActivity Dimensions -->
-    <dimen name="selections_listview_height">200dp</dimen>
-    <dimen name="login_icon_size">175dp</dimen>
-    <dimen name="progressbar_top_padding">170dp</dimen>
+    <dimen name="selections_listview_height">140dp</dimen>
+    <dimen name="login_icon_size">145dp</dimen>
+    <dimen name="progressbar_top_padding">160dp</dimen>
 </resources>
