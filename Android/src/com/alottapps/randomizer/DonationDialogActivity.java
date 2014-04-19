@@ -105,7 +105,7 @@ public class DonationDialogActivity extends Activity {
         mHelper = null;
     }
     
-    // Callback for when a purchase is finished
+    // Callback for when a purchase is finished.
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
             if (mHelper == null)
@@ -122,17 +122,19 @@ public class DonationDialogActivity extends Activity {
                 return;
             }
 
-            if (purchase.getSku().equals(SKU_1_DONATION) && purchase.getSku().equals(SKU_2_DONATION) &&
+            if (purchase.getSku().equals(SKU_1_DONATION) || purchase.getSku().equals(SKU_2_DONATION) ||
                     purchase.getSku().equals(SKU_3_DONATION)) {
+                Toast.makeText(DonationDialogActivity.this, "Purchased " + purchase.getSku(), Toast.LENGTH_LONG).show();
                 mHelper.consumeAsync(purchase, mConsumeFinishedListener);
             }
         }
     };
     
-    // Called when consumption is complete
+    // Called when consumption is complete - make sure that users can purchase again.
     IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
         public void onConsumeFinished(Purchase purchase, IabResult result) {
             Log.d(TAG, "Consumption finished. result: " + result);
+            Toast.makeText(DonationDialogActivity.this, "Consumption finished. result: " + result, Toast.LENGTH_SHORT).show();
 
             if (mHelper == null) {
                 return;
