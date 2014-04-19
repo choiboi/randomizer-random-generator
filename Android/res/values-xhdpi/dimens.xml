@@ -8,8 +8,7 @@
     <dimen name="default_xxlarge">25dp</dimen>
     <dimen name="default_xxxlarge">30dp</dimen>
     
-    <!-- MainActivity Dimensions -->
-    <dimen name="selections_listview_height">200dp</dimen>
+    <!-- LoginActivity Dimensions -->
     <dimen name="login_icon_size">175dp</dimen>
     <dimen name="progressbar_top_padding">170dp</dimen>
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:focusableInTouchMode="true" >
-    
+
     <!-- Top Navigation Bar -->
     <RelativeLayout
         android:id="@+id/am_nav_bar"
@@ -34,157 +34,9 @@
             android:src="@drawable/menu_button" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/am_input_selection_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/am_nav_bar"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium"
-        android:layout_marginTop="@dimen/default_medium"
-        android:text="@string/input_selection_colon_text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/am_selection_edittext"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/am_input_selection_textview"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium"
-        android:layout_marginTop="@dimen/default_medium"
-        android:background="@drawable/default_edittext"
-        android:ems="12"
-        android:inputType="text"
-        android:nextFocusLeft="@id/am_selection_edittext"
-        android:nextFocusUp="@id/am_selection_edittext" />
-
-    <LinearLayout
-        android:id="@+id/am_top_button_row"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/am_selection_edittext"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium"
-        android:gravity="right"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/am_clear_all_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_small"
-            android:layout_marginLeft="@dimen/default_small"
-            android:layout_marginTop="@dimen/default_small"
-            android:background="@drawable/init_white_button"
-            android:onClick="onButtonClick"
-            android:text="@string/clear_all_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@drawable/black_white_text_color" />
-
-        <Button
-            android:id="@+id/am_add_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_small"
-            android:layout_marginLeft="@dimen/default_small"
-            android:layout_marginTop="@dimen/default_small"
-            android:background="@drawable/init_white_button"
-            android:onClick="onButtonClick"
-            android:text="@string/add_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@drawable/black_white_text_color" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/am_selections_title_textview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/am_top_button_row"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium"
-        android:layout_marginTop="@dimen/default_small"
-        android:background="@color/base_blue"
-        android:paddingBottom="@dimen/default_medium"
-        android:paddingLeft="@dimen/default_medium"
-        android:paddingTop="@dimen/default_medium"
-        android:text="@string/your_selections_text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/white" />
-
-    <ScrollView
-        android:id="@+id/am_selections_scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/selections_listview_height"
-        android:layout_below="@id/am_selections_title_textview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium" >
-
-        <LinearLayout
-            android:id="@+id/am_selections_listview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-        </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/am_bottom_button_row"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/am_selections_scrollview"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium"
-        android:layout_marginTop="@dimen/default_medium"
-        android:gravity="right"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/am_load_list_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_small"
-            android:layout_marginLeft="@dimen/default_small"
-            android:layout_marginTop="@dimen/default_small"
-            android:background="@drawable/init_white_button"
-            android:onClick="onButtonClick"
-            android:text="@string/load_list_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@drawable/black_white_text_color" />
-
-        <Button
-            android:id="@+id/am_save_list_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_small"
-            android:layout_marginLeft="@dimen/default_small"
-            android:layout_marginTop="@dimen/default_small"
-            android:background="@drawable/init_white_button"
-            android:onClick="onButtonClick"
-            android:text="@string/save_list_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@drawable/black_white_text_color" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/am_randomize_number_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/am_bottom_button_row"
-        android:layout_marginBottom="@dimen/default_small"
-        android:layout_marginLeft="@dimen/default_medium"
-        android:layout_marginRight="@dimen/default_medium"
-        android:layout_marginTop="@dimen/default_small"
-        android:background="@drawable/init_white_button"
-        android:onClick="onButtonClick"
-        android:text="@string/randomize_number_text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@drawable/black_white_text_color" />
-    
     <!-- Bottom Navigation Bar -->
     <LinearLayout
+        android:id="@+id/am_bottom_nav_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -216,6 +68,156 @@
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
 
+    <ScrollView
+        android:id="@+id/am_main_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/am_bottom_nav_bar"
+        android:layout_below="@id/am_nav_bar"
+        android:layout_centerHorizontal="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/am_input_selection_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_medium"
+                android:text="@string/input_selection_colon_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/am_selection_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_medium"
+                android:background="@drawable/default_edittext"
+                android:ems="12"
+                android:inputType="text"
+                android:nextFocusLeft="@id/am_selection_edittext"
+                android:nextFocusUp="@id/am_selection_edittext" />
+
+            <LinearLayout
+                android:id="@+id/am_top_button_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:gravity="right"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/am_clear_all_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_small"
+                    android:layout_marginLeft="@dimen/default_small"
+                    android:layout_marginTop="@dimen/default_small"
+                    android:background="@drawable/init_white_button"
+                    android:onClick="onButtonClick"
+                    android:text="@string/clear_all_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/black_white_text_color" />
+
+                <Button
+                    android:id="@+id/am_add_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_small"
+                    android:layout_marginLeft="@dimen/default_small"
+                    android:layout_marginTop="@dimen/default_small"
+                    android:background="@drawable/init_white_button"
+                    android:onClick="onButtonClick"
+                    android:text="@string/add_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/black_white_text_color" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/am_selections_title_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_small"
+                android:background="@color/base_blue"
+                android:paddingBottom="@dimen/default_medium"
+                android:paddingLeft="@dimen/default_medium"
+                android:paddingTop="@dimen/default_medium"
+                android:text="@string/your_selections_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white" />
+            
+            <LinearLayout
+                android:id="@+id/am_selections_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:orientation="vertical" >
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/am_bottom_button_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_medium"
+                android:gravity="right"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/am_load_list_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_small"
+                    android:layout_marginLeft="@dimen/default_small"
+                    android:layout_marginTop="@dimen/default_small"
+                    android:background="@drawable/init_white_button"
+                    android:onClick="onButtonClick"
+                    android:text="@string/load_list_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/black_white_text_color" />
+
+                <Button
+                    android:id="@+id/am_save_list_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_small"
+                    android:layout_marginLeft="@dimen/default_small"
+                    android:layout_marginTop="@dimen/default_small"
+                    android:background="@drawable/init_white_button"
+                    android:onClick="onButtonClick"
+                    android:text="@string/save_list_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/black_white_text_color" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/am_randomize_number_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="@dimen/default_small"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_small"
+                android:background="@drawable/init_white_button"
+                android:onClick="onButtonClick"
+                android:text="@string/randomize_number_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@drawable/black_white_text_color" />
+        </LinearLayout>
+    </ScrollView>
+
     <!-- Menu List -->
     <View
         android:id="@+id/am_menu_background_view"
@@ -224,7 +226,7 @@
         android:layout_below="@id/am_nav_bar"
         android:background="@color/menu_background_color"
         android:visibility="invisible" />
-    
+
     <LinearLayout
         android:id="@+id/am_menu_layout"
         android:layout_width="wrap_content"
@@ -269,7 +271,7 @@
             android:text="@string/about_randomizer_text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/black_white_text_color" />
-        
+
         <Button
             android:id="@+id/am_logout_menu_button"
             android:layout_width="fill_parent"
@@ -282,16 +284,16 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@drawable/black_white_text_color" />
     </LinearLayout>
-    
+
     <!-- Fill Screen for waiting on Http Async -->
-    <RelativeLayout 
+    <RelativeLayout
         android:id="@+id/am_http_loading_screen"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerInParent="true"
         android:layout_below="@id/am_nav_bar"
+        android:layout_centerInParent="true"
         android:background="#AA000000"
-        android:visibility="gone">
+        android:visibility="gone" >
 
         <ProgressBar
             android:id="@+id/am_http_status_progressbar"
@@ -304,10 +306,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/am_http_status_progressbar"
-            android:layout_marginTop="@dimen/default_medium"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_medium"
             android:text="@string/saving_list_text"
-            android:textColor="@android:color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
     </RelativeLayout>
 </RelativeLayout>
