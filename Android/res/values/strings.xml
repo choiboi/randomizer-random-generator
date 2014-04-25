@@ -104,6 +104,12 @@
     <string name="two_dollar_text">$2.00</string>
     <string name="three_dollar_text">$3.00</string>
     
+    <!-- Edit List Activity -->
+    <string name="edit_list_title_text">Edit List</string>
+    <string name="list_name_colon_text">List name:</string>
+    <string name="your_selections_colon_text">Your Selections:</string>
+    <string name="add_new_selection_text">Add New Selection</string>
+    
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>
     <string name="imagebutton_content_description">ImageButton</string>

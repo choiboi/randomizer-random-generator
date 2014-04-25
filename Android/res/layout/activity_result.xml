@@ -92,7 +92,6 @@
         </RelativeLayout>
 
         <!-- Bottom Navigation Bar -->
-
         <LinearLayout
             android:id="@+id/ar_bottom_nav_bar"
             android:layout_width="fill_parent"

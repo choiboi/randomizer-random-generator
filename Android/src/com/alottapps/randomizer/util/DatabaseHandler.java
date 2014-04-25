@@ -168,11 +168,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
     }
     
-    public void updateListData(String id, String newData) {
+    public void updateListData(String id, String newData, String newName) {
         SQLiteDatabase db = getWritableDatabase();
         
         ContentValues values = new ContentValues();
         values.put(KEY_DATA, newData);
+        values.put(KEY_DATA_NAME, newName);
+        values.put(KEY_SAVED_TO_SERVER, 0);
         String whereCond = KEY_DATA_ID + "=? AND " + KEY_EMAIL + "=?";
         String[] whereArgs = new String[]{ id, getUserEmail() };
         db.update(TABLE_DATA, values, whereCond, whereArgs);
