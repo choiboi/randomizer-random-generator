@@ -195,11 +195,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor getDataByID(String id) {
         SQLiteDatabase db = getReadableDatabase();
         
-        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE, KEY_RANDOMIZED};
+        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE, KEY_RANDOMIZED };
         String condition = KEY_DATA_ID + "=?";
         String[] compare = new String[]{ id };
         Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
 
+        return cursor;
+    }
+    
+    public Cursor getNotSavedToDBData() {
+        SQLiteDatabase db = getReadableDatabase();
+        
+        String[] columns = new String[]{ KEY_DATA_ID, KEY_DATA_NAME, KEY_DATA, KEY_DATE, KEY_RANDOMIZED };
+        String condition = KEY_SAVED_TO_SERVER + "=?";
+        String[] compare = new String[]{ "0" };
+        Cursor cursor = db.query(TABLE_DATA, columns, condition, compare, null, null, null, null);
+        
         return cursor;
     }
     

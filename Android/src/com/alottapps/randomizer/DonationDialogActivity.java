@@ -28,13 +28,20 @@ public class DonationDialogActivity extends Activity {
     public static final String SKU_2_DONATION = "two_dollar_donation";
     public static final String SKU_3_DONATION = "three_dollar_donation";
     public static final int RC_REQUEST = 111111;
-    private final int PAYLOAD_LEN = 1;
+//    private final int PAYLOAD_LEN = 1;
+//    
+//    // Developer key removed for security reasons.
+//    private final String KEY_1 = "****";
+//    private final String KEY_2 = "****";
+//    private final String KEY_3 = "****";
+//    private final String KEY_4 = "****";
     
-    // Developer key removed for security reasons.
-    private final String KEY_1 = "****";
-    private final String KEY_2 = "****";
-    private final String KEY_3 = "****";
-    private final String KEY_4 = "****";
+    private final String KEY_1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh/d/RvNgXvr2sAi6sCGaW8AO3XozxDkVHLEsJhaJhgUge/RehceNYNajlcQ7SIw+wiiSJC";
+    private final String KEY_2 = "NC4MWBDRo2ZqxtG4qzF0kUY7beLqscM8B845jcpahzIBhwFGNqYb0Tce37B4HqaYVoVuYSAbf7rj5h7IreeDlTTmxo/rArCEP+u4fHEE5LdedNQbPW";
+    private final String KEY_3 = "tDKa7mmlheG8IkvgLQMqHn/5TpRUST2H9tzwyyGMZq3sU3vTGKUF6aI/UVJeAi7urvyodgYI0H79TthVMVuVweNA4QN2yZ19ynwRT8x8Brc2P098bu";
+    private final String KEY_4 = "lMVb4czdx/0zkL1oXqyRots58elFndxn1S5buKBiidjQIDAQAB";
+    
+    private final int PAYLOAD_LEN = 40;
     
     
     // For developer Payload.

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
@@ -171,7 +172,7 @@ public class LoginActivity extends Activity {
             if (c.getString(0).equals(Constants.TEMP_EMAIL)) {
                 goToMainActivity();
             } else if (SystemUtils.hasDataConnection(this)) {
-                retrieveData();
+                checkNotSavedData();
             } else {
                 goToMainActivity();
             }
@@ -220,6 +221,37 @@ public class LoginActivity extends Activity {
     private boolean isEmailValid() {
         String email = mEmailEt.getText().toString();
         return email.contains("@");
+    }
+    
+    private void checkNotSavedData() {
+        Cursor cursor = mDB.getNotSavedToDBData();
+        
+        if (cursor.moveToFirst()) {
+            saveDataToDB(cursor);
+        } else {
+            retrieveData();
+        }
+    }
+    
+    private void saveDataToDB(final Cursor c) {
+        String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
+        RequestParams params = new RequestParams();
+        params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+        params.add(Constants.QUERY_VAR_DATA_ID, c.getString(0));
+        params.add(Constants.QUERY_VAR_DATA_NAME, c.getString(1));
+        params.add(Constants.QUERY_VAR_DATA, c.getString(2));
+        params.add(Constants.QUERY_VAR_DATE, c.getString(3));
+        params.add(Constants.QUERY_VAR_RANDOMIZED, Integer.toString(c.getInt(4)));
+        mHttpClient.get(httpLink, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int status, Header[] header, byte[] data) {
+                String resultCode = Utils.getResultCode(data);
+                if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                    mDB.updateSavedToServer(c.getString(0), 1);
+                    retrieveData();
+                }
+            }
+        });
     }
     
     @Override
