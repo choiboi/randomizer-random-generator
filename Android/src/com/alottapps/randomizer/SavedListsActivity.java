@@ -37,6 +37,7 @@ public class SavedListsActivity extends Activity {
     private final String NONE = "None";
     private final int DELETE_ALERT = 100;
     private final int EDIT_LIST = 101;
+    private final int GET_NAME_ALERT = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,15 @@ public class SavedListsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 deleteListConfirmation(dataID);
+            }
+        });
+        ImageButton editBut = (ImageButton) v.findViewById(R.id.cl_edit_button);
+        editBut.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(SavedListsActivity.this, EditListActivity.class);
+                intent.putExtra(Constants.DATA_ID, dataID);
+                startActivityForResult(intent, EDIT_LIST);
             }
         });
         ImageButton editBut = (ImageButton) v.findViewById(R.id.cl_edit_button);

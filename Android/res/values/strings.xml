@@ -74,6 +74,9 @@
     <string name="enter_list_name_colon_text">Enter List Name:</string>
     <string name="optional_brackets_text">(Optional)</string>
     
+    <!-- Get File Name Dialog Activity -->
+    <string name="enter_file_name_colon_text">Enter Filename:</string>
+    
     <!-- Show Saved Randomized Activity -->
     <string name="prev_selected_choices_text">Previously Selected Choices</string>
     <string name="saved_randomized_list_text">Saved Randomized Lists</string>
