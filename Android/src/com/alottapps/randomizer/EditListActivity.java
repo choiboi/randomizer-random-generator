@@ -6,6 +6,7 @@ import org.apache.http.Header;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -82,7 +83,9 @@ public class EditListActivity extends Activity {
         } else if (v.getId() == R.id.ael_save_nav_button) {
             String newList = getListAsString();
             if (newList.equals("")) {
-                // Alert user of empty fields.
+                Intent intent = new Intent(this, AlertDialogActivity.class);
+                intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_EMPTY_SAVE);
+                startActivity(intent);
             } else {
                 mHttpStatusLayout.setVisibility(View.VISIBLE);
                 String name = mTitleEt.getText().toString();
@@ -95,6 +98,7 @@ public class EditListActivity extends Activity {
                     updateSavedList(name, newList);
                 } else {
                     mDB.updateListData(mID, newList, name);
+                    finish();
                 }
             }
         } else if (v.getId() == R.id.ael_add_new_selection_button) {

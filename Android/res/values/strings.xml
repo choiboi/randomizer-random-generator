@@ -112,6 +112,7 @@
     <string name="list_name_colon_text">List name:</string>
     <string name="your_selections_colon_text">Your Selections:</string>
     <string name="add_new_selection_text">Add New Selection</string>
+    <string name="enter_list_name_text">Enter List Name</string>
     
     <!-- Misc. -->
     <string name="imageview_content_description">ImageView</string>
