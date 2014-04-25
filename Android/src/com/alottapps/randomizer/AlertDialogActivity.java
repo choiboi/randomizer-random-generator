@@ -38,6 +38,11 @@ public class AlertDialogActivity extends Activity {
             mID = getIntent().getExtras().getString(Constants.DATA_ID);
         } else if (mType == Constants.ALERT_TY_DONATION) {
             tv.setText(R.string.alert_ty_message);
+        } else if (mType == Constants.ALERT_SAVED_FILE) {
+            String filepath = getIntent().getExtras().getString(Constants.FILEPATH);
+            tv.setText("File saved in: " + filepath);
+        } else if (mType == Constants.ALERT_SAVE_FILE_FAIL) {
+            tv.setText(R.string.alert_save_failed_message);
         } else {
             finish();
         }

@@ -36,6 +36,13 @@ public class Utils {
         return list;
     }
     
+    public static String dbStrListToTextStr(String str) {
+        while (str.contains(Constants.LIST_DELIMITER)) {
+            str = str.replace(Constants.LIST_DELIMITER, "\n");
+        }
+        return str;
+    }
+    
     public static String getCurrentDateTime() {
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
         String date = sdf.format(new Date());

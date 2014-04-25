@@ -2,6 +2,7 @@ package com.alottapps.randomizer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -20,6 +21,8 @@ public class GetFileNameDialogActivity extends Activity {
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
     private String mID;
+    private String mInitName;
+    private String mData;
     private EditText mNameEt;
     
     @Override
@@ -34,7 +37,9 @@ public class GetFileNameDialogActivity extends Activity {
         mID = getIntent().getExtras().getString(Constants.DATA_ID);
         Cursor c = mDB.getDataByID(mID);
         if (c.moveToFirst()) {
-            mNameEt.setText(c.getString(1), TextView.BufferType.EDITABLE);
+            mData = c.getString(2);
+            mInitName = c.getString(1);
+            mNameEt.setText(mInitName, TextView.BufferType.EDITABLE);
         }
         
         setResult(RESULT_CANCELED);
@@ -44,8 +49,19 @@ public class GetFileNameDialogActivity extends Activity {
         if (v.getId() == R.id.agfn_cancel_button) {
             finish();
         } else if (v.getId() == R.id.agfn_save_button) {
-            setResult(RESULT_OK);
+            String filename = mNameEt.getText().toString();
+            Intent intent = new Intent();
+            intent.putExtra(Constants.DATA, mData);
+
+            if (filename.equals("") && mInitName != null && !mInitName.equals("")) {
+                intent.putExtra(Constants.FILENAME, mInitName);
+            } else if (filename.equals("")) {
+                intent.putExtra(Constants.FILENAME, "LIST");
+            } else {
+                intent.putExtra(Constants.FILENAME, filename);
+            }
             
+            setResult(RESULT_OK, intent);
             finish();
         }
     }

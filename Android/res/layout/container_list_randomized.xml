@@ -35,6 +35,26 @@
                 android:textColor="@color/border_color" />
         </LinearLayout>
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/border_color" />
+
+        <ImageButton
+            android:id="@+id/clr_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_save" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/border_color" />
+
         <ImageButton
             android:id="@+id/clr_delete_button"
             android:layout_width="wrap_content"

@@ -8,6 +8,9 @@ public class Constants {
     public static final String START_NUMBER = "start_number";
     public static final String END_NUMBER = "end_number";
     public static final String DATA_ID = "data_id";
+    public static final String DATA = "data";
+    public static final String FILENAME = "filename";
+    public static final String FILEPATH = "filepath";
     public static final int SINGLE_RANDOM = 0;
     public static final int LIST_RANDOM = 1;
     public static final int NUMBER_RANGE_RANDOM = 2;
@@ -18,6 +21,8 @@ public class Constants {
     public static final int ALERT_WHY = 102;
     public static final int ALERT_CONFIMATION = 103;
     public static final int ALERT_TY_DONATION = 104;
+    public static final int ALERT_SAVED_FILE = 105;
+    public static final int ALERT_SAVE_FILE_FAIL = 106;
     
     public static final String TYPE_SELECTED_RANDOMIZED = "type_selected_randomized";
     public static final int PREV_RANDOMIZED = 10;
@@ -69,4 +74,7 @@ public class Constants {
     public static final String JSON_DATA_NAME = "data_name";
     public static final String JSON_DATE = "date";
     public static final String JSON_RANDOMIZED = "randomized";
+    
+    // Files.
+    public static final String TEXTFILE_EXTENSION = ".txt";
 }

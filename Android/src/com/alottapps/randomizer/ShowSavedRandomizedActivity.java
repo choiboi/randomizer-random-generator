@@ -1,8 +1,11 @@
 package com.alottapps.randomizer;
 
+import java.io.File;
+
 import org.apache.http.Header;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import com.alottapps.randomizer.application.RandomizerApplication;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
+import com.alottapps.randomizer.util.SystemUtils;
 import com.alottapps.randomizer.util.Utils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -32,6 +36,9 @@ public class ShowSavedRandomizedActivity extends Activity {
     private int mTypeShown;
     private RandomizerApplication mApp;
     private DatabaseHandler mDB;
+    
+    // Constants.
+    private final int GET_NAME_ALERT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +151,15 @@ public class ShowSavedRandomizedActivity extends Activity {
                 deleteFromDB(dataID);
             }
         });
+        ImageButton saveBut = (ImageButton) v.findViewById(R.id.clr_save_button);
+        saveBut.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(ShowSavedRandomizedActivity.this, GetFileNameDialogActivity.class);
+                intent.putExtra(Constants.DATA_ID, dataID);
+                startActivityForResult(intent, GET_NAME_ALERT);
+            }
+        });
         
         mListLayout.addView(v);
     }
@@ -169,6 +185,37 @@ public class ShowSavedRandomizedActivity extends Activity {
         } else {
             Toast.makeText(ShowSavedRandomizedActivity.this, "Randomized list has successfully been deleted!!" , Toast.LENGTH_LONG).show();
             onStartTask();
+        }
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == GET_NAME_ALERT) {
+                String dataList = data.getExtras().getString(Constants.DATA);
+                String filenameOrig = data.getExtras().getString(Constants.FILENAME);
+                File file = SystemUtils.getOutputMediaFile(filenameOrig + Constants.TEXTFILE_EXTENSION);
+                if (file.exists()) {
+                    int i = 1;
+                    while (file.exists()) {
+                        file = SystemUtils.getOutputMediaFile(filenameOrig + "-" + i + Constants.TEXTFILE_EXTENSION);
+                        i++;
+                    }
+                }
+                
+                dataList = Utils.dbStrListToTextStr(dataList);
+                if (SystemUtils.saveTextFile(file, dataList)) {
+                    Intent intent = new Intent(this, AlertDialogActivity.class);
+                    intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SAVED_FILE);
+                    intent.putExtra(Constants.FILEPATH, file.getAbsolutePath());
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(this, AlertDialogActivity.class);
+                    intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SAVE_FILE_FAIL);
+                    startActivity(intent);
+                }
+            }
         }
     }
 }

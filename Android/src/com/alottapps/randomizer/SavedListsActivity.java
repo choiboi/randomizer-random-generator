@@ -1,5 +1,7 @@
 package com.alottapps.randomizer;
 
+import java.io.File;
+
 import org.apache.http.Header;
 
 import android.app.Activity;
@@ -114,13 +116,13 @@ public class SavedListsActivity extends Activity {
                 startActivityForResult(intent, EDIT_LIST);
             }
         });
-        ImageButton editBut = (ImageButton) v.findViewById(R.id.cl_edit_button);
-        editBut.setOnClickListener(new OnClickListener() {
+        ImageButton saveBut = (ImageButton) v.findViewById(R.id.cl_save_button);
+        saveBut.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(SavedListsActivity.this, EditListActivity.class);
+                Intent intent = new Intent(SavedListsActivity.this, GetFileNameDialogActivity.class);
                 intent.putExtra(Constants.DATA_ID, dataID);
-                startActivityForResult(intent, EDIT_LIST);
+                startActivityForResult(intent, GET_NAME_ALERT);
             }
         });
         
@@ -187,6 +189,29 @@ public class SavedListsActivity extends Activity {
                 deleteSavedList(id);
             } else if (requestCode == EDIT_LIST) {
                 displayLists();
+            } else if (requestCode == GET_NAME_ALERT) {
+                String dataList = data.getExtras().getString(Constants.DATA);
+                String filenameOrig = data.getExtras().getString(Constants.FILENAME);
+                File file = SystemUtils.getOutputMediaFile(filenameOrig + Constants.TEXTFILE_EXTENSION);
+                if (file.exists()) {
+                    int i = 1;
+                    while (file.exists()) {
+                        file = SystemUtils.getOutputMediaFile(filenameOrig + "-" + i + Constants.TEXTFILE_EXTENSION);
+                        i++;
+                    }
+                }
+                
+                dataList = Utils.dbStrListToTextStr(dataList);
+                if (SystemUtils.saveTextFile(file, dataList)) {
+                    Intent intent = new Intent(this, AlertDialogActivity.class);
+                    intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SAVED_FILE);
+                    intent.putExtra(Constants.FILEPATH, file.getAbsolutePath());
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(this, AlertDialogActivity.class);
+                    intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SAVE_FILE_FAIL);
+                    startActivity(intent);
+                }
             }
         }
     }
