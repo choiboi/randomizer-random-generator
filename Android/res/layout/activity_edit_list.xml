@@ -64,7 +64,7 @@
                     android:layout_marginTop="@dimen/default_small"
                     android:background="@drawable/default_edittext"
                     android:ems="10"
-                    android:hint="@string/enter_list_name_colon_text" />
+                    android:hint="@string/enter_list_name_text" />
 
                 <TextView
                     android:layout_width="wrap_content"

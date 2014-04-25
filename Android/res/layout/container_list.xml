@@ -59,7 +59,7 @@
         android:background="@null"
         android:contentDescription="@string/imagebutton_content_description"
         android:padding="@dimen/default_medium"
-        android:src="@android:drawable/ic_delete" />
+        android:src="@drawable/ic_edit" />
 
     <View
         android:layout_width="1dp"
