@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/default_small"
                     android:layout_weight="1"
-                    android:background="@drawable/init_white_button"
+                    android:background="@drawable/button_normal_white_blue"
                     android:onClick="onButtonClick"
                     android:text="@string/register_text" />
 
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/default_small"
                     android:layout_weight="1"
-                    android:background="@drawable/init_white_button"
+                    android:background="@drawable/button_normal_white_blue"
                     android:onClick="onButtonClick"
                     android:text="@string/login_text" />
             </LinearLayout>

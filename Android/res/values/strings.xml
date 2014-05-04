@@ -3,7 +3,6 @@
     <string name="app_name">Randomizer</string>
     
     <!-- Main Activity Texts -->
-    <string name="menu_text">Menu</string>
     <string name="clear_all_text">Clear All</string>
     <string name="add_text">Add</string>
     <string name="pick_choice_text">Pick a Choice</string>
@@ -87,8 +86,6 @@
     <string name="none_text">NONE</string>
     
     <!-- Saved List Activity -->
-    <string name="delete_list_text">Delete List</string>
-    <string name="delete_text">Delete</string>
     <string name="saved_lists_text">Saved Lists</string>
     <string name="select_list_colon_info_text">Select the list that you would like to load:</string>
     <string name="deleting_list_text">Deleting List</string>

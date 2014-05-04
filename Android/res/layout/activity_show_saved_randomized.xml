@@ -85,7 +85,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_small"
-            android:background="@drawable/init_white_button"
+            android:background="@drawable/button_normal_white_blue"
             android:onClick="onButtonClick"
             android:text="@string/back_text"
             android:textColor="@drawable/black_white_text_color" />

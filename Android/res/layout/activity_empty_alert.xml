@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="@dimen/default_small"
-            android:background="@drawable/init_white_button"
+            android:background="@drawable/button_normal_white_blue"
             android:onClick="onButtonClick"
             android:text="@string/cancel_text"
             android:visibility="gone" />
@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/init_white_button"
+            android:background="@drawable/button_normal_white_blue"
             android:onClick="onButtonClick"
             android:text="@string/ok_text" />
     </LinearLayout>

@@ -69,7 +69,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/init_white_button"
+                android:background="@drawable/button_normal_white_blue"
                 android:onClick="onButtonClick"
                 android:text="@string/donate_text"
                 android:layout_marginTop="@dimen/default_small"

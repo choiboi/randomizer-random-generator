@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/default_small"
-                    android:background="@drawable/init_white_button"
+                    android:background="@drawable/button_normal_white_blue"
                     android:onClick="onButtonClick"
                     android:text="@string/add_new_selection_text" />
             </LinearLayout>
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_small"
                 android:layout_weight="1"
-                android:background="@drawable/init_white_button"
+                android:background="@drawable/button_normal_white_blue"
                 android:onClick="onButtonClick"
                 android:text="@string/back_text"
                 android:textColor="@drawable/black_white_text_color" />
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_small"
                 android:layout_weight="1"
-                android:background="@drawable/init_white_button"
+                android:background="@drawable/button_normal_white_blue"
                 android:onClick="onButtonClick"
                 android:text="@string/save_and_back_text"
                 android:textColor="@drawable/black_white_text_color" />
