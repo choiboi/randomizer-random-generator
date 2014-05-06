@@ -43,6 +43,11 @@ public class AlertDialogActivity extends Activity {
             tv.setText("File saved in: " + filepath);
         } else if (mType == Constants.ALERT_SAVE_FILE_FAIL) {
             tv.setText(R.string.alert_save_failed_message);
+        } else if (mType == Constants.ALERT_NOT_TEXT_FILE) {
+            tv.setText(R.string.alert_not_text_file_message);
+        } else if (mType == Constants.ALERT_SELECT_TEXT_FILE) {
+            tv.setText(R.string.alert_select_text_file_message);
+            setResult(RESULT_CANCELED);
         } else {
             finish();
         }
@@ -54,6 +59,8 @@ public class AlertDialogActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra(Constants.DATA_ID, mID);
                 setResult(RESULT_OK, intent);
+            } else if (mType == Constants.ALERT_SELECT_TEXT_FILE) {
+                setResult(RESULT_OK);
             }
         }
         finish();

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,6 +41,8 @@ public class SavedListsActivity extends Activity {
     private final int DELETE_ALERT = 100;
     private final int EDIT_LIST = 101;
     private final int GET_NAME_ALERT = 102;
+    private final int GET_FILE = 103;
+    private final int GET_FILE_ALERT = 104;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,10 @@ public class SavedListsActivity extends Activity {
     public void onButtonClick(View v) {
         if (v.getId() == R.id.asl_back_button || v.getId() == R.id.asl_back_nav_button) {
             finish();
+        } else if (v.getId() == R.id.asl_download_button) {
+            Intent intent = new Intent(this, AlertDialogActivity.class);
+            intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SELECT_TEXT_FILE);
+            startActivityForResult(intent, GET_FILE_ALERT);
         }
     }
     
@@ -212,6 +219,18 @@ public class SavedListsActivity extends Activity {
                     intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SAVE_FILE_FAIL);
                     startActivity(intent);
                 }
+            } else if (requestCode == GET_FILE) {
+                String path = Utils.getFilePathFromUri(data, this);
+                if (!path.endsWith(Constants.TEXTFILE_EXTENSION)) {
+                    Intent intent = new Intent(this, AlertDialogActivity.class);
+                    intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_NOT_TEXT_FILE);
+                    startActivity(intent);
+                }
+                Log.d("TAG", "Path: " + path);
+            } else if (requestCode == GET_FILE_ALERT) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("text/*");
+                startActivityForResult(intent, GET_FILE);
             }
         }
     }

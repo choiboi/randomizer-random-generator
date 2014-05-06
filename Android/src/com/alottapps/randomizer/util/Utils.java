@@ -9,6 +9,12 @@ import java.util.Locale;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
+
 public class Utils {
 
     public static String listToString(ArrayList<String> selections) {
@@ -108,6 +114,25 @@ public class Utils {
             return true;
         }
         return false;
+    }
+    
+    public static String getFilePathFromUri(Intent data, Context context) {
+        Uri imgUri = data.getData();
+        String filePath = null;
+        if (data.getType() == null) {
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = context.getContentResolver().query(imgUri, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            filePath = cursor.getString(columnIndex);
+            cursor.close();
+        }
+        
+        if (filePath == null) {
+            filePath = imgUri.getPath();
+        }
+        
+        return filePath;
     }
     
     public static String encryptString(String str) {
