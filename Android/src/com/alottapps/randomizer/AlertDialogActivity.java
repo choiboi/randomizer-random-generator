@@ -48,6 +48,8 @@ public class AlertDialogActivity extends Activity {
         } else if (mType == Constants.ALERT_SELECT_TEXT_FILE) {
             tv.setText(R.string.alert_select_text_file_message);
             setResult(RESULT_CANCELED);
+        } else if (mType == Constants.ALERT_FILE_DNE) {
+            tv.setText(R.string.alert_file_dne_message);
         } else {
             finish();
         }

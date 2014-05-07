@@ -25,6 +25,7 @@ public class Constants {
     public static final int ALERT_SAVE_FILE_FAIL = 106;
     public static final int ALERT_SELECT_TEXT_FILE = 107;
     public static final int ALERT_NOT_TEXT_FILE = 108;
+    public static final int ALERT_FILE_DNE = 109;
     
     public static final String TYPE_SELECTED_RANDOMIZED = "type_selected_randomized";
     public static final int PREV_RANDOMIZED = 10;

@@ -46,6 +46,9 @@
     <string name="alert_not_text_file_message">
         You have selected the wrong file. Please select a text file.
     </string>
+    <string name="alert_file_dne_message">
+        File you have selected does not exists on your device.
+    </string>
     <string name="ok_text">OK</string>
     <string name="saving_list_text">Saving List</string>
     

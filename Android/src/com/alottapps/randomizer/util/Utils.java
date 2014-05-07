@@ -1,5 +1,12 @@
 package com.alottapps.randomizer.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -133,6 +140,35 @@ public class Utils {
         }
         
         return filePath;
+    }
+    
+    public static ArrayList<String> readFromFile(String filePath, Context context) {
+        ArrayList<String> list = new ArrayList<String>();
+         
+        try {
+            InputStream inputStream = new FileInputStream(new File(filePath));
+             
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                 
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    if (!receiveString.equals("")) {
+                        list.add(receiveString);
+                    }
+                }
+                
+                bufferedReader.close();
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ 
+        return list;
     }
     
     public static String encryptString(String str) {

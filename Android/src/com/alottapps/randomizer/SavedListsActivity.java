@@ -1,6 +1,7 @@
 package com.alottapps.randomizer;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.apache.http.Header;
 
@@ -9,7 +10,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +43,7 @@ public class SavedListsActivity extends Activity {
     private final int GET_NAME_ALERT = 102;
     private final int GET_FILE = 103;
     private final int GET_FILE_ALERT = 104;
+    private final int GET_LIST_NAME = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +186,38 @@ public class SavedListsActivity extends Activity {
             }
         }
     }
+    
+    private void saveListToServer(final String id) {
+        final Cursor c = mDB.getDataByID(id);
+        
+        if (c.moveToFirst() && !Utils.skippedLogin(mDB) && SystemUtils.hasDataConnection(this)) {
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.setTimeout(Constants.HTTP_TIMEOUT);
+            
+            String httpLink = Constants.MAIN_ADDRESS + Constants.QUERY_SAVE_DATA;
+            RequestParams params = new RequestParams();
+            params.add(Constants.QUERY_VAR_EMAIL, mDB.getUserEmail());
+            params.add(Constants.QUERY_VAR_DATA_ID, id);
+            params.add(Constants.QUERY_VAR_DATA_NAME, c.getString(1));
+            params.add(Constants.QUERY_VAR_DATA, c.getString(2));
+            params.add(Constants.QUERY_VAR_DATE, c.getString(3));
+            params.add(Constants.QUERY_VAR_RANDOMIZED, Integer.toString(c.getInt(4)));
+            client.get(httpLink, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int status, Header[] header, byte[] data) {
+                    String resultCode = Utils.getResultCode(data);
+                    if (resultCode.equals(Constants.RC_SUCCESSFUL)) {
+                        mDB.updateSavedToServer(id, 1);
+                        mHttpStatusLayout.setVisibility(View.GONE);
+                        Toast.makeText(SavedListsActivity.this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        } else {
+            mHttpStatusLayout.setVisibility(View.GONE);
+            Toast.makeText(SavedListsActivity.this, "List " + c.getString(1) + " has successfully been saved!!" , Toast.LENGTH_LONG).show(); 
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -225,12 +258,26 @@ public class SavedListsActivity extends Activity {
                     Intent intent = new Intent(this, AlertDialogActivity.class);
                     intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_NOT_TEXT_FILE);
                     startActivity(intent);
+                } else if (!new File(path).exists()) {
+                    Intent intent = new Intent(this, AlertDialogActivity.class);
+                    intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_FILE_DNE);
+                    startActivity(intent);
+                } else {
+                    ArrayList<String> list = Utils.readFromFile(path, this);
+                    
+                    Intent intent = new Intent(this, GetListNameDialogActivity.class);
+                    intent.putExtra(Constants.SELECTIONS_LIST, Utils.listToString(list));
+                    startActivityForResult(intent, GET_LIST_NAME);
                 }
-                Log.d("TAG", "Path: " + path);
             } else if (requestCode == GET_FILE_ALERT) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("text/*");
                 startActivityForResult(intent, GET_FILE);
+            } else if (requestCode == GET_LIST_NAME) {
+                mHttpStatusLayout.setVisibility(View.VISIBLE);
+                String id = data.getExtras().getString(Constants.DATA_ID);
+                saveListToServer(id);
+                displayLists();
             }
         }
     }
