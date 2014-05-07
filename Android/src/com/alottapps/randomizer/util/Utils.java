@@ -1,5 +1,12 @@
 package com.alottapps.randomizer.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +15,12 @@ import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 
 public class Utils {
 
@@ -108,6 +121,54 @@ public class Utils {
             return true;
         }
         return false;
+    }
+    
+    public static String getFilePathFromUri(Intent data, Context context) {
+        Uri imgUri = data.getData();
+        String filePath = null;
+        if (data.getType() == null) {
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = context.getContentResolver().query(imgUri, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            filePath = cursor.getString(columnIndex);
+            cursor.close();
+        }
+        
+        if (filePath == null) {
+            filePath = imgUri.getPath();
+        }
+        
+        return filePath;
+    }
+    
+    public static ArrayList<String> readFromFile(String filePath, Context context) {
+        ArrayList<String> list = new ArrayList<String>();
+         
+        try {
+            InputStream inputStream = new FileInputStream(new File(filePath));
+             
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                 
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    if (!receiveString.equals("")) {
+                        list.add(receiveString);
+                    }
+                }
+                
+                bufferedReader.close();
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ 
+        return list;
     }
     
     public static String encryptString(String str) {

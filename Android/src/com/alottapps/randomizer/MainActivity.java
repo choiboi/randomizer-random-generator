@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
             if (!isSelectionsListEmpty()) {
                 Intent intent = new Intent(this, GetListNameDialogActivity.class);
                 intent.putExtra(Constants.SELECTIONS_LIST, Utils.listToString(mSelections));
-                startActivityForResult(intent, GET_LIST_NAME );
+                startActivityForResult(intent, GET_LIST_NAME);
             } else {
                 listEmptyAlertDialog(Constants.ALERT_EMPTY_SAVE);
             }

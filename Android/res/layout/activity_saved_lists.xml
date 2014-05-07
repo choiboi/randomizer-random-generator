@@ -34,6 +34,19 @@
                 android:text="@string/saved_lists_text"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/asl_download_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/default_small"
+                android:background="@null"
+                android:contentDescription="@string/imagebutton_content_description"
+                android:onClick="onButtonClick"
+                android:padding="@dimen/default_small"
+                android:src="@drawable/download_button" />
         </RelativeLayout>
 
         <LinearLayout
@@ -69,7 +82,6 @@
         </LinearLayout>
 
         <!-- Bottom Navigation Bar -->
-
         <LinearLayout
             android:id="@+id/ar_bottom_nav_bar"
             android:layout_width="fill_parent"
