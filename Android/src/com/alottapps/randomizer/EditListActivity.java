@@ -98,6 +98,7 @@ public class EditListActivity extends Activity {
                     updateSavedList(name, newList);
                 } else {
                     mDB.updateListData(mID, newList, name);
+                    setResult(RESULT_OK);
                     finish();
                 }
             }

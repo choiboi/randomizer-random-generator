@@ -39,6 +39,7 @@ public class ShowSavedRandomizedActivity extends Activity {
     
     // Constants.
     private final int GET_NAME_ALERT = 100;
+    private final int DELETE_ALERT = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,13 @@ public class ShowSavedRandomizedActivity extends Activity {
         }
     }
     
+    private void deleteListConfirmation(String id) {
+        Intent intent = new Intent(this, AlertDialogActivity.class);
+        intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_CONFIMATION);
+        intent.putExtra(Constants.DATA_ID, id);
+        startActivityForResult(intent, DELETE_ALERT);
+    }
+    
     private void inflatePrevSelectedLayout(Cursor c, LayoutInflater inflater) {
         View v  = inflater.inflate(R.layout.container_selection_randomized, mListLayout, false);
         TextView selectionTv = (TextView) v.findViewById(R.id.csl_selection_textview);
@@ -147,8 +155,7 @@ public class ShowSavedRandomizedActivity extends Activity {
         deleteBut.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                mDB.deleteSingleData(dataID);
-                deleteFromDB(dataID);
+                deleteListConfirmation(dataID);
             }
         });
         ImageButton saveBut = (ImageButton) v.findViewById(R.id.clr_save_button);
@@ -215,6 +222,10 @@ public class ShowSavedRandomizedActivity extends Activity {
                     intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_SAVE_FILE_FAIL);
                     startActivity(intent);
                 }
+            } else if (requestCode == DELETE_ALERT) {
+                String dataID = data.getExtras().getString(Constants.DATA_ID);
+                mDB.deleteSingleData(dataID);
+                deleteFromDB(dataID);
             }
         }
     }
