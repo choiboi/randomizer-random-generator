@@ -31,6 +31,7 @@ public class ResultActivity extends Activity {
     private TextView mMainTv;
     private int mType;
     private ArrayList<String> mSelections;
+    private ArrayList<String> mRandOrderedList;
     private int mStartNum;
     private int mEndNum;
     private String mBetweenRange;
@@ -47,6 +48,7 @@ public class ResultActivity extends Activity {
         
         mMainTv = (TextView) findViewById(R.id.ar_main_textview);
         mHttpStatusLayout = (RelativeLayout) findViewById(R.id.ar_http_loading_screen);
+        mRandOrderedList = new ArrayList<String>();
         
         mType = getIntent().getExtras().getInt(Constants.TYPE_RANDOM, -1);
         if (mType == Constants.SINGLE_RANDOM || mType == Constants.LIST_RANDOM) {
@@ -58,6 +60,7 @@ public class ResultActivity extends Activity {
             } else if (mType == Constants.LIST_RANDOM){
                 mMainTv.setText(R.string.randomized_order_text);
                 findViewById(R.id.ar_again_button).setVisibility(View.GONE);
+                findViewById(R.id.ar_randomized_order_button_bar).setVisibility(View.VISIBLE);
             }
         } else if (mType == Constants.NUMBER_RANGE_RANDOM) {
             mStartNum = Integer.parseInt(getIntent().getExtras().getString(Constants.START_NUMBER));
@@ -96,7 +99,9 @@ public class ResultActivity extends Activity {
             ArrayList<Integer> orderedIndexL 
                 = RandomGenerator.listUniqueRandomNumber(mSelections.size(), mSelections.size() - 1);
             LinearLayout ll = (LinearLayout) findViewById(R.id.ar_result_list_layout);
+            ll.removeAllViews();
             LayoutInflater inflater = getLayoutInflater();
+            mRandOrderedList.clear();
             mReorderedList = "";
             
             for (int i = 0; i < orderedIndexL.size(); i++) {
@@ -104,6 +109,7 @@ public class ResultActivity extends Activity {
                 TextView numTv = (TextView) v.findViewById(R.id.cllr_number_textview);
                 numTv.setText((i + 1) + ".");
                 TextView selectionTv = (TextView) v.findViewById(R.id.cllr_selections_textview);
+                mRandOrderedList.add(mSelections.get(orderedIndexL.get(i)));
                 selectionTv.setText(mSelections.get(orderedIndexL.get(i)));
                 if (i == orderedIndexL.size() - 1) {
                     mReorderedList += mSelections.get(orderedIndexL.get(i));
@@ -123,6 +129,33 @@ public class ResultActivity extends Activity {
         }
     }
     
+    private void reverseListOrder() {
+        LinearLayout ll = (LinearLayout) findViewById(R.id.ar_result_list_layout);
+        ll.removeAllViews();
+        LayoutInflater inflater = getLayoutInflater();
+        ArrayList<String> temp = new ArrayList<String>();
+        mReorderedList = "";
+        
+        int num = 1;
+        for (int i = mRandOrderedList.size() - 1; i >= 0; i--) {
+            View v = inflater.inflate(R.layout.container_list_line_randomized, ll, false);
+            TextView numTv = (TextView) v.findViewById(R.id.cllr_number_textview);
+            numTv.setText(num + ".");
+            TextView selectionTv = (TextView) v.findViewById(R.id.cllr_selections_textview);
+            selectionTv.setText(mRandOrderedList.get(i));
+            temp.add(mRandOrderedList.get(i));
+            if (i == 0) {
+                mReorderedList += mRandOrderedList.get(i);
+            } else {
+                mReorderedList += mRandOrderedList.get(i) + Constants.LIST_DELIMITER;
+            }
+            ll.addView(v);
+            num++;
+        }
+        mRandOrderedList = temp;
+        ll.setVisibility(View.VISIBLE);
+    }
+    
     public void onButtonClick(View v) {
         if (v.getId() == R.id.ar_back_button || v.getId() == R.id.ar_back_nav_button) {
             finish();
@@ -132,6 +165,10 @@ public class ResultActivity extends Activity {
             saveToDB(id);
         } else if (v.getId() == R.id.ar_again_button) {
             randomizeAndDisplay();
+        } else if (v.getId() == R.id.ar_list_again_button) {
+            randomizeAndDisplay();
+        } else if (v.getId() == R.id.ar_reverse_order_button) {
+            reverseListOrder();
         }
     }
     

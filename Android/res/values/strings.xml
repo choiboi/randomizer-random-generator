@@ -64,6 +64,7 @@
     <string name="save_and_back_text">Save and Back</string>
     <string name="back_text">Back</string>
     <string name="again_text">Again</string>
+    <string name="reverse_order_text">Reverse Order</string>
     
     <!-- About Activity Texts -->
     <string name="about_text">About</string>

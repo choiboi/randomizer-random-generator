@@ -90,6 +90,35 @@
                     android:visibility="gone" />
             </ScrollView>
         </RelativeLayout>
+        
+        <LinearLayout
+            android:id="@+id/ar_randomized_order_button_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_medium"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/ar_reverse_order_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="-1dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/button_left_white_blue"
+                android:onClick="onButtonClick"
+                android:text="@string/reverse_order_text" />
+
+            <Button
+                android:id="@+id/ar_list_again_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-1dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/button_right_white_blue"
+                android:onClick="onButtonClick"
+                android:text="@string/again_text" />
+        </LinearLayout>
 
         <!-- Bottom Navigation Bar -->
         <LinearLayout
@@ -133,7 +162,7 @@
                 android:textColor="@drawable/black_white_text_color" />
         </LinearLayout>
     </LinearLayout>
-    
+
     <!-- Fill Screen for waiting on Http Async -->
     <RelativeLayout
         android:id="@+id/ar_http_loading_screen"
@@ -160,4 +189,5 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/white" />
     </RelativeLayout>
+
 </RelativeLayout>
