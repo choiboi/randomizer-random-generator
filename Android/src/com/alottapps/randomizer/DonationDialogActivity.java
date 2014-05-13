@@ -111,19 +111,20 @@ public class DonationDialogActivity extends Activity {
                 return;
 
             if (result.isFailure()) {
-                Toast.makeText(DonationDialogActivity.this, "Error purchasing: " + result, Toast.LENGTH_LONG).show();
+                Toast.makeText(DonationDialogActivity.this, "Error purchasing (failed): " + result, Toast.LENGTH_LONG).show();
                 return;
             }
             
             if (!verifyDeveloperPayload(purchase)) {
                 Log.d(TAG, "Error purchasing. Authenticity verification failed.");
-                Toast.makeText(DonationDialogActivity.this, "Error Purchasing.", Toast.LENGTH_LONG).show();
+                Toast.makeText(DonationDialogActivity.this, "Error Purchasing (payload): ", Toast.LENGTH_LONG).show();
                 return;
             }
-
+            
+            Log.d("TAG", "Before checking SKU");
             if (purchase.getSku().equals(SKU_1_DONATION) || purchase.getSku().equals(SKU_2_DONATION) ||
                     purchase.getSku().equals(SKU_3_DONATION)) {
-                Toast.makeText(DonationDialogActivity.this, "Purchased " + purchase.getSku(), Toast.LENGTH_LONG).show();
+                Log.d("TAG", "Correct SKU");
                 mHelper.consumeAsync(purchase, mConsumeFinishedListener);
             }
         }
@@ -132,13 +133,12 @@ public class DonationDialogActivity extends Activity {
     // Called when consumption is complete - make sure that users can purchase again.
     IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
         public void onConsumeFinished(Purchase purchase, IabResult result) {
-            Log.d(TAG, "Consumption finished. result: " + result);
-            Toast.makeText(DonationDialogActivity.this, "Consumption finished. result: " + result, Toast.LENGTH_SHORT).show();
-
+            Log.d("TAG", "onConsumedFinished");
             if (mHelper == null) {
                 return;
             }
-
+            
+            Log.d("TAG", "result: " + result.isSuccess());
             if (result.isSuccess()) {
                 Intent intent = new Intent(DonationDialogActivity.this, AlertDialogActivity.class);
                 intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_TY_DONATION);
