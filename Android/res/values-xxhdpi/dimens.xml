@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dimensions for xxhdpi -->
-    <dimen name="default_small">10dp</dimen>
-    <dimen name="default_medium">15dp</dimen>
-    <dimen name="default_large">20dp</dimen>
-    <dimen name="default_xlarge">25dp</dimen>
-    <dimen name="default_xxlarge">30dp</dimen>
-    <dimen name="default_xxxlarge">35dp</dimen>
     
     <!-- LoginActivity Dimensions -->
     <dimen name="login_icon_size">200dp</dimen>
