@@ -47,14 +47,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/default_medium"
-                android:text="@string/donate_msg_text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
             
             <TextView
                 android:layout_width="fill_parent"
@@ -63,19 +55,6 @@
                 android:text="@string/thank_you_caps_text"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Button
-                android:id="@+id/ab_donate_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/button_normal_white_blue"
-                android:onClick="onButtonClick"
-                android:text="@string/donate_text"
-                android:layout_marginTop="@dimen/default_small"
-                android:layout_marginLeft="@dimen/default_xxxlarge"
-                android:layout_marginRight="@dimen/default_xxxlarge"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
     </ScrollView>
 

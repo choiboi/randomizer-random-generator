@@ -1,7 +1,6 @@
 package com.alottapps.randomizer;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -22,7 +21,7 @@ public class AboutActivity extends Activity {
         "Randomizer was developed by Alottapps+ThinkingWhileTrue. Feel free to " +
         "contact us with suggestions to make this application better or let us know if you " +
         "encounter any errors.<br><b>Email: </b>thinking.while.true@gmail.com<br><br>" +
-        "<b>Randomizer Version 1.6</b>";
+        "<b>Randomizer Version 1.8</b>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +35,6 @@ public class AboutActivity extends Activity {
     public void onButtonClick(View v) {
         if (v.getId() == R.id.ab_back_button) {
             finish();
-        } else if (v.getId() == R.id.ab_donate_button) {
-            Intent intent = new Intent(this, DonationDialogActivity.class);
-            startActivity(intent);
         }
     }
 }

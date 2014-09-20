@@ -5,11 +5,14 @@ import java.util.ArrayList;
 
 import org.apache.http.Header;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +31,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-public class SavedListsActivity extends Activity {
+@TargetApi(Build.VERSION_CODES.KITKAT) public class SavedListsActivity extends Activity {
     
     // Members.
     private LinearLayout mListLayout;
@@ -254,6 +257,7 @@ public class SavedListsActivity extends Activity {
                 }
             } else if (requestCode == GET_FILE) {
                 String path = Utils.getFilePathFromUri(data, this);
+                Log.d("PATH", path);
                 if (!path.endsWith(Constants.TEXTFILE_EXTENSION)) {
                     Intent intent = new Intent(this, AlertDialogActivity.class);
                     intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_NOT_TEXT_FILE);
@@ -270,9 +274,16 @@ public class SavedListsActivity extends Activity {
                     startActivityForResult(intent, GET_LIST_NAME);
                 }
             } else if (requestCode == GET_FILE_ALERT) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("text/*");
-                startActivityForResult(intent, GET_FILE);
+            	if (!SystemUtils.isAtLeastOSKitKat()) {
+	                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+	                intent.setType("text/*");
+	                startActivityForResult(intent, GET_FILE);
+            	} else {
+            		Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            	    intent.addCategory(Intent.CATEGORY_OPENABLE);
+            	    intent.setType("text/*");
+            	    startActivityForResult(intent, GET_FILE);
+            	}
             } else if (requestCode == GET_LIST_NAME) {
                 mHttpStatusLayout.setVisibility(View.VISIBLE);
                 String id = data.getExtras().getString(Constants.DATA_ID);
