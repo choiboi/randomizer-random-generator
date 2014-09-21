@@ -5,11 +5,9 @@ import java.util.ArrayList;
 
 import org.apache.http.Header;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -31,7 +29,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-@TargetApi(Build.VERSION_CODES.KITKAT) public class SavedListsActivity extends Activity {
+public class SavedListsActivity extends Activity {
     
     // Members.
     private LinearLayout mListLayout;
