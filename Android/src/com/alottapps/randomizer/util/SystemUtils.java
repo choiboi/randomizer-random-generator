@@ -46,6 +46,15 @@ public class SystemUtils {
         return directory;
     }
     
+    public static String getOutputLinkWithPartial(String partialPath) {
+    	String directory = "";
+    	if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    		File mediaStorage = Environment.getExternalStorageDirectory();
+    		directory = mediaStorage.getPath() + File.separator + partialPath;
+    	}
+    	return directory;
+    }
+    
     public static boolean saveTextFile(File file, String text) {
         try {
             FileWriter writer = new FileWriter(file);

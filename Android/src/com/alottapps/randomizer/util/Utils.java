@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
 public class Utils {
@@ -125,13 +126,12 @@ public class Utils {
     
     public static String getFilePathFromUri(Intent data, Context context) {
         Uri imgUri = data.getData();
-        String filePath = null;
+        String filePath = "";
         
         if (SystemUtils.isAtLeastOSKitKat()) {
-            filePath = imgUri.getPath();
-            String[] split = filePath.split("/");
-            String filename = split[split.length - 1];
-            filePath = SystemUtils.getOutputLink(filename);
+            String wholeID = DocumentsContract.getDocumentId(imgUri);
+			String partialPath = wholeID.split(":")[1];
+			filePath = SystemUtils.getOutputLinkWithPartial(partialPath);
         } else if (data.getType() == null) {
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
             Cursor cursor = context.getContentResolver().query(imgUri, filePathColumn, null, null, null);
@@ -141,7 +141,7 @@ public class Utils {
             cursor.close();
         }
         
-        if (filePath == null) {
+        if (filePath.equals("")) {
             filePath = imgUri.getPath();
         }
         
