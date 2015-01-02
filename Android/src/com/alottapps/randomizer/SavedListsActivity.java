@@ -266,7 +266,6 @@ public class SavedListsActivity extends Activity {
                     startActivity(intent);
                 } else {
                     ArrayList<String> list = Utils.readFromFile(path, this);
-                    
                     Intent intent = new Intent(this, GetListNameDialogActivity.class);
                     intent.putExtra(Constants.SELECTIONS_LIST, Utils.listToString(list));
                     startActivityForResult(intent, GET_LIST_NAME);
