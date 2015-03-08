@@ -12,10 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +23,9 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
 public class Utils {
+	
+	// Constants.
+    private static final int MAX_NUMBER_LINES = 4;
 
     public static String listToString(ArrayList<String> selections) {
         String str = "";
@@ -72,6 +74,11 @@ public class Utils {
                 htmlStr += "<b>" + (i + 1) + ".</b> " + l[i];
             } else {
                 htmlStr += "<b>" + (i + 1) + ".</b> " + l[i] + "<br>";
+            }
+            
+            if (i == MAX_NUMBER_LINES) {
+            	htmlStr += "<b>&#32;&#32;&#46;&#46;&#46;</b>";
+            	break;
             }
         }
         
@@ -124,7 +131,8 @@ public class Utils {
         return false;
     }
     
-    public static String getFilePathFromUri(Intent data, Context context) {
+    @SuppressLint("NewApi")
+	public static String getFilePathFromUri(Intent data, Context context) {
         Uri imgUri = data.getData();
         String filePath = "";
         
