@@ -19,7 +19,9 @@ Latest BlackBerry PlayBook BAR: https://www.dropbox.com/sh/g3098i3a8u5dwi0/iysJp
  * [jQuery 1.8.2](http://jquery.com/)
  * [jQuery Mobile 1.2.1](http://jquerymobile.com/)
  * [Graphite](http://driftyco.github.io/graphite/)
-
+ * [Android SDK](http://developer.android.com/sdk/installing/index.html)
+ * [Android Asynchronous HTTP Client](http://loopj.com/android-async-http/)
+  
 ###License
 ```
     Copyright (C) 2013  James Choi
