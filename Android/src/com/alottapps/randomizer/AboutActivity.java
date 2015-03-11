@@ -21,7 +21,7 @@ public class AboutActivity extends Activity {
         "Randomizer was developed by Alottapps+ThinkingWhileTrue. Feel free to " +
         "contact us with suggestions to make this application better or let us know if you " +
         "encounter any errors.<br><b>Email: </b>thinking.while.true@gmail.com<br><br>" +
-        "<b>Randomizer Version 1.8</b>";
+        "<b>Randomizer Version 1.9</b>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
