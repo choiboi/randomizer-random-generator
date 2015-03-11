@@ -85,6 +85,11 @@ public class Utils {
         return htmlStr;
     }
     
+    public static int getListSize(String s) {
+    	String[] l = s.split(Constants.LIST_SPLIT_DELIMITER);
+    	return l.length;
+    }
+    
     public static String processDateString(String date) {
         SimpleDateFormat sdf  = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
         Date d = null;

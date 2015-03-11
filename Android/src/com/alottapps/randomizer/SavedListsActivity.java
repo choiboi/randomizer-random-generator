@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.apache.http.Header;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -45,6 +47,8 @@ public class SavedListsActivity extends Activity {
     private final int GET_FILE = 103;
     private final int GET_FILE_ALERT = 104;
     private final int GET_LIST_NAME = 200;
+    
+    private final int LARGE_LIST_SIZE = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,13 +120,16 @@ public class SavedListsActivity extends Activity {
                 deleteListConfirmation(dataID);
             }
         });
+        final int listSize = Utils.getListSize(c.getString(2));
         ImageButton editBut = (ImageButton) v.findViewById(R.id.cl_edit_button);
         editBut.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(SavedListsActivity.this, EditListActivity.class);
-                intent.putExtra(Constants.DATA_ID, dataID);
-                startActivityForResult(intent, EDIT_LIST);
+            	if (listSize > LARGE_LIST_SIZE) {
+            		alertDialog(dataID);
+            	} else {
+            		goToEditPage(dataID);
+            	}
             }
         });
         ImageButton saveBut = (ImageButton) v.findViewById(R.id.cl_save_button);
@@ -156,6 +163,12 @@ public class SavedListsActivity extends Activity {
         startActivityForResult(intent, DELETE_ALERT);
     }
     
+    private void goToEditPage(String dataID) {
+    	Intent intent = new Intent(SavedListsActivity.this, EditListActivity.class);
+        intent.putExtra(Constants.DATA_ID, dataID);
+        startActivityForResult(intent, EDIT_LIST);
+    }
+    
     private void deleteSavedList(final String id) {
         final Cursor c = mDB.getDataByID(id);
         
@@ -186,6 +199,26 @@ public class SavedListsActivity extends Activity {
                 displayLists();
             }
         }
+    }
+    
+    private void alertDialog(final String id) {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setTitle(getResources().getString(R.string.alert_text));
+    	builder.setMessage(getResources().getString(R.string.large_list_alert_message));
+		builder.setPositiveButton(R.string.ok_text,
+			new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {
+					goToEditPage(id);
+					dialog.cancel();
+				}
+			});
+		builder.setNegativeButton(R.string.cancel_text,
+			new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {
+					dialog.cancel();
+				}
+			});
+		builder.create().show();
     }
     
     private void saveListToServer(final String id) {
