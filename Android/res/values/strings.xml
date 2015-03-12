@@ -48,7 +48,7 @@
     <string name="alert_file_dne_message">
         File you have selected does not exists on your device.
     </string>
-    <string name="large_list_alert_message">
+    <string name="alert_large_list_message">
         Warning!! The selected list is large and proceeding can cause Randomizer to quit.
         PROCEED WITH CAUTION!!
     </string>

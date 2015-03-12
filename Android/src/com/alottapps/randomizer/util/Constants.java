@@ -26,6 +26,7 @@ public class Constants {
     public static final int ALERT_SELECT_TEXT_FILE = 107;
     public static final int ALERT_NOT_TEXT_FILE = 108;
     public static final int ALERT_FILE_DNE = 109;
+    public static final int ALERT_LARGE_LIST = 110;
     
     public static final String TYPE_SELECTED_RANDOMIZED = "type_selected_randomized";
     public static final int PREV_RANDOMIZED = 10;
@@ -44,7 +45,8 @@ public class Constants {
     public static final String TEMP_PASS = "none";
     
     // Links for HTTP Request.
-    public static final String MAIN_ADDRESS = "http://****";
+//    public static final String MAIN_ADDRESS = "http://****";
+    public static final String MAIN_ADDRESS = "http://162.243.1.16";
     public static final String QUERY_REGISTER_USER = "/registerUser";
     public static final String QUERY_LOGIN = "/login";
     public static final String QUERY_GET_ALL_DATA = "/getAllData";

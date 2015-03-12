@@ -63,31 +63,25 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="NumberSelectorDialogActivity"
+            android:name=".dialog.NumberSelectorDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Light.Dialog" >
         </activity>
         <activity
-            android:name="AlertDialogActivity"
+            android:name=".dialog.AlertDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Light.Dialog" >
         </activity>
         <activity
-            android:name="GetListNameDialogActivity"
+            android:name=".dialog.GetListNameDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Light.Dialog" >
         </activity>
         <activity
-            android:name="GetFileNameDialogActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Light.Dialog" >
-        </activity>
-        <activity
-            android:name="DonationDialogActivity"
+            android:name=".dialog.GetFileNameDialogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Light.Dialog" >

@@ -51,6 +51,11 @@ public class AlertDialogActivity extends Activity {
             setResult(RESULT_CANCELED);
         } else if (mType == Constants.ALERT_FILE_DNE) {
             tv.setText(R.string.alert_file_dne_message);
+        } else if (mType == Constants.ALERT_LARGE_LIST) {
+        	tv.setText(R.string.alert_large_list_message);
+        	mCancelButton.setVisibility(View.VISIBLE);
+        	mID = getIntent().getExtras().getString(Constants.DATA_ID);
+        	setResult(RESULT_CANCELED);
         } else {
             finish();
         }
@@ -64,6 +69,10 @@ public class AlertDialogActivity extends Activity {
                 setResult(RESULT_OK, intent);
             } else if (mType == Constants.ALERT_SELECT_TEXT_FILE) {
                 setResult(RESULT_OK);
+            } else if (mType == Constants.ALERT_LARGE_LIST) {
+            	Intent intent = new Intent();
+                intent.putExtra(Constants.DATA_ID, mID);
+                setResult(RESULT_OK, intent);
             }
         }
         finish();

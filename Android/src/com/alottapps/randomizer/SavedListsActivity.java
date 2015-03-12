@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import org.apache.http.Header;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -51,6 +49,7 @@ public class SavedListsActivity extends Activity {
     private final int GET_FILE_ALERT = 104;
     private final int GET_LIST_NAME = 200;
     
+    private final int INTENT_LARGE_LIST_ALERT = 111;
     private final int LARGE_LIST_SIZE = 50;
 
     @Override
@@ -127,9 +126,12 @@ public class SavedListsActivity extends Activity {
         ImageButton editBut = (ImageButton) v.findViewById(R.id.cl_edit_button);
         editBut.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View v) {
             	if (listSize > LARGE_LIST_SIZE) {
-            		alertDialog(dataID);
+            		Intent intent = new Intent(SavedListsActivity.this, AlertDialogActivity.class);
+            		intent.putExtra(Constants.DATA_ID, dataID);
+            		intent.putExtra(Constants.ALERT_TYPE, Constants.ALERT_LARGE_LIST);
+            		startActivityForResult(intent, INTENT_LARGE_LIST_ALERT);
             	} else {
             		goToEditPage(dataID);
             	}
@@ -202,26 +204,6 @@ public class SavedListsActivity extends Activity {
                 displayLists();
             }
         }
-    }
-    
-    private void alertDialog(final String id) {
-    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setTitle(getResources().getString(R.string.alert_text));
-    	builder.setMessage(getResources().getString(R.string.large_list_alert_message));
-		builder.setPositiveButton(R.string.ok_text,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {
-					goToEditPage(id);
-					dialog.cancel();
-				}
-			});
-		builder.setNegativeButton(R.string.cancel_text,
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {
-					dialog.cancel();
-				}
-			});
-		builder.create().show();
     }
     
     private void saveListToServer(final String id) {
@@ -322,6 +304,9 @@ public class SavedListsActivity extends Activity {
                 String id = data.getExtras().getString(Constants.DATA_ID);
                 saveListToServer(id);
                 displayLists();
+            } else if (requestCode == INTENT_LARGE_LIST_ALERT) {
+            	String id = data.getExtras().getString(Constants.DATA_ID);
+            	goToEditPage(id);
             }
         }
     }
