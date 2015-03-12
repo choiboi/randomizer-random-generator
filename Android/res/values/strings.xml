@@ -3,6 +3,7 @@
     <string name="app_name">Randomizer</string>
     
     <!-- Main Activity Texts -->
+    <string name="load_more_text">Load More</string>
     <string name="clear_all_text">Clear All</string>
     <string name="add_text">Add</string>
     <string name="pick_choice_text">Pick a Choice</string>

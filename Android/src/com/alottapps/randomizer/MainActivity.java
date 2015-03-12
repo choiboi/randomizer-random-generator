@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -36,6 +37,7 @@ import com.loopj.android.http.RequestParams;
 public class MainActivity extends Activity {
     
     // Members.
+	private Button mLoadMoreBut;
     private EditText mSelectionsEt;
     private LinearLayout mSelectionsListview;
     private LinearLayout mMainMenu;
@@ -48,13 +50,14 @@ public class MainActivity extends Activity {
     private DatabaseHandler mDB;
     private AsyncHttpClient mHttpClient;
     
-    private int listSize;
-    private int currentListIndex;
+    private int mListSize;
+    private int mCurrentListIndex;
     
     // Constants.
     private final String NONE = "None";
     private final int LOAD_SAVED_LIST = 1;
     private final int GET_LIST_NAME = 2;
+    private final int LINE_LOAD_INCREMENT = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class MainActivity extends Activity {
         mMainMenu = (LinearLayout) findViewById(R.id.am_menu_layout);
         mMenuBg = findViewById(R.id.am_menu_background_view);
         mHttpStatusLayout = (RelativeLayout) findViewById(R.id.am_http_loading_screen);
+        mLoadMoreBut = (Button) findViewById(R.id.am_load_more_button);
         
         mApp = (RandomizerApplication) getApplicationContext();
         mDB = mApp.getDB();
@@ -74,6 +78,8 @@ public class MainActivity extends Activity {
         mSelections = new ArrayList<String>();
         mLayoutInflater = getLayoutInflater();
         
+        mCurrentListIndex = LINE_LOAD_INCREMENT; // Initial load size is 20 lines.
+        mListSize = mSelections.size();
         drawSelectionsListview();
         
         mMenuBg.setOnClickListener(new OnClickListener() {
@@ -135,6 +141,8 @@ public class MainActivity extends Activity {
             } else {
                 listEmptyAlertDialog(Constants.ALERT_EMPTY_RANDOMIZER);
             }
+        } else if (v.getId() == R.id.am_load_more_button) {
+        	loadMore();
         }
     }
     
@@ -172,7 +180,9 @@ public class MainActivity extends Activity {
             mSelectionsListview.addView(v);
         }
         
-        for (int i = 0; i < mSelections.size(); i++) {
+        int maxInd = mListSize > mCurrentListIndex ? mCurrentListIndex : mListSize;
+        
+        for (int i = 0; i < maxInd; i++) {
             View v = mLayoutInflater.inflate(R.layout.container_main_selections, mSelectionsListview, false);
             ImageButton imb = (ImageButton) v.findViewById(R.id.cs_delete_button);
             final int pos = i;
@@ -180,6 +190,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     mSelections.remove(pos);
+                    mCurrentListIndex--;
                     drawSelectionsListview();
                 }
             });
@@ -189,16 +200,47 @@ public class MainActivity extends Activity {
         }
     }
     
+    private void loadMore() {
+    	int prevInd = mCurrentListIndex;
+    	mCurrentListIndex += LINE_LOAD_INCREMENT;
+    	
+    	int maxInd = mListSize > mCurrentListIndex ? mCurrentListIndex : mListSize;
+    	for (int i = prevInd; i < maxInd; i++) {
+    		View v = mLayoutInflater.inflate(R.layout.container_main_selections, mSelectionsListview, false);
+            ImageButton imb = (ImageButton) v.findViewById(R.id.cs_delete_button);
+            final int pos = i;
+            imb.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mSelections.remove(pos);
+                    mCurrentListIndex--;
+                    drawSelectionsListview();
+                }
+            });
+            TextView tv = (TextView) v.findViewById(R.id.cs_selection_textview);
+            tv.setText(mSelections.get(i));
+            mSelectionsListview.addView(v);
+    	}
+    	
+    	if (mListSize <= mCurrentListIndex) {
+        	mLoadMoreBut.setVisibility(View.GONE);
+        }
+    }
+    
     private void addSelection() {
         String s = mSelectionsEt.getText().toString();
         if (!s.equals("")) {
+        	mListSize = mSelections.size();
             mSelections.add(0, s);
+            mCurrentListIndex++;
             drawSelectionsListview();
         }
         mSelectionsEt.setText("");
     }
     
     private void clearSelectionsList() {
+    	mListSize = 0;
+    	mCurrentListIndex = LINE_LOAD_INCREMENT;
         mSelections = new ArrayList<String>();
         mSelectionsListview.removeAllViews();
         
@@ -264,6 +306,11 @@ public class MainActivity extends Activity {
                 Cursor c = mDB.getDataByID(id);
                 if (c.moveToFirst()) {
                     mSelections = Utils.stringToList(c.getString(2));
+                    mListSize = mSelections.size();
+                    mCurrentListIndex = LINE_LOAD_INCREMENT;
+                    if (mListSize >= mCurrentListIndex) {
+                    	mLoadMoreBut.setVisibility(View.VISIBLE);
+                    }
                 }
                 drawSelectionsListview();
             } else if (requestCode == GET_LIST_NAME) {

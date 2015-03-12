@@ -5,7 +5,6 @@
     android:focusableInTouchMode="true" >
 
     <!-- Top Navigation Bar -->
-
     <RelativeLayout
         android:id="@+id/am_nav_bar"
         android:layout_width="fill_parent"
@@ -36,7 +35,6 @@
     </RelativeLayout>
 
     <!-- Bottom Navigation Bar -->
-
     <LinearLayout
         android:id="@+id/am_bottom_nav_bar"
         android:layout_width="fill_parent"
@@ -168,14 +166,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/default_small"
+                    android:layout_marginRight="-2dp"
                     android:layout_marginTop="@dimen/default_small"
                     android:background="@drawable/button_middle_white_blue"
                     android:onClick="onButtonClick"
-                    android:layout_marginRight="-2dp"
                     android:text="@string/save_list_text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@drawable/black_white_text_color" />
-                
+
                 <Button
                     android:id="@+id/am_randomize_number_button"
                     android:layout_width="wrap_content"
@@ -208,16 +206,28 @@
                 android:id="@+id/am_selections_listview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_medium"
                 android:layout_marginLeft="@dimen/default_medium"
                 android:layout_marginRight="@dimen/default_medium"
-                android:layout_marginBottom="@dimen/default_medium"
                 android:orientation="vertical" >
             </LinearLayout>
+
+            <Button
+                android:id="@+id/am_load_more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_large"
+                android:background="@drawable/button_normal_white_blue"
+                android:onClick="onButtonClick"
+                android:layout_gravity="center"
+                android:text="@string/load_more_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@drawable/black_white_text_color"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
     <!-- Menu List -->
-
     <View
         android:id="@+id/am_menu_background_view"
         android:layout_width="fill_parent"
@@ -285,7 +295,6 @@
     </LinearLayout>
 
     <!-- Fill Screen for waiting on Http Async -->
-
     <RelativeLayout
         android:id="@+id/am_http_loading_screen"
         android:layout_width="fill_parent"
