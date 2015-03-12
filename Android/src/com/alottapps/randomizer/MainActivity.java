@@ -48,6 +48,9 @@ public class MainActivity extends Activity {
     private DatabaseHandler mDB;
     private AsyncHttpClient mHttpClient;
     
+    private int listSize;
+    private int currentListIndex;
+    
     // Constants.
     private final String NONE = "None";
     private final int LOAD_SAVED_LIST = 1;
@@ -189,7 +192,7 @@ public class MainActivity extends Activity {
     private void addSelection() {
         String s = mSelectionsEt.getText().toString();
         if (!s.equals("")) {
-            mSelections.add(s);
+            mSelections.add(0, s);
             drawSelectionsListview();
         }
         mSelectionsEt.setText("");
