@@ -23,6 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alottapps.randomizer.application.RandomizerApplication;
+import com.alottapps.randomizer.dialog.AlertDialogActivity;
+import com.alottapps.randomizer.dialog.GetFileNameDialogActivity;
+import com.alottapps.randomizer.dialog.GetListNameDialogActivity;
 import com.alottapps.randomizer.util.Constants;
 import com.alottapps.randomizer.util.DatabaseHandler;
 import com.alottapps.randomizer.util.SystemUtils;

@@ -1,4 +1,4 @@
-package com.alottapps.randomizer;
+package com.alottapps.randomizer.dialog;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.alottapps.randomizer.R;
+import com.alottapps.randomizer.ResultActivity;
 import com.alottapps.randomizer.util.Constants;
 
 public class NumberSelectorDialogActivity extends Activity {
