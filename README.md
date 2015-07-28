@@ -11,10 +11,6 @@ This is a mobile application for users that have difficulty making a decision fr
  * Shuffle order from the given choices.
  * Store shuffled lists (for future reference) and previous selected choices (for future view).
 
-###Application Files
-Latest Android APK: https://www.dropbox.com/sh/l9y02o2s1jqeswv/_dbiHIIeNs. <br>
-Latest BlackBerry PlayBook BAR: https://www.dropbox.com/sh/g3098i3a8u5dwi0/iysJpWcSRA.
-
 ###Tools
  * [jQuery 1.8.2](http://jquery.com/)
  * [jQuery Mobile 1.2.1](http://jquerymobile.com/)
