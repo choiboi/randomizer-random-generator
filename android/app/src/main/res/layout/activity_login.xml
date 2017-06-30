@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/base_blue"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="@dimen/login_icon_size"
+        android:layout_height="@dimen/login_icon_size"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/imageview_content_description"
+        android:src="@drawable/logo" />
+
+</RelativeLayout>

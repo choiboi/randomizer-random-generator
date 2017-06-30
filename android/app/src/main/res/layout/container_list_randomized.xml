@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginBottom="@dimen/default_small"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/default_small"
+    android:paddingLeft="@dimen/default_xlarge"
+    android:paddingRight="@dimen/default_large"
+    android:paddingTop="@dimen/default_small">
+
+    <TextView
+        android:id="@+id/clr_list_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/clr_date_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/border_color" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/clr_delete_button"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:paddingBottom="@dimen/default_small"
+            android:paddingRight="@dimen/default_xxxlarge"
+            android:paddingTop="@dimen/default_small"
+            android:text="@string/delete_caps_text"
+            android:textColor="@drawable/colorstate_lightred_red" />
+
+        <Button
+            android:id="@+id/clr_view_button"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:paddingBottom="@dimen/default_small"
+            android:paddingRight="@dimen/default_xxxlarge"
+            android:paddingTop="@dimen/default_small"
+            android:text="@string/view_caps_text"
+            android:textColor="@drawable/colorstate_blue_darkblue" />
+
+        <Button
+            android:id="@+id/clr_save_button"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:paddingBottom="@dimen/default_small"
+            android:paddingRight="@dimen/default_xxxlarge"
+            android:paddingTop="@dimen/default_small"
+            android:text="@string/save_to_file_caps_text"
+            android:textColor="@drawable/colorstate_blue_darkblue" />
+    </LinearLayout>
+
+</LinearLayout>

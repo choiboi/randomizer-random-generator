@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Randomizer</string>
+    <string name="banner_ad_unit_id"><!-- Insert Abmob key --></string>
+    
+    <!-- Main Activity Texts -->
+    <string name="load_more_text">Load More</string>
+    <string name="clear_all_text">Clear All</string>
+    <string name="add_text">Add</string>
+    <string name="pick_choice_text">Pick a Choice</string>
+    <string name="randomize_order_text">Randomize Order</string>
+    <string name="load_list_text">Load List</string>
+    <string name="save_list_text">Save List</string>
+    <string name="randomize_number_text">Randomize Number</string>
+    <string name="input_selection_colon_text">Input Your Selections Here:</string>
+    <string name="your_selections_text">Your Selections</string>
+    <string name="alert_text">Alert!</string>
+    <string name="notice_text">Notice</string>
+    <string name="empty_selection_alert_message">
+        There are no choices to pick from or randomly order from.
+		Please input choices into the list of selections.
+    </string>
+    <string name="empty_selection_save_alert_message">
+        Your selections list is empty. Please add selections before saving.
+    </string>
+    <string name="alert_why_description_message">
+        Logging in with your Email and Password allows you to access your saved lists on
+        multiple android devices. It is not mandatory to login, but you will only be able to
+        access your saved lists on this device only. If you choose to login, we insist that
+        you DO NOT store any private information (for example: credit numbers, social identity
+        numbers and etc.), as we will NOT BE RESPONSIBLE for any stolen information.
+    </string>
+    <string name="alert_confirm_delete_list_message">
+        Are you sure you want to delete this list?
+    </string>
+    <string name="alert_confirm_delete_all_message">
+        Are you sure you want to delete all the previously selected history?
+    </string>
+    <string name="alert_save_failed_message">
+        Saving list to file failed. Try Again!
+    </string>
+    <string name="alert_select_text_file_message">
+        Please select text (*.txt) file. Make sure your text file is structured in a way that
+        each line is a selection/choice.
+    </string>
+    <string name="alert_not_text_file_message">
+        You have selected the wrong file. Please select a text file.
+    </string>
+    <string name="alert_file_dne_message">
+        File you have selected does not exists on your device.
+    </string>
+    <string name="alert_large_list_message">
+        Warning!! The selected list is large and proceeding can cause Randomizer to quit.
+        PROCEED WITH CAUTION!!
+    </string>
+    <string name="empty_list_or_wrong_file_message">
+        Either your text file was empty or you did not select a text file.
+    </string>
+    <string name="something_went_wrong_textfile_message">
+        Something went wrong with opening your text file.
+    </string>
+    <string name="alert_notice_backend_changes_message">
+        Due to issues we were facing with our previous servers, we were forced to change to a new
+        server service provider. As a result of this we were not able to migrate all previous data
+        into the new server. Users who previously created an account will now have to register for
+        a new account. If you contact us at thinking.while.true@gmail.com we might be able to
+        retrieve all your saved list and send the to you. We apologize for this inconvenience.
+        Thank You.
+    </string>
+    <string name="alert_not_logging_in_message">
+        Selecting to not login with credentials will result in your lists not saved on our
+        server. We recommended that you frequently save your lists using the application\'s save
+        to file feature.
+    </string>
+    <string name="alert_app_terminating_message">
+        Starting January 28, 2017 login feature will be removed from Randomizer. We suggest that you
+        save all your lists using the save to text file feature. Users will still be able to use
+        Randomizer just without the login feature. We would like to thank you for using Randomizer
+        and apologize for any inconvenience this may have caused.
+    </string>
+    <string name="alert_invalid_filename" >
+        Please refrain from having filenames with the following character: /
+    </string>
+    <string name="ok_text">OK</string>
+    <string name="saving_list_text">Saving List</string>
+    <string name="do_not_show_again_text">Do not show this notice again.</string>
+    <string name="logging_out_text">Logging Out</string>
+    
+    <!-- Menu Texts -->
+    <string name="view_previous_choices_text">View Previous Choices</string>
+    <string name="view_saved_ordered_lists_text">View Saved Ordered Lists</string>
+    <string name="about_randomizer_text">About Randomizer</string>
+    <string name="logout_text">Logout</string>
+    
+    <!-- Result Activity Text -->
+    <string name="result_text">Result</string>
+    <string name="randomizer_has_selected_text">Randomizer Has Selected</string>
+    <string name="randomized_order_text">Randomized Order</string>
+    <string name="save_and_back_text">Save and Back</string>
+    <string name="back_text">Back</string>
+    <string name="again_text">Again</string>
+    <string name="reverse_order_text">Reverse Order</string>
+    <string name="something_went_wrong_randomizing_text">Something went wrong with Randomizing.</string>
+    
+    <!-- About Activity Texts -->
+    <string name="about_text">About</string>
+    <string name="thank_you_caps_text">THANK YOU!!</string>
+    <string name="remove_ads_text">Remove Ads</string>
+    <string name="error_contact_assistance_msg">
+        An error occurred, please email for assistance.
+    </string>
+    <string name="error_with_purchase_msg">
+        An error occurred, with purchase. Please try again.
+    </string>
+    
+    <!-- Number Selector Dialog Activity -->
+    <string name="input_number_range_text">Input Number Range</string>
+    <string name="from_colon_text">From:</string>
+    <string name="to_colon_text">To:</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="num_selector_info_text">Please input number range:</string>
+    <string name="one_text">1</string>
+    <string name="ten_text">10</string>
+    
+    <!-- Get List Name Dialog Activity -->
+    <string name="enter_list_name_colon_text">Enter List Name:</string>
+    <string name="optional_brackets_text">(Optional)</string>
+    
+    <!-- Get File Name Dialog Activity -->
+    <string name="enter_file_name_colon_text">Enter Filename:</string>
+    <string name="save_file_text">Save File</string>
+    
+    <!-- Show Saved Randomized Activity -->
+    <string name="prev_selected_choices_text">Previously Selected Choices</string>
+    <string name="saved_randomized_list_text">Saved Randomized Lists</string>
+    <string name="none_text">NONE</string>
+    <string name="delete_caps_text">DELETE</string>
+    <string name="save_to_file_caps_text">SAVE TO FILE</string>
+    <string name="view_caps_text">VIEW</string>
+    
+    <!-- Saved List Activity -->
+    <string name="saved_lists_text">Saved Lists</string>
+    <string name="deleting_list_text">Deleting List</string>
+    <string name="edit_caps_text">EDIT</string>
+    
+    <!-- Login Activity -->
+    <string name="login_text">Login</string>
+    <string name="register_text">Register</string>
+    <string name="skip_login_text">Skip Login</string>
+    <string name="password_text">Password</string>
+    <string name="email_text">Email</string>
+    <string name="why_login_text">Why Login?</string>
+    <string name="user_exists_msg">This Email is Registered.</string>
+    <string name="invalid_credentials_msg">Invalid Credentials.</string>
+    <string name="error_login_register_msg">Login/Register Error.</string>
+    <string name="invalid_email_msg">Invalid Email.</string>
+    <string name="empty_fields_msg">Email and/or Password fields empty.</string>
+    <string name="no_data_connection_msg">You have no internet connection.</string>
+    
+    <!-- Edit List Activity -->
+    <string name="edit_list_title_text">Edit List</string>
+    <string name="list_name_colon_text">List name:</string>
+    <string name="your_selections_colon_text">Your Selections:</string>
+    <string name="add_new_selection_text">Add New Selection</string>
+    <string name="enter_list_name_text">Enter List Name</string>
+    
+    <!-- Misc. -->
+    <string name="imageview_content_description">ImageView</string>
+    <string name="imagebutton_content_description">ImageButton</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginBottom="@dimen/default_small"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/default_small"
+    android:paddingLeft="@dimen/default_xlarge"
+    android:paddingRight="@dimen/default_large"
+    android:paddingTop="@dimen/default_small">
+
+    <TextView
+        android:id="@+id/csl_selection_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/csl_data_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/csl_date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/border_color" />
+
+    <Button
+        android:id="@+id/csl_delete_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:paddingTop="@dimen/default_small"
+        android:paddingBottom="@dimen/default_small"
+        android:paddingRight="@dimen/default_xxxlarge"
+        android:text="@string/delete_caps_text"
+        android:textColor="@drawable/colorstate_lightred_red"/>
+
+</LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- Top Navigation Bar -->
+    <RelativeLayout
+        android:id="@+id/ael_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue" >
+
+        <ImageButton
+            android:id="@+id/ael_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_small"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:onClick="onButtonClick"
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_left_arrow_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/edit_list_title_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/default_medium"
+        android:layout_weight="1.0"
+        android:overScrollMode="never" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/list_name_colon_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/ael_title_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small"
+                android:background="@drawable/edittext_default"
+                android:ems="10"
+                android:hint="@string/enter_list_name_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_large"
+                android:text="@string/your_selections_colon_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <LinearLayout
+                android:id="@+id/ael_selection_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/ael_add_new_selection_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/default_small"
+                android:background="@drawable/button_alert"
+                android:onClick="onButtonClick"
+                android:text="@string/add_new_selection_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@drawable/colorstate_blue_darkblue"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ael_save_nav_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_normal_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/save_and_back_text"
+            android:textColor="@drawable/colorstate_black_white" />
+    </LinearLayout>
+</LinearLayout>

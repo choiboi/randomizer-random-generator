@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusableInTouchMode="true">
+
+    <!-- Top Navigation Bar -->
+    <RelativeLayout
+        android:id="@+id/am_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/base_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/am_menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:onClick="onButtonClick"
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_overflow" />
+    </RelativeLayout>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/am_bottom_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/base_blue"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/am_pick_choice_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_normal_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/pick_choice_text"
+            android:textColor="@drawable/colorstate_black_white" />
+
+        <Button
+            android:id="@+id/am_randomize_order_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_normal_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/randomize_order_text"
+            android:textColor="@drawable/colorstate_black_white" />
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_below="@id/am_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_small"
+        android:visibility="gone"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"/>
+
+    <ScrollView
+        android:id="@+id/am_main_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/am_bottom_nav_bar"
+        android:layout_below="@id/adView"
+        android:layout_centerHorizontal="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/am_input_selection_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_small"
+                android:text="@string/input_selection_colon_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/am_selection_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_medium"
+                android:background="@drawable/edittext_default"
+                android:ems="12"
+                android:inputType="text"
+                android:nextFocusLeft="@id/am_selection_edittext"
+                android:nextFocusUp="@id/am_selection_edittext" />
+
+            <LinearLayout
+                android:id="@+id/am_top_button_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_small"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_small"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/am_clear_all_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="-2dp"
+                    android:background="@drawable/button_left_white_blue"
+                    android:onClick="onButtonClick"
+                    android:text="@string/clear_all_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/colorstate_black_white" />
+
+                <Button
+                    android:id="@+id/am_add_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_right_white_blue"
+                    android:onClick="onButtonClick"
+                    android:text="@string/add_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/colorstate_black_white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/am_bottom_button_row"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_small"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/am_load_list_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="-2dp"
+                    android:background="@drawable/button_left_white_blue"
+                    android:onClick="onButtonClick"
+                    android:text="@string/load_list_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/colorstate_black_white" />
+
+                <Button
+                    android:id="@+id/am_save_list_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="-2dp"
+                    android:background="@drawable/button_middle_white_blue"
+                    android:onClick="onButtonClick"
+                    android:text="@string/save_list_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/colorstate_black_white" />
+
+                <Button
+                    android:id="@+id/am_randomize_number_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/button_right_white_blue"
+                    android:onClick="onButtonClick"
+                    android:text="@string/randomize_number_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@drawable/colorstate_black_white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/am_selections_title_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:layout_marginTop="@dimen/default_small"
+                android:background="@color/base_blue"
+                android:paddingBottom="@dimen/default_medium"
+                android:paddingLeft="@dimen/default_medium"
+                android:paddingTop="@dimen/default_medium"
+                android:text="@string/your_selections_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:id="@+id/am_selections_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_medium"
+                android:layout_marginLeft="@dimen/default_medium"
+                android:layout_marginRight="@dimen/default_medium"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/am_load_more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/default_large"
+                android:background="@drawable/button_alert"
+                android:onClick="onButtonClick"
+                android:text="@string/load_more_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@drawable/colorstate_blue_darkblue"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Menu List -->
+    <View
+        android:id="@+id/am_menu_background_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/am_nav_bar"
+        android:background="@color/menu_background_color"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/am_menu_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/am_nav_bar"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/am_previous_choice_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/button_menu"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/view_previous_choices_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/colorstate_black_white" />
+
+        <Button
+            android:id="@+id/am_saved_ordered_list_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/button_menu"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/view_saved_ordered_lists_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/colorstate_black_white" />
+
+        <Button
+            android:id="@+id/am_about_menu_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/button_menu"
+            android:onClick="onMenuButtonClick"
+            android:text="@string/about_randomizer_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@drawable/colorstate_black_white" />
+    </LinearLayout>
+
+    <!-- Fill Screen for waiting on Http Async -->
+    <RelativeLayout
+        android:id="@+id/am_http_loading_screen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/am_nav_bar"
+        android:layout_centerInParent="true"
+        android:background="#AA000000"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/am_http_status_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/am_http_status_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/am_http_status_progressbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_medium"
+            android:text="@string/saving_list_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <!-- Fill Screen for waiting on Http Async -->
+    <RelativeLayout
+        android:id="@+id/am_http_logging_out_screen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/am_nav_bar"
+        android:layout_centerInParent="true"
+        android:background="#AA000000"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/am_http_logging_out_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/am_http_logging_out_progressbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_medium"
+            android:text="@string/logging_out_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>

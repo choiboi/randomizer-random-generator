@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:gravity="center"
+        android:paddingBottom="@dimen/default_medium"
+        android:paddingTop="@dimen/default_medium"
+        android:text="@string/alert_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_medium"
+        android:text="@string/enter_file_name_colon_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/agfn_name_edittext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_small"
+        android:background="@drawable/edittext_default"
+        android:ems="10"
+        android:hint="@string/optional_brackets_text" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_small"
+        android:layout_marginLeft="@dimen/default_medium"
+        android:layout_marginRight="@dimen/default_medium"
+        android:layout_marginTop="@dimen/default_small"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/agfn_save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_alert"
+            android:onClick="onButtonClick"
+            android:text="@string/save_file_text"
+            android:textColor="@drawable/colorstate_blue_darkblue"
+            android:textSize="@dimen/dialog_num_selector_text_size" />
+
+        <Button
+            android:id="@+id/agfn_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_alert"
+            android:onClick="onButtonClick"
+            android:text="@string/cancel_text"
+            android:textColor="@drawable/colorstate_blue_darkblue"
+            android:textSize="@dimen/dialog_num_selector_text_size" />
+    </LinearLayout>
+
+</LinearLayout>

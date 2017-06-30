@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main app styling -->
+    <style name="Theme.Main" parent="@android:style/Theme.Light.NoTitleBar">
+    </style>
+
+    <!-- Styling for the dialog box -->
+    <style name="Theme.Light.Dialog" parent="@android:style/Theme.Dialog">
+        <item name="@android:windowBackground">@android:color/white</item>
+        <item name="@android:textColor">@android:color/black</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

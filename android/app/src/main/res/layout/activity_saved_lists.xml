@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!-- Top Navigation Bar -->
+    <RelativeLayout
+        android:id="@+id/asl_top_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/base_blue">
+
+        <ImageButton
+            android:id="@+id/asl_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:onClick="onButtonClick"
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_left_arrow_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/saved_lists_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/asl_download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/default_small"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:onClick="onButtonClick"
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_download" />
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+    <ListView
+        android:id="@+id/asl_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/adView"
+        android:layout_below="@id/asl_top_nav_bar"
+        android:dividerHeight="@dimen/listview_line_divider_height"
+        android:overScrollMode="never" />
+
+    <!-- For none layout. -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/am_nav_bar"
+        android:layout_centerInParent="true">
+        <TextView
+            android:id="@+id/asl_none_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/none_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/border_color"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <!-- Fill Screen for waiting on Http Async -->
+    <RelativeLayout
+        android:id="@+id/asl_http_loading_screen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/am_nav_bar"
+        android:layout_centerInParent="true"
+        android:background="#AA000000"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/asl_http_status_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/asl_http_status_progressbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_medium"
+            android:text="@string/deleting_list_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Top Navigation Bar -->
+    <RelativeLayout
+        android:id="@+id/ar_top_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue">
+
+        <ImageButton
+            android:id="@+id/ar_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/imagebutton_content_description"
+            android:onClick="onButtonClick"
+            android:padding="@dimen/default_small"
+            android:src="@drawable/ic_left_arrow_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/result_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ProgressBar
+            android:id="@+id/ar_main_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/ar_main_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_large"
+            android:gravity="center"
+            android:textSize="@dimen/main_textview_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ar_number_range_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ar_main_textview"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/border_color"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/ar_result_single_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="@dimen/result_textview_size"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/aea_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ar_main_textview"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/default_large"
+            android:layout_marginTop="@dimen/default_large"
+            android:overScrollMode="never"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ar_randomized_order_button_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_medium"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/ar_reverse_order_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="-1dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/button_left_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/reverse_order_text" />
+
+        <Button
+            android:id="@+id/ar_list_again_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-1dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/button_right_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/again_text" />
+    </LinearLayout>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/ar_bottom_nav_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ar_back_nav_button"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_normal_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/back_text"
+            android:textColor="@drawable/colorstate_black_white" />
+
+        <Button
+            android:id="@+id/ar_save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_normal_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/save_and_back_text"
+            android:textColor="@drawable/colorstate_black_white" />
+
+        <Button
+            android:id="@+id/ar_again_button"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/default_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_normal_white_blue"
+            android:onClick="onButtonClick"
+            android:text="@string/again_text"
+            android:textColor="@drawable/colorstate_black_white" />
+    </LinearLayout>
+</LinearLayout>
