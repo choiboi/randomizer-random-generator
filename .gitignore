@@ -27,3 +27,14 @@ lint.xml
 # BlackBerry Files.
 *.zip
 output/
+
+# Android Studio
+.gradle
+/local.properties
+/.idea/workspace.xml
+/build
+build/
+android/.idea/codeStyleSettings.xml
+.idea/
+*.iml
+*.bin
